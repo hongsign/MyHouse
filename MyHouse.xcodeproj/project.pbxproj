@@ -1,0 +1,1362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		260166261E4E46B800F527DF /* UIEquipmentroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260166251E4E46B800F527DF /* UIEquipmentroom.swift */; };
+		260166281E510E5400F527DF /* UIHall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260166271E510E5400F527DF /* UIHall.swift */; };
+		2601662A1E5122FB00F527DF /* UIStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260166291E5122FB00F527DF /* UIStudy.swift */; };
+		2601662C1E51305B00F527DF /* UIDiningroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2601662B1E51305B00F527DF /* UIDiningroom.swift */; };
+		2601662E1E51583E00F527DF /* UIPantry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2601662D1E51583E00F527DF /* UIPantry.swift */; };
+		260166301E51765100F527DF /* UIOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2601662F1E51764F00F527DF /* UIOffice.swift */; };
+		2620ACE21E8C211600CBE0FF /* UICustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620ACE11E8C211600CBE0FF /* UICustomTextField.swift */; };
+		2620ACE41E8C389700CBE0FF /* UITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620ACE31E8C389700CBE0FF /* UITabView.swift */; };
+		2627ED2C1E5E118E0001E8C2 /* UIStorey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627ED2B1E5E118E0001E8C2 /* UIStorey.swift */; };
+		2627ED2E1E5E16E90001E8C2 /* UIStoreyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627ED2D1E5E16E90001E8C2 /* UIStoreyCell.swift */; };
+		2627ED301E5E1FCF0001E8C2 /* UIHouseViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627ED2F1E5E1FCF0001E8C2 /* UIHouseViewHelper.swift */; };
+		2627ED321E5FAF840001E8C2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627ED311E5FAF840001E8C2 /* Extensions.swift */; };
+		263A01611E6F7071005DE99F /* DeckArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A01601E6F7071005DE99F /* DeckArticle.swift */; };
+		263A01631E7069B8005DE99F /* DrivewayArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A01621E7069B8005DE99F /* DrivewayArticle.swift */; };
+		263A01651E707303005DE99F /* PoolArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A01641E707303005DE99F /* PoolArticle.swift */; };
+		265A29E21E54D2F100E0D78C /* UIDressingroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A29E11E54D2F100E0D78C /* UIDressingroom.swift */; };
+		265A29E41E54D80500E0D78C /* UIHelpersDrawDressing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A29E31E54D80500E0D78C /* UIHelpersDrawDressing.swift */; };
+		265A29E61E54E42000E0D78C /* UISunroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A29E51E54E42000E0D78C /* UISunroom.swift */; };
+		265A29E81E55507300E0D78C /* UIHelpersDrawFurniture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A29E71E55507300E0D78C /* UIHelpersDrawFurniture.swift */; };
+		265A29EA1E55636800E0D78C /* UICloset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A29E91E55636800E0D78C /* UICloset.swift */; };
+		265A29EC1E55FDD000E0D78C /* UIHelpersDrawPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A29EB1E55FDD000E0D78C /* UIHelpersDrawPlace.swift */; };
+		265A29EE1E561DF600E0D78C /* UIElevator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A29ED1E561DF600E0D78C /* UIElevator.swift */; };
+		265CA9501E53B03100D9C7EC /* UIHelpersDrawLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265CA94F1E53B03100D9C7EC /* UIHelpersDrawLight.swift */; };
+		265CA9521E53C30A00D9C7EC /* UILivingroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265CA9511E53C30A00D9C7EC /* UILivingroom.swift */; };
+		2672A2761E425AA00039BC9E /* UIDownspout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672A2751E425AA00039BC9E /* UIDownspout.swift */; };
+		2672A2781E4276060039BC9E /* UIChimney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672A2771E4276060039BC9E /* UIChimney.swift */; };
+		2672A27A1E4281760039BC9E /* UIHouseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672A2791E4281760039BC9E /* UIHouseWindow.swift */; };
+		2672A27C1E42873A0039BC9E /* UIDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672A27B1E42873A0039BC9E /* UIDoor.swift */; };
+		2672A27E1E429DA10039BC9E /* UIDriveway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672A27D1E429DA10039BC9E /* UIDriveway.swift */; };
+		2672A2801E43B2E70039BC9E /* UIBackyard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672A27F1E43B2E70039BC9E /* UIBackyard.swift */; };
+		2672A2821E43C7080039BC9E /* UIFence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672A2811E43C7080039BC9E /* UIFence.swift */; };
+		2672A2841E43EA140039BC9E /* UIFrontyard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672A2831E43EA130039BC9E /* UIFrontyard.swift */; };
+		2677C14D1E708AFF00BF199F /* ViewModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677C14C1E708AFF00BF199F /* ViewModelConverter.swift */; };
+		268201741E5960500056C303 /* UIHelpersDrawSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268201731E5960500056C303 /* UIHelpersDrawSymbol.swift */; };
+		268201761E596C2B0056C303 /* UIBalcony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268201751E596C2B0056C303 /* UIBalcony.swift */; };
+		268201781E5978080056C303 /* UICellar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268201771E5978070056C303 /* UICellar.swift */; };
+		2682017A1E5B750D0056C303 /* UIPorch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268201791E5B750C0056C303 /* UIPorch.swift */; };
+		2682017C1E5B75650056C303 /* UIPatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682017B1E5B75650056C303 /* UIPatio.swift */; };
+		2682017E1E5BC0A80056C303 /* UIHelpersDrawGarden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682017D1E5BC0A80056C303 /* UIHelpersDrawGarden.swift */; };
+		2685AB3A1E3696C3007F3BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685AB391E3696C3007F3BEE /* AppDelegate.swift */; };
+		2685AB3C1E3696C3007F3BEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685AB3B1E3696C3007F3BEE /* ViewController.swift */; };
+		2685AB3F1E3696C3007F3BEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2685AB3D1E3696C3007F3BEE /* Main.storyboard */; };
+		2685AB411E3696C3007F3BEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2685AB401E3696C3007F3BEE /* Assets.xcassets */; };
+		2685AB441E3696C3007F3BEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2685AB421E3696C3007F3BEE /* LaunchScreen.storyboard */; };
+		2685AB4E1E369A8F007F3BEE /* UnicodeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685AB4D1E369A8F007F3BEE /* UnicodeIcon.swift */; };
+		2685AB511E369D2A007F3BEE /* UIAlarmIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685AB501E369D2A007F3BEE /* UIAlarmIcon.swift */; };
+		2685AB531E36A844007F3BEE /* UIDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685AB521E36A844007F3BEE /* UIDefinitions.swift */; };
+		2685AB551E36AA86007F3BEE /* UIUnicodeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685AB541E36AA86007F3BEE /* UIUnicodeIcon.swift */; };
+		2685AB571E36BE7F007F3BEE /* UIPopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2685AB561E36BE7F007F3BEE /* UIPopupMenu.swift */; };
+		2686D5FC1E3AA51400978658 /* UIDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686D5FB1E3AA51400978658 /* UIDeck.swift */; };
+		2686D5FE1E3B958D00978658 /* UIHouseViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686D5FD1E3B958D00978658 /* UIHouseViewBase.swift */; };
+		2686D6001E3B97D800978658 /* UIGutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686D5FF1E3B97D800978658 /* UIGutter.swift */; };
+		268B041F1E5223070050A3E0 /* UIHelpersDrawTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B041E1E5223070050A3E0 /* UIHelpersDrawTable.swift */; };
+		268B04211E5225C80050A3E0 /* UIHelpersDrawComputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B04201E5225C80050A3E0 /* UIHelpersDrawComputer.swift */; };
+		268B04231E524DDF0050A3E0 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B04221E524DDF0050A3E0 /* UIExtensions.swift */; };
+		268B04251E5267640050A3E0 /* UIHallway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B04241E5267640050A3E0 /* UIHallway.swift */; };
+		268B04271E5273DD0050A3E0 /* UIHelpersDrawGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B04261E5273DD0050A3E0 /* UIHelpersDrawGame.swift */; };
+		268B04291E52BC350050A3E0 /* UIHelpersDrawNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B04281E52BC350050A3E0 /* UIHelpersDrawNumber.swift */; };
+		268B042B1E52CB5D0050A3E0 /* UIRecreationroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B042A1E52CB5D0050A3E0 /* UIRecreationroom.swift */; };
+		268B042D1E52D4890050A3E0 /* UIWorkshop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B042C1E52D4890050A3E0 /* UIWorkshop.swift */; };
+		268B042F1E52D4D20050A3E0 /* UIHelpersDrawTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B042E1E52D4D20050A3E0 /* UIHelpersDrawTools.swift */; };
+		268B04311E536F5C0050A3E0 /* UIHelpersDrawUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B04301E536F5C0050A3E0 /* UIHelpersDrawUtilities.swift */; };
+		268B04331E53783D0050A3E0 /* UIUtilityroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B04321E53783D0050A3E0 /* UIUtilityroom.swift */; };
+		268B04371E537E740050A3E0 /* UIHelpersDrawCup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B04361E537E740050A3E0 /* UIHelpersDrawCup.swift */; };
+		268B04391E538FE70050A3E0 /* UIHelpersDrawSofa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B04381E538FE70050A3E0 /* UIHelpersDrawSofa.swift */; };
+		268B043B1E539AAC0050A3E0 /* UILounge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B043A1E539AAC0050A3E0 /* UILounge.swift */; };
+		26A0E61D1E4D171B007ADE8C /* UIFamilyroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0E61C1E4D171B007ADE8C /* UIFamilyroom.swift */; };
+		26A2418D1E6E0B5B00C018C6 /* PopupMenuItemDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A2418C1E6E0B5B00C018C6 /* PopupMenuItemDictionary.swift */; };
+		26A8CFD51E6794BA00AF8DFD /* HouseRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFD41E6794BA00AF8DFD /* HouseRepo.swift */; };
+		26A8CFE21E679C6700AF8DFD /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFE11E679C6700AF8DFD /* Base.swift */; };
+		26A8CFE61E679C9C00AF8DFD /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFE31E679C9C00AF8DFD /* Article.swift */; };
+		26A8CFE81E679C9C00AF8DFD /* HouseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFE51E679C9C00AF8DFD /* HouseTypes.swift */; };
+		26A8D0031E688E6100AF8DFD /* Attic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFEE1E688E6100AF8DFD /* Attic.swift */; };
+		26A8D0041E688E6100AF8DFD /* Bathroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFEF1E688E6100AF8DFD /* Bathroom.swift */; };
+		26A8D0051E688E6100AF8DFD /* Bedroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF01E688E6100AF8DFD /* Bedroom.swift */; };
+		26A8D0061E688E6100AF8DFD /* Cinema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF11E688E6100AF8DFD /* Cinema.swift */; };
+		26A8D0071E688E6100AF8DFD /* Den.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF21E688E6100AF8DFD /* Den.swift */; };
+		26A8D0081E688E6100AF8DFD /* Diningroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF31E688E6100AF8DFD /* Diningroom.swift */; };
+		26A8D0091E688E6100AF8DFD /* Equipmentroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF41E688E6100AF8DFD /* Equipmentroom.swift */; };
+		26A8D00A1E688E6100AF8DFD /* Familyroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF51E688E6100AF8DFD /* Familyroom.swift */; };
+		26A8D00B1E688E6100AF8DFD /* Hall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF61E688E6100AF8DFD /* Hall.swift */; };
+		26A8D00C1E688E6100AF8DFD /* Hallway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF71E688E6100AF8DFD /* Hallway.swift */; };
+		26A8D00D1E688E6100AF8DFD /* Kitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF81E688E6100AF8DFD /* Kitchen.swift */; };
+		26A8D00E1E688E6100AF8DFD /* Laundry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFF91E688E6100AF8DFD /* Laundry.swift */; };
+		26A8D00F1E688E6100AF8DFD /* Livingroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFFA1E688E6100AF8DFD /* Livingroom.swift */; };
+		26A8D0101E688E6100AF8DFD /* Lounge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFFB1E688E6100AF8DFD /* Lounge.swift */; };
+		26A8D0111E688E6100AF8DFD /* Office.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFFC1E688E6100AF8DFD /* Office.swift */; };
+		26A8D0121E688E6100AF8DFD /* Pantry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFFD1E688E6100AF8DFD /* Pantry.swift */; };
+		26A8D0131E688E6100AF8DFD /* Recreationroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFFE1E688E6100AF8DFD /* Recreationroom.swift */; };
+		26A8D0141E688E6100AF8DFD /* Study.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8CFFF1E688E6100AF8DFD /* Study.swift */; };
+		26A8D0151E688E6100AF8DFD /* Sunroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0001E688E6100AF8DFD /* Sunroom.swift */; };
+		26A8D0161E688E6100AF8DFD /* Utilityroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0011E688E6100AF8DFD /* Utilityroom.swift */; };
+		26A8D0171E688E6100AF8DFD /* Workshop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0021E688E6100AF8DFD /* Workshop.swift */; };
+		26A8D0191E688E8A00AF8DFD /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0181E688E8A00AF8DFD /* Room.swift */; };
+		26A8D01B1E68986600AF8DFD /* StorageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D01A1E68986600AF8DFD /* StorageItem.swift */; };
+		26A8D01D1E68993700AF8DFD /* Storages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D01C1E68993700AF8DFD /* Storages.swift */; };
+		26A8D01F1E689B4F00AF8DFD /* Dressingroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D01E1E689B4F00AF8DFD /* Dressingroom.swift */; };
+		26A8D02D1E689D9C00AF8DFD /* Backyard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0211E689D9C00AF8DFD /* Backyard.swift */; };
+		26A8D02E1E689D9C00AF8DFD /* Cellar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0221E689D9C00AF8DFD /* Cellar.swift */; };
+		26A8D02F1E689D9C00AF8DFD /* Closet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0231E689D9C00AF8DFD /* Closet.swift */; };
+		26A8D0301E689D9C00AF8DFD /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0241E689D9C00AF8DFD /* Deck.swift */; };
+		26A8D0311E689D9C00AF8DFD /* Driveway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0251E689D9C00AF8DFD /* Driveway.swift */; };
+		26A8D0321E689D9C00AF8DFD /* Elevator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0261E689D9C00AF8DFD /* Elevator.swift */; };
+		26A8D0331E689D9C00AF8DFD /* Frontyard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0271E689D9C00AF8DFD /* Frontyard.swift */; };
+		26A8D0341E689D9C00AF8DFD /* Garage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0281E689D9C00AF8DFD /* Garage.swift */; };
+		26A8D0351E689D9C00AF8DFD /* Patio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0291E689D9C00AF8DFD /* Patio.swift */; };
+		26A8D0361E689D9C00AF8DFD /* Pool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D02A1E689D9C00AF8DFD /* Pool.swift */; };
+		26A8D0371E689D9C00AF8DFD /* Porch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D02B1E689D9C00AF8DFD /* Porch.swift */; };
+		26A8D03A1E689DBE00AF8DFD /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0391E689DBE00AF8DFD /* Place.swift */; };
+		26A8D03C1E689FD000AF8DFD /* Stair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D03B1E689FD000AF8DFD /* Stair.swift */; };
+		26A8D06C1E68A62200AF8DFD /* Airconditioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D03E1E68A62200AF8DFD /* Airconditioner.swift */; };
+		26A8D06D1E68A62200AF8DFD /* AirFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D03F1E68A62200AF8DFD /* AirFilter.swift */; };
+		26A8D06E1E68A62200AF8DFD /* AirPurifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0401E68A62200AF8DFD /* AirPurifier.swift */; };
+		26A8D06F1E68A62200AF8DFD /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0411E68A62200AF8DFD /* Alarm.swift */; };
+		26A8D0701E68A62200AF8DFD /* AtticFan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0421E68A62200AF8DFD /* AtticFan.swift */; };
+		26A8D0711E68A62200AF8DFD /* BBQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0431E68A62200AF8DFD /* BBQ.swift */; };
+		26A8D0721E68A62200AF8DFD /* Blower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0441E68A62200AF8DFD /* Blower.swift */; };
+		26A8D0731E68A62200AF8DFD /* BlowerVac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0451E68A62200AF8DFD /* BlowerVac.swift */; };
+		26A8D0741E68A62200AF8DFD /* CentralAirconditioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0461E68A62200AF8DFD /* CentralAirconditioner.swift */; };
+		26A8D0751E68A62200AF8DFD /* CentralVacuum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0471E68A62200AF8DFD /* CentralVacuum.swift */; };
+		26A8D0761E68A62200AF8DFD /* Chimney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0481E68A62200AF8DFD /* Chimney.swift */; };
+		26A8D0771E68A62200AF8DFD /* Dehumidifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0491E68A62200AF8DFD /* Dehumidifier.swift */; };
+		26A8D0781E68A62200AF8DFD /* DishWasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D04A1E68A62200AF8DFD /* DishWasher.swift */; };
+		26A8D0791E68A62200AF8DFD /* Doorbell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D04B1E68A62200AF8DFD /* Doorbell.swift */; };
+		26A8D07A1E68A62200AF8DFD /* Downspout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D04C1E68A62200AF8DFD /* Downspout.swift */; };
+		26A8D07B1E68A62200AF8DFD /* Dryer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D04D1E68A62200AF8DFD /* Dryer.swift */; };
+		26A8D07C1E68A62200AF8DFD /* Duct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D04E1E68A62200AF8DFD /* Duct.swift */; };
+		26A8D07D1E68A62200AF8DFD /* Electrostatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D04F1E68A62200AF8DFD /* Electrostatic.swift */; };
+		26A8D07E1E68A62200AF8DFD /* EntryDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0501E68A62200AF8DFD /* EntryDoor.swift */; };
+		26A8D07F1E68A62200AF8DFD /* Fence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0511E68A62200AF8DFD /* Fence.swift */; };
+		26A8D0801E68A62200AF8DFD /* Fireplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0521E68A62200AF8DFD /* Fireplace.swift */; };
+		26A8D0811E68A62200AF8DFD /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0531E68A62200AF8DFD /* Floor.swift */; };
+		26A8D0821E68A62200AF8DFD /* FloorDiffuser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0541E68A62200AF8DFD /* FloorDiffuser.swift */; };
+		26A8D0831E68A62200AF8DFD /* Freezer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0551E68A62200AF8DFD /* Freezer.swift */; };
+		26A8D0841E68A62200AF8DFD /* Furnace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0561E68A62200AF8DFD /* Furnace.swift */; };
+		26A8D0851E68A62200AF8DFD /* GarageDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0571E68A62200AF8DFD /* GarageDoor.swift */; };
+		26A8D0861E68A62200AF8DFD /* GarageDoorOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0581E68A62200AF8DFD /* GarageDoorOpener.swift */; };
+		26A8D0871E68A62200AF8DFD /* Gutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0591E68A62200AF8DFD /* Gutter.swift */; };
+		26A8D0881E68A62200AF8DFD /* Heater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D05A1E68A62200AF8DFD /* Heater.swift */; };
+		26A8D0891E68A62200AF8DFD /* HouseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D05B1E68A62200AF8DFD /* HouseWindow.swift */; };
+		26A8D08A1E68A62200AF8DFD /* Humidifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D05C1E68A62200AF8DFD /* Humidifier.swift */; };
+		26A8D08B1E68A62200AF8DFD /* Insulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D05D1E68A62200AF8DFD /* Insulation.swift */; };
+		26A8D08C1E68A62200AF8DFD /* InteriorDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D05E1E68A62200AF8DFD /* InteriorDoor.swift */; };
+		26A8D08D1E68A62200AF8DFD /* KitchenCabinet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D05F1E68A62200AF8DFD /* KitchenCabinet.swift */; };
+		26A8D08E1E68A62200AF8DFD /* Mower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0601E68A62200AF8DFD /* Mower.swift */; };
+		26A8D08F1E68A62200AF8DFD /* Oven.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0611E68A62200AF8DFD /* Oven.swift */; };
+		26A8D0901E68A62200AF8DFD /* PlaySet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0621E68A62200AF8DFD /* PlaySet.swift */; };
+		26A8D0911E68A62200AF8DFD /* Pond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0631E68A62200AF8DFD /* Pond.swift */; };
+		26A8D0921E68A62200AF8DFD /* RangeHood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0641E68A62200AF8DFD /* RangeHood.swift */; };
+		26A8D0931E68A62200AF8DFD /* Refrigerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0651E68A62200AF8DFD /* Refrigerator.swift */; };
+		26A8D0941E68A62200AF8DFD /* Roof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0661E68A62200AF8DFD /* Roof.swift */; };
+		26A8D0951E68A62200AF8DFD /* Siding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0671E68A62200AF8DFD /* Siding.swift */; };
+		26A8D0961E68A62200AF8DFD /* Stove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0681E68A62200AF8DFD /* Stove.swift */; };
+		26A8D0971E68A62200AF8DFD /* Trimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0691E68A62200AF8DFD /* Trimmer.swift */; };
+		26A8D0981E68A62200AF8DFD /* Washer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D06A1E68A62200AF8DFD /* Washer.swift */; };
+		26A8D0991E68A62200AF8DFD /* WaterHeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D06B1E68A62200AF8DFD /* WaterHeater.swift */; };
+		26A8D09B1E68A63800AF8DFD /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D09A1E68A63800AF8DFD /* Appliance.swift */; };
+		26A8D09D1E68AB7B00AF8DFD /* SystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D09C1E68AB7B00AF8DFD /* SystemUtils.swift */; };
+		26A8D09F1E68AC1800AF8DFD /* UniqueId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D09E1E68AC1800AF8DFD /* UniqueId.swift */; };
+		26A8D0A21E68AED600AF8DFD /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0A11E68AED600AF8DFD /* Persistance.swift */; };
+		26A8D0A41E68B7FC00AF8DFD /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0A31E68B7FC00AF8DFD /* Alert.swift */; };
+		26A8D0A61E68BA8800AF8DFD /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0A51E68BA8800AF8DFD /* Alerts.swift */; };
+		26A8D0A81E68BE0400AF8DFD /* MyHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0A71E68BE0400AF8DFD /* MyHouse.swift */; };
+		26A8D0AA1E68C64700AF8DFD /* ArticleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0A91E68C64700AF8DFD /* ArticleInfo.swift */; };
+		26A8D0AC1E68CEFB00AF8DFD /* GardenAppliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0AB1E68CEFB00AF8DFD /* GardenAppliance.swift */; };
+		26A8D0AE1E68D57700AF8DFD /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0AD1E68D57600AF8DFD /* Door.swift */; };
+		26A8D0B01E69E41400AF8DFD /* RoomRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0AF1E69E41400AF8DFD /* RoomRepo.swift */; };
+		26A8D0B21E69FA8B00AF8DFD /* Storey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0B11E69FA8B00AF8DFD /* Storey.swift */; };
+		26A8D0B41E6A01A900AF8DFD /* StoreyRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0B31E6A01A900AF8DFD /* StoreyRepo.swift */; };
+		26A8D0B61E6A01FC00AF8DFD /* PlaceRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0B51E6A01FC00AF8DFD /* PlaceRepo.swift */; };
+		26A8D0B81E6A021000AF8DFD /* ArticleRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0B71E6A021000AF8DFD /* ArticleRepo.swift */; };
+		26A8D0BA1E6A144B00AF8DFD /* RepoBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0B91E6A144B00AF8DFD /* RepoBase.swift */; };
+		26A8D0BC1E6A1C8000AF8DFD /* Balcony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0BB1E6A1C8000AF8DFD /* Balcony.swift */; };
+		26AC74DD1E4927FD00282B0F /* UISiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC74DC1E4927FD00282B0F /* UISiding.swift */; };
+		26AE52B91E4975F00031FD6F /* UIWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE52B81E4975F00031FD6F /* UIWall.swift */; };
+		26AE52BC1E4A23680031FD6F /* UIRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE52BB1E4A23680031FD6F /* UIRoom.swift */; };
+		26AE52BE1E4A3A450031FD6F /* UIBedroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE52BD1E4A3A450031FD6F /* UIBedroom.swift */; };
+		26AE52C01E4A6F1A0031FD6F /* UIBathroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE52BF1E4A6F1A0031FD6F /* UIBathroom.swift */; };
+		26AE52C21E4B8A230031FD6F /* UIInsulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE52C11E4B8A230031FD6F /* UIInsulation.swift */; };
+		26C095891E6F247600C67DCA /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C095881E6F247600C67DCA /* Car.swift */; };
+		26C0958B1E6F353500C67DCA /* ExteriorWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C0958A1E6F353500C67DCA /* ExteriorWall.swift */; };
+		26C27F311E44D9A000E1A6C6 /* UICar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C27F301E44D9A000E1A6C6 /* UICar.swift */; };
+		26C27F331E44FD0100E1A6C6 /* UIGarage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C27F321E44FD0100E1A6C6 /* UIGarage.swift */; };
+		26C27F371E4505A300E1A6C6 /* UIShutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C27F361E4505A300E1A6C6 /* UIShutter.swift */; };
+		26C27F391E452BF100E1A6C6 /* UIGaragedoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C27F381E452BF100E1A6C6 /* UIGaragedoor.swift */; };
+		26C27F3B1E45B65E00E1A6C6 /* UIHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C27F3A1E45B65E00E1A6C6 /* UIHouse.swift */; };
+		26C27F3D1E45BB4100E1A6C6 /* UIRoof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C27F3C1E45BB4100E1A6C6 /* UIRoof.swift */; };
+		26E2AD651E57BABA00B83F10 /* UIStair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E2AD641E57BABA00B83F10 /* UIStair.swift */; };
+		26E2AD671E58F4ED00B83F10 /* UIPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E2AD661E58F4ED00B83F10 /* UIPlace.swift */; };
+		26E2AD691E58F6C900B83F10 /* UIPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E2AD681E58F6C900B83F10 /* UIPool.swift */; };
+		26E2AD6B1E59590500B83F10 /* UIDrawHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E2AD6A1E59590500B83F10 /* UIDrawHelper.swift */; };
+		26E5648C1E649F49000B50AD /* HouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5648B1E649F49000B50AD /* HouseViewController.swift */; };
+		26E5648E1E64DE7F000B50AD /* HouseViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5648D1E64DE7F000B50AD /* HouseViewControllerDelegate.swift */; };
+		26F7DF761E82FB5200058974 /* UIDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F7DF751E82FB5200058974 /* UIDialog.swift */; };
+		26F7DF791E831A4F00058974 /* CustomViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F7DF781E831A4F00058974 /* CustomViewBase.swift */; };
+		26F7DF7D1E83224800058974 /* ArticleSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F7DF7C1E83224800058974 /* ArticleSettingViewController.swift */; };
+		26F7DF7F1E83240F00058974 /* UIStarRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F7DF7E1E83240F00058974 /* UIStarRating.swift */; };
+		26FB76441E4B9A0F00DC07F9 /* UIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB76431E4B9A0F00DC07F9 /* UIHelpers.swift */; };
+		26FB76471E4BBFE300DC07F9 /* UIAttic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB76461E4BBFE300DC07F9 /* UIAttic.swift */; };
+		26FB76491E4BC5E700DC07F9 /* UICinema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB76481E4BC5E700DC07F9 /* UICinema.swift */; };
+		26FB764B1E4CE0D800DC07F9 /* UIDen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB764A1E4CE0D800DC07F9 /* UIDen.swift */; };
+		26FB764D1E4CEEF100DC07F9 /* UILaundry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB764C1E4CEEF100DC07F9 /* UILaundry.swift */; };
+		26FB764F1E4CFF2100DC07F9 /* UIKitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB764E1E4CFF2100DC07F9 /* UIKitchen.swift */; };
+		974D35D3D8EBB65A6AC2F743 /* Pods_MyHouse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE47912D4BD20E3E748580F /* Pods_MyHouse.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2266D8943723FEBF2018F33F /* Pods-MyHouse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyHouse.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyHouse/Pods-MyHouse.release.xcconfig"; sourceTree = "<group>"; };
+		260166251E4E46B800F527DF /* UIEquipmentroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEquipmentroom.swift; sourceTree = "<group>"; };
+		260166271E510E5400F527DF /* UIHall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHall.swift; sourceTree = "<group>"; };
+		260166291E5122FB00F527DF /* UIStudy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStudy.swift; sourceTree = "<group>"; };
+		2601662B1E51305B00F527DF /* UIDiningroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDiningroom.swift; sourceTree = "<group>"; };
+		2601662D1E51583E00F527DF /* UIPantry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPantry.swift; sourceTree = "<group>"; };
+		2601662F1E51764F00F527DF /* UIOffice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOffice.swift; sourceTree = "<group>"; };
+		2620ACE11E8C211600CBE0FF /* UICustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICustomTextField.swift; sourceTree = "<group>"; };
+		2620ACE31E8C389700CBE0FF /* UITabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabView.swift; sourceTree = "<group>"; };
+		2627ED2B1E5E118E0001E8C2 /* UIStorey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStorey.swift; sourceTree = "<group>"; };
+		2627ED2D1E5E16E90001E8C2 /* UIStoreyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoreyCell.swift; sourceTree = "<group>"; };
+		2627ED2F1E5E1FCF0001E8C2 /* UIHouseViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHouseViewHelper.swift; sourceTree = "<group>"; };
+		2627ED311E5FAF840001E8C2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		263A01601E6F7071005DE99F /* DeckArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckArticle.swift; sourceTree = "<group>"; };
+		263A01621E7069B8005DE99F /* DrivewayArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrivewayArticle.swift; sourceTree = "<group>"; };
+		263A01641E707303005DE99F /* PoolArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoolArticle.swift; sourceTree = "<group>"; };
+		265A29E11E54D2F100E0D78C /* UIDressingroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDressingroom.swift; sourceTree = "<group>"; };
+		265A29E31E54D80500E0D78C /* UIHelpersDrawDressing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawDressing.swift; sourceTree = "<group>"; };
+		265A29E51E54E42000E0D78C /* UISunroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISunroom.swift; sourceTree = "<group>"; };
+		265A29E71E55507300E0D78C /* UIHelpersDrawFurniture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawFurniture.swift; sourceTree = "<group>"; };
+		265A29E91E55636800E0D78C /* UICloset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICloset.swift; sourceTree = "<group>"; };
+		265A29EB1E55FDD000E0D78C /* UIHelpersDrawPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawPlace.swift; sourceTree = "<group>"; };
+		265A29ED1E561DF600E0D78C /* UIElevator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIElevator.swift; sourceTree = "<group>"; };
+		265CA94F1E53B03100D9C7EC /* UIHelpersDrawLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawLight.swift; sourceTree = "<group>"; };
+		265CA9511E53C30A00D9C7EC /* UILivingroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILivingroom.swift; sourceTree = "<group>"; };
+		2672A2751E425AA00039BC9E /* UIDownspout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDownspout.swift; sourceTree = "<group>"; };
+		2672A2771E4276060039BC9E /* UIChimney.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIChimney.swift; sourceTree = "<group>"; };
+		2672A2791E4281760039BC9E /* UIHouseWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHouseWindow.swift; sourceTree = "<group>"; };
+		2672A27B1E42873A0039BC9E /* UIDoor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDoor.swift; sourceTree = "<group>"; };
+		2672A27D1E429DA10039BC9E /* UIDriveway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDriveway.swift; sourceTree = "<group>"; };
+		2672A27F1E43B2E70039BC9E /* UIBackyard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBackyard.swift; sourceTree = "<group>"; };
+		2672A2811E43C7080039BC9E /* UIFence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFence.swift; sourceTree = "<group>"; };
+		2672A2831E43EA130039BC9E /* UIFrontyard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFrontyard.swift; sourceTree = "<group>"; };
+		2677C14C1E708AFF00BF199F /* ViewModelConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelConverter.swift; sourceTree = "<group>"; };
+		268201731E5960500056C303 /* UIHelpersDrawSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawSymbol.swift; sourceTree = "<group>"; };
+		268201751E596C2B0056C303 /* UIBalcony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBalcony.swift; sourceTree = "<group>"; };
+		268201771E5978070056C303 /* UICellar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICellar.swift; sourceTree = "<group>"; };
+		268201791E5B750C0056C303 /* UIPorch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPorch.swift; sourceTree = "<group>"; };
+		2682017B1E5B75650056C303 /* UIPatio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPatio.swift; sourceTree = "<group>"; };
+		2682017D1E5BC0A80056C303 /* UIHelpersDrawGarden.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawGarden.swift; sourceTree = "<group>"; };
+		2685AB361E3696C3007F3BEE /* MyHouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2685AB391E3696C3007F3BEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2685AB3B1E3696C3007F3BEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2685AB3E1E3696C3007F3BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2685AB401E3696C3007F3BEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2685AB431E3696C3007F3BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2685AB451E3696C3007F3BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2685AB4D1E369A8F007F3BEE /* UnicodeIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeIcon.swift; sourceTree = "<group>"; };
+		2685AB501E369D2A007F3BEE /* UIAlarmIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlarmIcon.swift; sourceTree = "<group>"; };
+		2685AB521E36A844007F3BEE /* UIDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDefinitions.swift; sourceTree = "<group>"; };
+		2685AB541E36AA86007F3BEE /* UIUnicodeIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUnicodeIcon.swift; sourceTree = "<group>"; };
+		2685AB561E36BE7F007F3BEE /* UIPopupMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPopupMenu.swift; sourceTree = "<group>"; };
+		2686D5FB1E3AA51400978658 /* UIDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeck.swift; sourceTree = "<group>"; };
+		2686D5FD1E3B958D00978658 /* UIHouseViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHouseViewBase.swift; sourceTree = "<group>"; };
+		2686D5FF1E3B97D800978658 /* UIGutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGutter.swift; sourceTree = "<group>"; };
+		268B041E1E5223070050A3E0 /* UIHelpersDrawTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawTable.swift; sourceTree = "<group>"; };
+		268B04201E5225C80050A3E0 /* UIHelpersDrawComputer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawComputer.swift; sourceTree = "<group>"; };
+		268B04221E524DDF0050A3E0 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		268B04241E5267640050A3E0 /* UIHallway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHallway.swift; sourceTree = "<group>"; };
+		268B04261E5273DD0050A3E0 /* UIHelpersDrawGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawGame.swift; sourceTree = "<group>"; };
+		268B04281E52BC350050A3E0 /* UIHelpersDrawNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawNumber.swift; sourceTree = "<group>"; };
+		268B042A1E52CB5D0050A3E0 /* UIRecreationroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRecreationroom.swift; sourceTree = "<group>"; };
+		268B042C1E52D4890050A3E0 /* UIWorkshop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWorkshop.swift; sourceTree = "<group>"; };
+		268B042E1E52D4D20050A3E0 /* UIHelpersDrawTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawTools.swift; sourceTree = "<group>"; };
+		268B04301E536F5C0050A3E0 /* UIHelpersDrawUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawUtilities.swift; sourceTree = "<group>"; };
+		268B04321E53783D0050A3E0 /* UIUtilityroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtilityroom.swift; sourceTree = "<group>"; };
+		268B04361E537E740050A3E0 /* UIHelpersDrawCup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawCup.swift; sourceTree = "<group>"; };
+		268B04381E538FE70050A3E0 /* UIHelpersDrawSofa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpersDrawSofa.swift; sourceTree = "<group>"; };
+		268B043A1E539AAC0050A3E0 /* UILounge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILounge.swift; sourceTree = "<group>"; };
+		26A0E61C1E4D171B007ADE8C /* UIFamilyroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFamilyroom.swift; sourceTree = "<group>"; };
+		26A2418C1E6E0B5B00C018C6 /* PopupMenuItemDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupMenuItemDictionary.swift; sourceTree = "<group>"; };
+		26A8CFD41E6794BA00AF8DFD /* HouseRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseRepo.swift; sourceTree = "<group>"; };
+		26A8CFE11E679C6700AF8DFD /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		26A8CFE31E679C9C00AF8DFD /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		26A8CFE51E679C9C00AF8DFD /* HouseTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTypes.swift; sourceTree = "<group>"; };
+		26A8CFEE1E688E6100AF8DFD /* Attic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attic.swift; sourceTree = "<group>"; };
+		26A8CFEF1E688E6100AF8DFD /* Bathroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bathroom.swift; sourceTree = "<group>"; };
+		26A8CFF01E688E6100AF8DFD /* Bedroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bedroom.swift; sourceTree = "<group>"; };
+		26A8CFF11E688E6100AF8DFD /* Cinema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cinema.swift; sourceTree = "<group>"; };
+		26A8CFF21E688E6100AF8DFD /* Den.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Den.swift; sourceTree = "<group>"; };
+		26A8CFF31E688E6100AF8DFD /* Diningroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diningroom.swift; sourceTree = "<group>"; };
+		26A8CFF41E688E6100AF8DFD /* Equipmentroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equipmentroom.swift; sourceTree = "<group>"; };
+		26A8CFF51E688E6100AF8DFD /* Familyroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Familyroom.swift; sourceTree = "<group>"; };
+		26A8CFF61E688E6100AF8DFD /* Hall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hall.swift; sourceTree = "<group>"; };
+		26A8CFF71E688E6100AF8DFD /* Hallway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hallway.swift; sourceTree = "<group>"; };
+		26A8CFF81E688E6100AF8DFD /* Kitchen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kitchen.swift; sourceTree = "<group>"; };
+		26A8CFF91E688E6100AF8DFD /* Laundry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Laundry.swift; sourceTree = "<group>"; };
+		26A8CFFA1E688E6100AF8DFD /* Livingroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Livingroom.swift; sourceTree = "<group>"; };
+		26A8CFFB1E688E6100AF8DFD /* Lounge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lounge.swift; sourceTree = "<group>"; };
+		26A8CFFC1E688E6100AF8DFD /* Office.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Office.swift; sourceTree = "<group>"; };
+		26A8CFFD1E688E6100AF8DFD /* Pantry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pantry.swift; sourceTree = "<group>"; };
+		26A8CFFE1E688E6100AF8DFD /* Recreationroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recreationroom.swift; sourceTree = "<group>"; };
+		26A8CFFF1E688E6100AF8DFD /* Study.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Study.swift; sourceTree = "<group>"; };
+		26A8D0001E688E6100AF8DFD /* Sunroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunroom.swift; sourceTree = "<group>"; };
+		26A8D0011E688E6100AF8DFD /* Utilityroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilityroom.swift; sourceTree = "<group>"; };
+		26A8D0021E688E6100AF8DFD /* Workshop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workshop.swift; sourceTree = "<group>"; };
+		26A8D0181E688E8A00AF8DFD /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		26A8D01A1E68986600AF8DFD /* StorageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageItem.swift; sourceTree = "<group>"; };
+		26A8D01C1E68993700AF8DFD /* Storages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storages.swift; sourceTree = "<group>"; };
+		26A8D01E1E689B4F00AF8DFD /* Dressingroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dressingroom.swift; sourceTree = "<group>"; };
+		26A8D0211E689D9C00AF8DFD /* Backyard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backyard.swift; sourceTree = "<group>"; };
+		26A8D0221E689D9C00AF8DFD /* Cellar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cellar.swift; sourceTree = "<group>"; };
+		26A8D0231E689D9C00AF8DFD /* Closet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Closet.swift; sourceTree = "<group>"; };
+		26A8D0241E689D9C00AF8DFD /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		26A8D0251E689D9C00AF8DFD /* Driveway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driveway.swift; sourceTree = "<group>"; };
+		26A8D0261E689D9C00AF8DFD /* Elevator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Elevator.swift; sourceTree = "<group>"; };
+		26A8D0271E689D9C00AF8DFD /* Frontyard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frontyard.swift; sourceTree = "<group>"; };
+		26A8D0281E689D9C00AF8DFD /* Garage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Garage.swift; sourceTree = "<group>"; };
+		26A8D0291E689D9C00AF8DFD /* Patio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patio.swift; sourceTree = "<group>"; };
+		26A8D02A1E689D9C00AF8DFD /* Pool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pool.swift; sourceTree = "<group>"; };
+		26A8D02B1E689D9C00AF8DFD /* Porch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Porch.swift; sourceTree = "<group>"; };
+		26A8D0391E689DBE00AF8DFD /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		26A8D03B1E689FD000AF8DFD /* Stair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stair.swift; sourceTree = "<group>"; };
+		26A8D03E1E68A62200AF8DFD /* Airconditioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Airconditioner.swift; sourceTree = "<group>"; };
+		26A8D03F1E68A62200AF8DFD /* AirFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirFilter.swift; sourceTree = "<group>"; };
+		26A8D0401E68A62200AF8DFD /* AirPurifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirPurifier.swift; sourceTree = "<group>"; };
+		26A8D0411E68A62200AF8DFD /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		26A8D0421E68A62200AF8DFD /* AtticFan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtticFan.swift; sourceTree = "<group>"; };
+		26A8D0431E68A62200AF8DFD /* BBQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBQ.swift; sourceTree = "<group>"; };
+		26A8D0441E68A62200AF8DFD /* Blower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blower.swift; sourceTree = "<group>"; };
+		26A8D0451E68A62200AF8DFD /* BlowerVac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlowerVac.swift; sourceTree = "<group>"; };
+		26A8D0461E68A62200AF8DFD /* CentralAirconditioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralAirconditioner.swift; sourceTree = "<group>"; };
+		26A8D0471E68A62200AF8DFD /* CentralVacuum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralVacuum.swift; sourceTree = "<group>"; };
+		26A8D0481E68A62200AF8DFD /* Chimney.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chimney.swift; sourceTree = "<group>"; };
+		26A8D0491E68A62200AF8DFD /* Dehumidifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dehumidifier.swift; sourceTree = "<group>"; };
+		26A8D04A1E68A62200AF8DFD /* DishWasher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DishWasher.swift; sourceTree = "<group>"; };
+		26A8D04B1E68A62200AF8DFD /* Doorbell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Doorbell.swift; sourceTree = "<group>"; };
+		26A8D04C1E68A62200AF8DFD /* Downspout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downspout.swift; sourceTree = "<group>"; };
+		26A8D04D1E68A62200AF8DFD /* Dryer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dryer.swift; sourceTree = "<group>"; };
+		26A8D04E1E68A62200AF8DFD /* Duct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duct.swift; sourceTree = "<group>"; };
+		26A8D04F1E68A62200AF8DFD /* Electrostatic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Electrostatic.swift; sourceTree = "<group>"; };
+		26A8D0501E68A62200AF8DFD /* EntryDoor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryDoor.swift; sourceTree = "<group>"; };
+		26A8D0511E68A62200AF8DFD /* Fence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fence.swift; sourceTree = "<group>"; };
+		26A8D0521E68A62200AF8DFD /* Fireplace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fireplace.swift; sourceTree = "<group>"; };
+		26A8D0531E68A62200AF8DFD /* Floor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
+		26A8D0541E68A62200AF8DFD /* FloorDiffuser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorDiffuser.swift; sourceTree = "<group>"; };
+		26A8D0551E68A62200AF8DFD /* Freezer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Freezer.swift; sourceTree = "<group>"; };
+		26A8D0561E68A62200AF8DFD /* Furnace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Furnace.swift; sourceTree = "<group>"; };
+		26A8D0571E68A62200AF8DFD /* GarageDoor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoor.swift; sourceTree = "<group>"; };
+		26A8D0581E68A62200AF8DFD /* GarageDoorOpener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorOpener.swift; sourceTree = "<group>"; };
+		26A8D0591E68A62200AF8DFD /* Gutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gutter.swift; sourceTree = "<group>"; };
+		26A8D05A1E68A62200AF8DFD /* Heater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heater.swift; sourceTree = "<group>"; };
+		26A8D05B1E68A62200AF8DFD /* HouseWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseWindow.swift; sourceTree = "<group>"; };
+		26A8D05C1E68A62200AF8DFD /* Humidifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Humidifier.swift; sourceTree = "<group>"; };
+		26A8D05D1E68A62200AF8DFD /* Insulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Insulation.swift; sourceTree = "<group>"; };
+		26A8D05E1E68A62200AF8DFD /* InteriorDoor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteriorDoor.swift; sourceTree = "<group>"; };
+		26A8D05F1E68A62200AF8DFD /* KitchenCabinet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenCabinet.swift; sourceTree = "<group>"; };
+		26A8D0601E68A62200AF8DFD /* Mower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mower.swift; sourceTree = "<group>"; };
+		26A8D0611E68A62200AF8DFD /* Oven.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oven.swift; sourceTree = "<group>"; };
+		26A8D0621E68A62200AF8DFD /* PlaySet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySet.swift; sourceTree = "<group>"; };
+		26A8D0631E68A62200AF8DFD /* Pond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pond.swift; sourceTree = "<group>"; };
+		26A8D0641E68A62200AF8DFD /* RangeHood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeHood.swift; sourceTree = "<group>"; };
+		26A8D0651E68A62200AF8DFD /* Refrigerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refrigerator.swift; sourceTree = "<group>"; };
+		26A8D0661E68A62200AF8DFD /* Roof.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roof.swift; sourceTree = "<group>"; };
+		26A8D0671E68A62200AF8DFD /* Siding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Siding.swift; sourceTree = "<group>"; };
+		26A8D0681E68A62200AF8DFD /* Stove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stove.swift; sourceTree = "<group>"; };
+		26A8D0691E68A62200AF8DFD /* Trimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trimmer.swift; sourceTree = "<group>"; };
+		26A8D06A1E68A62200AF8DFD /* Washer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Washer.swift; sourceTree = "<group>"; };
+		26A8D06B1E68A62200AF8DFD /* WaterHeater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterHeater.swift; sourceTree = "<group>"; };
+		26A8D09A1E68A63800AF8DFD /* Appliance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
+		26A8D09C1E68AB7B00AF8DFD /* SystemUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemUtils.swift; sourceTree = "<group>"; };
+		26A8D09E1E68AC1800AF8DFD /* UniqueId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueId.swift; sourceTree = "<group>"; };
+		26A8D0A11E68AED600AF8DFD /* Persistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
+		26A8D0A31E68B7FC00AF8DFD /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		26A8D0A51E68BA8800AF8DFD /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		26A8D0A71E68BE0400AF8DFD /* MyHouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHouse.swift; sourceTree = "<group>"; };
+		26A8D0A91E68C64700AF8DFD /* ArticleInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleInfo.swift; sourceTree = "<group>"; };
+		26A8D0AB1E68CEFB00AF8DFD /* GardenAppliance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GardenAppliance.swift; sourceTree = "<group>"; };
+		26A8D0AD1E68D57600AF8DFD /* Door.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
+		26A8D0AF1E69E41400AF8DFD /* RoomRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomRepo.swift; sourceTree = "<group>"; };
+		26A8D0B11E69FA8B00AF8DFD /* Storey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storey.swift; sourceTree = "<group>"; };
+		26A8D0B31E6A01A900AF8DFD /* StoreyRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreyRepo.swift; sourceTree = "<group>"; };
+		26A8D0B51E6A01FC00AF8DFD /* PlaceRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceRepo.swift; sourceTree = "<group>"; };
+		26A8D0B71E6A021000AF8DFD /* ArticleRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleRepo.swift; sourceTree = "<group>"; };
+		26A8D0B91E6A144B00AF8DFD /* RepoBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoBase.swift; sourceTree = "<group>"; };
+		26A8D0BB1E6A1C8000AF8DFD /* Balcony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Balcony.swift; sourceTree = "<group>"; };
+		26AC74DC1E4927FD00282B0F /* UISiding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISiding.swift; sourceTree = "<group>"; };
+		26AE52B81E4975F00031FD6F /* UIWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWall.swift; sourceTree = "<group>"; };
+		26AE52BB1E4A23680031FD6F /* UIRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoom.swift; sourceTree = "<group>"; };
+		26AE52BD1E4A3A450031FD6F /* UIBedroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBedroom.swift; sourceTree = "<group>"; };
+		26AE52BF1E4A6F1A0031FD6F /* UIBathroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBathroom.swift; sourceTree = "<group>"; };
+		26AE52C11E4B8A230031FD6F /* UIInsulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIInsulation.swift; sourceTree = "<group>"; };
+		26C095881E6F247600C67DCA /* Car.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		26C0958A1E6F353500C67DCA /* ExteriorWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExteriorWall.swift; sourceTree = "<group>"; };
+		26C27F301E44D9A000E1A6C6 /* UICar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICar.swift; sourceTree = "<group>"; };
+		26C27F321E44FD0100E1A6C6 /* UIGarage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGarage.swift; sourceTree = "<group>"; };
+		26C27F361E4505A300E1A6C6 /* UIShutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIShutter.swift; sourceTree = "<group>"; };
+		26C27F381E452BF100E1A6C6 /* UIGaragedoor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGaragedoor.swift; sourceTree = "<group>"; };
+		26C27F3A1E45B65E00E1A6C6 /* UIHouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHouse.swift; sourceTree = "<group>"; };
+		26C27F3C1E45BB4100E1A6C6 /* UIRoof.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoof.swift; sourceTree = "<group>"; };
+		26E2AD641E57BABA00B83F10 /* UIStair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStair.swift; sourceTree = "<group>"; };
+		26E2AD661E58F4ED00B83F10 /* UIPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPlace.swift; sourceTree = "<group>"; };
+		26E2AD681E58F6C900B83F10 /* UIPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPool.swift; sourceTree = "<group>"; };
+		26E2AD6A1E59590500B83F10 /* UIDrawHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDrawHelper.swift; sourceTree = "<group>"; };
+		26E5648B1E649F49000B50AD /* HouseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseViewController.swift; sourceTree = "<group>"; };
+		26E5648D1E64DE7F000B50AD /* HouseViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseViewControllerDelegate.swift; sourceTree = "<group>"; };
+		26F7DF751E82FB5200058974 /* UIDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDialog.swift; sourceTree = "<group>"; };
+		26F7DF781E831A4F00058974 /* CustomViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewBase.swift; sourceTree = "<group>"; };
+		26F7DF7C1E83224800058974 /* ArticleSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleSettingViewController.swift; sourceTree = "<group>"; };
+		26F7DF7E1E83240F00058974 /* UIStarRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStarRating.swift; sourceTree = "<group>"; };
+		26FB76431E4B9A0F00DC07F9 /* UIHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpers.swift; sourceTree = "<group>"; };
+		26FB76461E4BBFE300DC07F9 /* UIAttic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAttic.swift; sourceTree = "<group>"; };
+		26FB76481E4BC5E700DC07F9 /* UICinema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICinema.swift; sourceTree = "<group>"; };
+		26FB764A1E4CE0D800DC07F9 /* UIDen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDen.swift; sourceTree = "<group>"; };
+		26FB764C1E4CEEF100DC07F9 /* UILaundry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILaundry.swift; sourceTree = "<group>"; };
+		26FB764E1E4CFF2100DC07F9 /* UIKitchen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitchen.swift; sourceTree = "<group>"; };
+		3B4D9E55850D32D8B4518D52 /* Pods-MyHouse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyHouse.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyHouse/Pods-MyHouse.debug.xcconfig"; sourceTree = "<group>"; };
+		8FE47912D4BD20E3E748580F /* Pods_MyHouse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyHouse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2685AB331E3696C3007F3BEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				974D35D3D8EBB65A6AC2F743 /* Pods_MyHouse.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2627ED251E5CA2540001E8C2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				26A241891E6E090800C018C6 /* Helpers */,
+				26A241881E6E08F000C018C6 /* Controllers */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		2627ED281E5CB6F30001E8C2 /* UIHouse */ = {
+			isa = PBXGroup;
+			children = (
+				26C27F3A1E45B65E00E1A6C6 /* UIHouse.swift */,
+				2627ED2B1E5E118E0001E8C2 /* UIStorey.swift */,
+				2627ED2D1E5E16E90001E8C2 /* UIStoreyCell.swift */,
+			);
+			name = UIHouse;
+			sourceTree = "<group>";
+		};
+		2685AB2D1E3696C3007F3BEE = {
+			isa = PBXGroup;
+			children = (
+				2685AB381E3696C3007F3BEE /* MyHouse */,
+				2685AB371E3696C3007F3BEE /* Products */,
+				E13D8A2F92496CBCB1185E83 /* Pods */,
+				A87A72C23BD037255284ABFE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2685AB371E3696C3007F3BEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2685AB361E3696C3007F3BEE /* MyHouse.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2685AB381E3696C3007F3BEE /* MyHouse */ = {
+			isa = PBXGroup;
+			children = (
+				26A241871E6E08AD00C018C6 /* View */,
+				26E5648F1E65FCC3000B50AD /* Model */,
+				2627ED251E5CA2540001E8C2 /* ViewController */,
+				2685AB4C1E369A72007F3BEE /* Utils */,
+				2685AB391E3696C3007F3BEE /* AppDelegate.swift */,
+				2685AB3B1E3696C3007F3BEE /* ViewController.swift */,
+				2685AB3D1E3696C3007F3BEE /* Main.storyboard */,
+				2685AB401E3696C3007F3BEE /* Assets.xcassets */,
+				2685AB421E3696C3007F3BEE /* LaunchScreen.storyboard */,
+				2685AB451E3696C3007F3BEE /* Info.plist */,
+				2685AB521E36A844007F3BEE /* UIDefinitions.swift */,
+			);
+			path = MyHouse;
+			sourceTree = "<group>";
+		};
+		2685AB4B1E369701007F3BEE /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				268B04221E524DDF0050A3E0 /* UIExtensions.swift */,
+				2685AB501E369D2A007F3BEE /* UIAlarmIcon.swift */,
+				2685AB541E36AA86007F3BEE /* UIUnicodeIcon.swift */,
+				2685AB561E36BE7F007F3BEE /* UIPopupMenu.swift */,
+				26F7DF751E82FB5200058974 /* UIDialog.swift */,
+				26F7DF7E1E83240F00058974 /* UIStarRating.swift */,
+				2620ACE11E8C211600CBE0FF /* UICustomTextField.swift */,
+				2620ACE31E8C389700CBE0FF /* UITabView.swift */,
+			);
+			name = UIViews;
+			sourceTree = "<group>";
+		};
+		2685AB4C1E369A72007F3BEE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2685AB4D1E369A8F007F3BEE /* UnicodeIcon.swift */,
+				2627ED311E5FAF840001E8C2 /* Extensions.swift */,
+				26A8D09C1E68AB7B00AF8DFD /* SystemUtils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		2685AB4F1E369C53007F3BEE /* UIHouseViews */ = {
+			isa = PBXGroup;
+			children = (
+				2627ED281E5CB6F30001E8C2 /* UIHouse */,
+				268B04351E537AD50050A3E0 /* UIArticleViews */,
+				268B04341E5378CB0050A3E0 /* UIPlaceViews */,
+				26AE52BA1E4A23410031FD6F /* UIRoomViews */,
+				2686D5FD1E3B958D00978658 /* UIHouseViewBase.swift */,
+				2627ED2F1E5E1FCF0001E8C2 /* UIHouseViewHelper.swift */,
+			);
+			name = UIHouseViews;
+			sourceTree = "<group>";
+		};
+		268B04341E5378CB0050A3E0 /* UIPlaceViews */ = {
+			isa = PBXGroup;
+			children = (
+				26E2AD661E58F4ED00B83F10 /* UIPlace.swift */,
+				2672A27F1E43B2E70039BC9E /* UIBackyard.swift */,
+				268201751E596C2B0056C303 /* UIBalcony.swift */,
+				268201771E5978070056C303 /* UICellar.swift */,
+				265A29E91E55636800E0D78C /* UICloset.swift */,
+				2686D5FB1E3AA51400978658 /* UIDeck.swift */,
+				2672A27D1E429DA10039BC9E /* UIDriveway.swift */,
+				265A29ED1E561DF600E0D78C /* UIElevator.swift */,
+				2672A2831E43EA130039BC9E /* UIFrontyard.swift */,
+				26C27F321E44FD0100E1A6C6 /* UIGarage.swift */,
+				2682017B1E5B75650056C303 /* UIPatio.swift */,
+				26E2AD681E58F6C900B83F10 /* UIPool.swift */,
+				268201791E5B750C0056C303 /* UIPorch.swift */,
+				26E2AD641E57BABA00B83F10 /* UIStair.swift */,
+			);
+			name = UIPlaceViews;
+			sourceTree = "<group>";
+		};
+		268B04351E537AD50050A3E0 /* UIArticleViews */ = {
+			isa = PBXGroup;
+			children = (
+				26C27F301E44D9A000E1A6C6 /* UICar.swift */,
+				2672A2771E4276060039BC9E /* UIChimney.swift */,
+				2672A27B1E42873A0039BC9E /* UIDoor.swift */,
+				2672A2751E425AA00039BC9E /* UIDownspout.swift */,
+				2672A2811E43C7080039BC9E /* UIFence.swift */,
+				26C27F381E452BF100E1A6C6 /* UIGaragedoor.swift */,
+				2686D5FF1E3B97D800978658 /* UIGutter.swift */,
+				2672A2791E4281760039BC9E /* UIHouseWindow.swift */,
+				26AE52C11E4B8A230031FD6F /* UIInsulation.swift */,
+				26C27F3C1E45BB4100E1A6C6 /* UIRoof.swift */,
+				26C27F361E4505A300E1A6C6 /* UIShutter.swift */,
+				26AC74DC1E4927FD00282B0F /* UISiding.swift */,
+				26AE52B81E4975F00031FD6F /* UIWall.swift */,
+			);
+			name = UIArticleViews;
+			sourceTree = "<group>";
+		};
+		26A241871E6E08AD00C018C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26F7DF771E83189900058974 /* CustomViews */,
+				2685AB4B1E369701007F3BEE /* UIViews */,
+				2685AB4F1E369C53007F3BEE /* UIHouseViews */,
+				26FB76451E4B9A1700DC07F9 /* UIHelpers */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		26A241881E6E08F000C018C6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				26E5648B1E649F49000B50AD /* HouseViewController.swift */,
+				26E5648D1E64DE7F000B50AD /* HouseViewControllerDelegate.swift */,
+				26F7DF7C1E83224800058974 /* ArticleSettingViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		26A241891E6E090800C018C6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				26A2418C1E6E0B5B00C018C6 /* PopupMenuItemDictionary.swift */,
+				2677C14C1E708AFF00BF199F /* ViewModelConverter.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		26A8CFE91E679CAC00AF8DFD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				26A8CFE51E679C9C00AF8DFD /* HouseTypes.swift */,
+				26A8D09E1E68AC1800AF8DFD /* UniqueId.swift */,
+				26A8D0A91E68C64700AF8DFD /* ArticleInfo.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		26A8CFEA1E679CC400AF8DFD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				26A8D0B11E69FA8B00AF8DFD /* Storey.swift */,
+				26A8D03D1E68A00A00AF8DFD /* Articles */,
+				26A8D0201E689D1900AF8DFD /* Places */,
+				26A8CFED1E68899200AF8DFD /* Rooms */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		26A8CFEB1E679D1E00AF8DFD /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				26A8D0A31E68B7FC00AF8DFD /* Alert.swift */,
+				26A8D0A51E68BA8800AF8DFD /* Alerts.swift */,
+			);
+			name = Alert;
+			sourceTree = "<group>";
+		};
+		26A8CFEC1E679D3300AF8DFD /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				26A8D01A1E68986600AF8DFD /* StorageItem.swift */,
+				26A8D01C1E68993700AF8DFD /* Storages.swift */,
+			);
+			name = Storage;
+			sourceTree = "<group>";
+		};
+		26A8CFED1E68899200AF8DFD /* Rooms */ = {
+			isa = PBXGroup;
+			children = (
+				26A8D0181E688E8A00AF8DFD /* Room.swift */,
+				26A8CFEE1E688E6100AF8DFD /* Attic.swift */,
+				26A8CFEF1E688E6100AF8DFD /* Bathroom.swift */,
+				26A8CFF01E688E6100AF8DFD /* Bedroom.swift */,
+				26A8CFF11E688E6100AF8DFD /* Cinema.swift */,
+				26A8CFF21E688E6100AF8DFD /* Den.swift */,
+				26A8CFF31E688E6100AF8DFD /* Diningroom.swift */,
+				26A8D01E1E689B4F00AF8DFD /* Dressingroom.swift */,
+				26A8CFF41E688E6100AF8DFD /* Equipmentroom.swift */,
+				26A8CFF51E688E6100AF8DFD /* Familyroom.swift */,
+				26A8CFF61E688E6100AF8DFD /* Hall.swift */,
+				26A8CFF71E688E6100AF8DFD /* Hallway.swift */,
+				26A8CFF81E688E6100AF8DFD /* Kitchen.swift */,
+				26A8CFF91E688E6100AF8DFD /* Laundry.swift */,
+				26A8CFFA1E688E6100AF8DFD /* Livingroom.swift */,
+				26A8CFFB1E688E6100AF8DFD /* Lounge.swift */,
+				26A8CFFC1E688E6100AF8DFD /* Office.swift */,
+				26A8CFFD1E688E6100AF8DFD /* Pantry.swift */,
+				26A8CFFE1E688E6100AF8DFD /* Recreationroom.swift */,
+				26A8CFFF1E688E6100AF8DFD /* Study.swift */,
+				26A8D0001E688E6100AF8DFD /* Sunroom.swift */,
+				26A8D0011E688E6100AF8DFD /* Utilityroom.swift */,
+				26A8D0021E688E6100AF8DFD /* Workshop.swift */,
+			);
+			name = Rooms;
+			sourceTree = "<group>";
+		};
+		26A8D0201E689D1900AF8DFD /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				26A8D0391E689DBE00AF8DFD /* Place.swift */,
+				26A8D0211E689D9C00AF8DFD /* Backyard.swift */,
+				26A8D0BB1E6A1C8000AF8DFD /* Balcony.swift */,
+				26A8D0221E689D9C00AF8DFD /* Cellar.swift */,
+				26A8D0231E689D9C00AF8DFD /* Closet.swift */,
+				26A8D0241E689D9C00AF8DFD /* Deck.swift */,
+				26A8D0251E689D9C00AF8DFD /* Driveway.swift */,
+				26A8D0261E689D9C00AF8DFD /* Elevator.swift */,
+				26A8D0271E689D9C00AF8DFD /* Frontyard.swift */,
+				26A8D0281E689D9C00AF8DFD /* Garage.swift */,
+				26A8D0291E689D9C00AF8DFD /* Patio.swift */,
+				26A8D02A1E689D9C00AF8DFD /* Pool.swift */,
+				26A8D02B1E689D9C00AF8DFD /* Porch.swift */,
+				26A8D03B1E689FD000AF8DFD /* Stair.swift */,
+			);
+			name = Places;
+			sourceTree = "<group>";
+		};
+		26A8D03D1E68A00A00AF8DFD /* Articles */ = {
+			isa = PBXGroup;
+			children = (
+				26A8CFE31E679C9C00AF8DFD /* Article.swift */,
+				26A8D09A1E68A63800AF8DFD /* Appliance.swift */,
+				26A8D03E1E68A62200AF8DFD /* Airconditioner.swift */,
+				26A8D03F1E68A62200AF8DFD /* AirFilter.swift */,
+				26A8D0401E68A62200AF8DFD /* AirPurifier.swift */,
+				26A8D0411E68A62200AF8DFD /* Alarm.swift */,
+				26A8D0421E68A62200AF8DFD /* AtticFan.swift */,
+				26A8D0431E68A62200AF8DFD /* BBQ.swift */,
+				26A8D0441E68A62200AF8DFD /* Blower.swift */,
+				26A8D0451E68A62200AF8DFD /* BlowerVac.swift */,
+				26C095881E6F247600C67DCA /* Car.swift */,
+				26A8D0461E68A62200AF8DFD /* CentralAirconditioner.swift */,
+				26A8D0471E68A62200AF8DFD /* CentralVacuum.swift */,
+				26A8D0481E68A62200AF8DFD /* Chimney.swift */,
+				263A01601E6F7071005DE99F /* DeckArticle.swift */,
+				26A8D0491E68A62200AF8DFD /* Dehumidifier.swift */,
+				26A8D04A1E68A62200AF8DFD /* DishWasher.swift */,
+				26A8D0AD1E68D57600AF8DFD /* Door.swift */,
+				26A8D04B1E68A62200AF8DFD /* Doorbell.swift */,
+				26A8D04C1E68A62200AF8DFD /* Downspout.swift */,
+				263A01621E7069B8005DE99F /* DrivewayArticle.swift */,
+				26A8D04D1E68A62200AF8DFD /* Dryer.swift */,
+				26A8D04E1E68A62200AF8DFD /* Duct.swift */,
+				26A8D04F1E68A62200AF8DFD /* Electrostatic.swift */,
+				26A8D0501E68A62200AF8DFD /* EntryDoor.swift */,
+				26C0958A1E6F353500C67DCA /* ExteriorWall.swift */,
+				26A8D0511E68A62200AF8DFD /* Fence.swift */,
+				26A8D0521E68A62200AF8DFD /* Fireplace.swift */,
+				26A8D0531E68A62200AF8DFD /* Floor.swift */,
+				26A8D0541E68A62200AF8DFD /* FloorDiffuser.swift */,
+				26A8D0551E68A62200AF8DFD /* Freezer.swift */,
+				26A8D0561E68A62200AF8DFD /* Furnace.swift */,
+				26A8D0571E68A62200AF8DFD /* GarageDoor.swift */,
+				26A8D0581E68A62200AF8DFD /* GarageDoorOpener.swift */,
+				26A8D0AB1E68CEFB00AF8DFD /* GardenAppliance.swift */,
+				26A8D0591E68A62200AF8DFD /* Gutter.swift */,
+				26A8D05A1E68A62200AF8DFD /* Heater.swift */,
+				26A8D05B1E68A62200AF8DFD /* HouseWindow.swift */,
+				26A8D05C1E68A62200AF8DFD /* Humidifier.swift */,
+				26A8D05D1E68A62200AF8DFD /* Insulation.swift */,
+				26A8D05E1E68A62200AF8DFD /* InteriorDoor.swift */,
+				26A8D05F1E68A62200AF8DFD /* KitchenCabinet.swift */,
+				26A8D0601E68A62200AF8DFD /* Mower.swift */,
+				26A8D0611E68A62200AF8DFD /* Oven.swift */,
+				26A8D0621E68A62200AF8DFD /* PlaySet.swift */,
+				26A8D0631E68A62200AF8DFD /* Pond.swift */,
+				263A01641E707303005DE99F /* PoolArticle.swift */,
+				26A8D0641E68A62200AF8DFD /* RangeHood.swift */,
+				26A8D0651E68A62200AF8DFD /* Refrigerator.swift */,
+				26A8D0661E68A62200AF8DFD /* Roof.swift */,
+				26A8D0671E68A62200AF8DFD /* Siding.swift */,
+				26A8D0681E68A62200AF8DFD /* Stove.swift */,
+				26A8D0691E68A62200AF8DFD /* Trimmer.swift */,
+				26A8D06A1E68A62200AF8DFD /* Washer.swift */,
+				26A8D06B1E68A62200AF8DFD /* WaterHeater.swift */,
+			);
+			name = Articles;
+			sourceTree = "<group>";
+		};
+		26A8D0A01E68AEA700AF8DFD /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				26A8D0A11E68AED600AF8DFD /* Persistance.swift */,
+			);
+			name = Persistance;
+			sourceTree = "<group>";
+		};
+		26AE52BA1E4A23410031FD6F /* UIRoomViews */ = {
+			isa = PBXGroup;
+			children = (
+				26AE52BB1E4A23680031FD6F /* UIRoom.swift */,
+				26FB76461E4BBFE300DC07F9 /* UIAttic.swift */,
+				26AE52BF1E4A6F1A0031FD6F /* UIBathroom.swift */,
+				26AE52BD1E4A3A450031FD6F /* UIBedroom.swift */,
+				26FB76481E4BC5E700DC07F9 /* UICinema.swift */,
+				26FB764A1E4CE0D800DC07F9 /* UIDen.swift */,
+				2601662B1E51305B00F527DF /* UIDiningroom.swift */,
+				265A29E11E54D2F100E0D78C /* UIDressingroom.swift */,
+				260166251E4E46B800F527DF /* UIEquipmentroom.swift */,
+				26A0E61C1E4D171B007ADE8C /* UIFamilyroom.swift */,
+				260166271E510E5400F527DF /* UIHall.swift */,
+				268B04241E5267640050A3E0 /* UIHallway.swift */,
+				26FB764E1E4CFF2100DC07F9 /* UIKitchen.swift */,
+				26FB764C1E4CEEF100DC07F9 /* UILaundry.swift */,
+				265CA9511E53C30A00D9C7EC /* UILivingroom.swift */,
+				268B043A1E539AAC0050A3E0 /* UILounge.swift */,
+				2601662F1E51764F00F527DF /* UIOffice.swift */,
+				2601662D1E51583E00F527DF /* UIPantry.swift */,
+				268B042A1E52CB5D0050A3E0 /* UIRecreationroom.swift */,
+				260166291E5122FB00F527DF /* UIStudy.swift */,
+				265A29E51E54E42000E0D78C /* UISunroom.swift */,
+				268B04321E53783D0050A3E0 /* UIUtilityroom.swift */,
+				268B042C1E52D4890050A3E0 /* UIWorkshop.swift */,
+			);
+			name = UIRoomViews;
+			sourceTree = "<group>";
+		};
+		26E5648F1E65FCC3000B50AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				26A8CFE11E679C6700AF8DFD /* Base.swift */,
+				26A8D0A71E68BE0400AF8DFD /* MyHouse.swift */,
+				26A8D0A01E68AEA700AF8DFD /* Persistance */,
+				26A8CFEC1E679D3300AF8DFD /* Storage */,
+				26A8CFEB1E679D1E00AF8DFD /* Alert */,
+				26A8CFEA1E679CC400AF8DFD /* Models */,
+				26A8CFE91E679CAC00AF8DFD /* Helpers */,
+				26E564901E65FCD0000B50AD /* Repository */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		26E564901E65FCD0000B50AD /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				26A8D0B91E6A144B00AF8DFD /* RepoBase.swift */,
+				26A8CFD41E6794BA00AF8DFD /* HouseRepo.swift */,
+				26A8D0B31E6A01A900AF8DFD /* StoreyRepo.swift */,
+				26A8D0AF1E69E41400AF8DFD /* RoomRepo.swift */,
+				26A8D0B51E6A01FC00AF8DFD /* PlaceRepo.swift */,
+				26A8D0B71E6A021000AF8DFD /* ArticleRepo.swift */,
+			);
+			name = Repository;
+			sourceTree = "<group>";
+		};
+		26F7DF771E83189900058974 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				26F7DF781E831A4F00058974 /* CustomViewBase.swift */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		26FB76451E4B9A1700DC07F9 /* UIHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				26E2AD6A1E59590500B83F10 /* UIDrawHelper.swift */,
+				26FB76431E4B9A0F00DC07F9 /* UIHelpers.swift */,
+				268B041E1E5223070050A3E0 /* UIHelpersDrawTable.swift */,
+				268B04201E5225C80050A3E0 /* UIHelpersDrawComputer.swift */,
+				268B04261E5273DD0050A3E0 /* UIHelpersDrawGame.swift */,
+				268B04281E52BC350050A3E0 /* UIHelpersDrawNumber.swift */,
+				268B042E1E52D4D20050A3E0 /* UIHelpersDrawTools.swift */,
+				268B04301E536F5C0050A3E0 /* UIHelpersDrawUtilities.swift */,
+				268B04361E537E740050A3E0 /* UIHelpersDrawCup.swift */,
+				268B04381E538FE70050A3E0 /* UIHelpersDrawSofa.swift */,
+				265CA94F1E53B03100D9C7EC /* UIHelpersDrawLight.swift */,
+				265A29E31E54D80500E0D78C /* UIHelpersDrawDressing.swift */,
+				265A29E71E55507300E0D78C /* UIHelpersDrawFurniture.swift */,
+				265A29EB1E55FDD000E0D78C /* UIHelpersDrawPlace.swift */,
+				268201731E5960500056C303 /* UIHelpersDrawSymbol.swift */,
+				2682017D1E5BC0A80056C303 /* UIHelpersDrawGarden.swift */,
+			);
+			name = UIHelpers;
+			sourceTree = "<group>";
+		};
+		A87A72C23BD037255284ABFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8FE47912D4BD20E3E748580F /* Pods_MyHouse.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E13D8A2F92496CBCB1185E83 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3B4D9E55850D32D8B4518D52 /* Pods-MyHouse.debug.xcconfig */,
+				2266D8943723FEBF2018F33F /* Pods-MyHouse.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2685AB351E3696C3007F3BEE /* MyHouse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2685AB481E3696C3007F3BEE /* Build configuration list for PBXNativeTarget "MyHouse" */;
+			buildPhases = (
+				292EBC68AD0B524E64AF4806 /* [CP] Check Pods Manifest.lock */,
+				2685AB321E3696C3007F3BEE /* Sources */,
+				2685AB331E3696C3007F3BEE /* Frameworks */,
+				2685AB341E3696C3007F3BEE /* Resources */,
+				A5AC6181DE05CB07F2A36A04 /* [CP] Embed Pods Frameworks */,
+				89EDDF0D2A8CB49AC49AA216 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyHouse;
+			productName = MyHouse;
+			productReference = 2685AB361E3696C3007F3BEE /* MyHouse.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2685AB2E1E3696C3007F3BEE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Yu Hong";
+				TargetAttributes = {
+					2685AB351E3696C3007F3BEE = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2685AB311E3696C3007F3BEE /* Build configuration list for PBXProject "MyHouse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2685AB2D1E3696C3007F3BEE;
+			productRefGroup = 2685AB371E3696C3007F3BEE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2685AB351E3696C3007F3BEE /* MyHouse */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2685AB341E3696C3007F3BEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2685AB441E3696C3007F3BEE /* LaunchScreen.storyboard in Resources */,
+				2685AB411E3696C3007F3BEE /* Assets.xcassets in Resources */,
+				2685AB3F1E3696C3007F3BEE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		292EBC68AD0B524E64AF4806 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		89EDDF0D2A8CB49AC49AA216 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyHouse/Pods-MyHouse-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5AC6181DE05CB07F2A36A04 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyHouse/Pods-MyHouse-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2685AB321E3696C3007F3BEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26A8D0A81E68BE0400AF8DFD /* MyHouse.swift in Sources */,
+				26A8D0171E688E6100AF8DFD /* Workshop.swift in Sources */,
+				26A8D0061E688E6100AF8DFD /* Cinema.swift in Sources */,
+				26A8D06D1E68A62200AF8DFD /* AirFilter.swift in Sources */,
+				26A8D09F1E68AC1800AF8DFD /* UniqueId.swift in Sources */,
+				26A8D08C1E68A62200AF8DFD /* InteriorDoor.swift in Sources */,
+				26AE52BE1E4A3A450031FD6F /* UIBedroom.swift in Sources */,
+				26A8D07F1E68A62200AF8DFD /* Fence.swift in Sources */,
+				26A8D0361E689D9C00AF8DFD /* Pool.swift in Sources */,
+				26A8D0851E68A62200AF8DFD /* GarageDoor.swift in Sources */,
+				263A01651E707303005DE99F /* PoolArticle.swift in Sources */,
+				2672A2761E425AA00039BC9E /* UIDownspout.swift in Sources */,
+				26A8D0AA1E68C64700AF8DFD /* ArticleInfo.swift in Sources */,
+				26A8D0311E689D9C00AF8DFD /* Driveway.swift in Sources */,
+				2685AB511E369D2A007F3BEE /* UIAlarmIcon.swift in Sources */,
+				26A8D00C1E688E6100AF8DFD /* Hallway.swift in Sources */,
+				26FB764D1E4CEEF100DC07F9 /* UILaundry.swift in Sources */,
+				26A8D0971E68A62200AF8DFD /* Trimmer.swift in Sources */,
+				26A8D0991E68A62200AF8DFD /* WaterHeater.swift in Sources */,
+				26A8D0071E688E6100AF8DFD /* Den.swift in Sources */,
+				2627ED301E5E1FCF0001E8C2 /* UIHouseViewHelper.swift in Sources */,
+				26A8D08B1E68A62200AF8DFD /* Insulation.swift in Sources */,
+				26A8D0301E689D9C00AF8DFD /* Deck.swift in Sources */,
+				26A8D0331E689D9C00AF8DFD /* Frontyard.swift in Sources */,
+				26A8D0951E68A62200AF8DFD /* Siding.swift in Sources */,
+				26FB76441E4B9A0F00DC07F9 /* UIHelpers.swift in Sources */,
+				26F7DF7F1E83240F00058974 /* UIStarRating.swift in Sources */,
+				26A8D0161E688E6100AF8DFD /* Utilityroom.swift in Sources */,
+				26AE52C21E4B8A230031FD6F /* UIInsulation.swift in Sources */,
+				26C27F331E44FD0100E1A6C6 /* UIGarage.swift in Sources */,
+				26A8D00A1E688E6100AF8DFD /* Familyroom.swift in Sources */,
+				26A8D0B61E6A01FC00AF8DFD /* PlaceRepo.swift in Sources */,
+				26A8D0861E68A62200AF8DFD /* GarageDoorOpener.swift in Sources */,
+				26A8D0BA1E6A144B00AF8DFD /* RepoBase.swift in Sources */,
+				26A8D0351E689D9C00AF8DFD /* Patio.swift in Sources */,
+				2601662A1E5122FB00F527DF /* UIStudy.swift in Sources */,
+				26A8D0A41E68B7FC00AF8DFD /* Alert.swift in Sources */,
+				26A8D0741E68A62200AF8DFD /* CentralAirconditioner.swift in Sources */,
+				2601662C1E51305B00F527DF /* UIDiningroom.swift in Sources */,
+				260166261E4E46B800F527DF /* UIEquipmentroom.swift in Sources */,
+				26A8D00E1E688E6100AF8DFD /* Laundry.swift in Sources */,
+				265CA9521E53C30A00D9C7EC /* UILivingroom.swift in Sources */,
+				260166301E51765100F527DF /* UIOffice.swift in Sources */,
+				26E5648C1E649F49000B50AD /* HouseViewController.swift in Sources */,
+				2672A27E1E429DA10039BC9E /* UIDriveway.swift in Sources */,
+				26A8D0081E688E6100AF8DFD /* Diningroom.swift in Sources */,
+				26A8D00F1E688E6100AF8DFD /* Livingroom.swift in Sources */,
+				26C27F391E452BF100E1A6C6 /* UIGaragedoor.swift in Sources */,
+				26A8D0031E688E6100AF8DFD /* Attic.swift in Sources */,
+				2685AB571E36BE7F007F3BEE /* UIPopupMenu.swift in Sources */,
+				2685AB3C1E3696C3007F3BEE /* ViewController.swift in Sources */,
+				26A8D0931E68A62200AF8DFD /* Refrigerator.swift in Sources */,
+				26A8D03A1E689DBE00AF8DFD /* Place.swift in Sources */,
+				26AE52C01E4A6F1A0031FD6F /* UIBathroom.swift in Sources */,
+				26A8D01D1E68993700AF8DFD /* Storages.swift in Sources */,
+				2685AB531E36A844007F3BEE /* UIDefinitions.swift in Sources */,
+				26A8D0121E688E6100AF8DFD /* Pantry.swift in Sources */,
+				26A8D07A1E68A62200AF8DFD /* Downspout.swift in Sources */,
+				26C27F3B1E45B65E00E1A6C6 /* UIHouse.swift in Sources */,
+				26A8D0051E688E6100AF8DFD /* Bedroom.swift in Sources */,
+				265CA9501E53B03100D9C7EC /* UIHelpersDrawLight.swift in Sources */,
+				26A8D0901E68A62200AF8DFD /* PlaySet.swift in Sources */,
+				26A8D0141E688E6100AF8DFD /* Study.swift in Sources */,
+				265A29E41E54D80500E0D78C /* UIHelpersDrawDressing.swift in Sources */,
+				268B04391E538FE70050A3E0 /* UIHelpersDrawSofa.swift in Sources */,
+				26FB764B1E4CE0D800DC07F9 /* UIDen.swift in Sources */,
+				26AC74DD1E4927FD00282B0F /* UISiding.swift in Sources */,
+				26A8D08A1E68A62200AF8DFD /* Humidifier.swift in Sources */,
+				2620ACE21E8C211600CBE0FF /* UICustomTextField.swift in Sources */,
+				26A8D00D1E688E6100AF8DFD /* Kitchen.swift in Sources */,
+				26A8D0BC1E6A1C8000AF8DFD /* Balcony.swift in Sources */,
+				26A8D0A21E68AED600AF8DFD /* Persistance.swift in Sources */,
+				26A8D0341E689D9C00AF8DFD /* Garage.swift in Sources */,
+				26A8D0AE1E68D57700AF8DFD /* Door.swift in Sources */,
+				2672A27C1E42873A0039BC9E /* UIDoor.swift in Sources */,
+				26E2AD651E57BABA00B83F10 /* UIStair.swift in Sources */,
+				2686D5FC1E3AA51400978658 /* UIDeck.swift in Sources */,
+				268B041F1E5223070050A3E0 /* UIHelpersDrawTable.swift in Sources */,
+				2682017E1E5BC0A80056C303 /* UIHelpersDrawGarden.swift in Sources */,
+				26A8D0041E688E6100AF8DFD /* Bathroom.swift in Sources */,
+				26A8D06F1E68A62200AF8DFD /* Alarm.swift in Sources */,
+				2601662E1E51583E00F527DF /* UIPantry.swift in Sources */,
+				268201741E5960500056C303 /* UIHelpersDrawSymbol.swift in Sources */,
+				26A8D08D1E68A62200AF8DFD /* KitchenCabinet.swift in Sources */,
+				26A8D07B1E68A62200AF8DFD /* Dryer.swift in Sources */,
+				268B04251E5267640050A3E0 /* UIHallway.swift in Sources */,
+				26A8D09B1E68A63800AF8DFD /* Appliance.swift in Sources */,
+				26A8D09D1E68AB7B00AF8DFD /* SystemUtils.swift in Sources */,
+				265A29EC1E55FDD000E0D78C /* UIHelpersDrawPlace.swift in Sources */,
+				26A0E61D1E4D171B007ADE8C /* UIFamilyroom.swift in Sources */,
+				26A8D00B1E688E6100AF8DFD /* Hall.swift in Sources */,
+				268B04371E537E740050A3E0 /* UIHelpersDrawCup.swift in Sources */,
+				26A8D0191E688E8A00AF8DFD /* Room.swift in Sources */,
+				26A2418D1E6E0B5B00C018C6 /* PopupMenuItemDictionary.swift in Sources */,
+				26C095891E6F247600C67DCA /* Car.swift in Sources */,
+				26A8D0801E68A62200AF8DFD /* Fireplace.swift in Sources */,
+				268B042D1E52D4890050A3E0 /* UIWorkshop.swift in Sources */,
+				26A8D02F1E689D9C00AF8DFD /* Closet.swift in Sources */,
+				26A8D0AC1E68CEFB00AF8DFD /* GardenAppliance.swift in Sources */,
+				26C0958B1E6F353500C67DCA /* ExteriorWall.swift in Sources */,
+				26A8D01F1E689B4F00AF8DFD /* Dressingroom.swift in Sources */,
+				26A8D01B1E68986600AF8DFD /* StorageItem.swift in Sources */,
+				26A8D08E1E68A62200AF8DFD /* Mower.swift in Sources */,
+				26A8D0A61E68BA8800AF8DFD /* Alerts.swift in Sources */,
+				26A8D0701E68A62200AF8DFD /* AtticFan.swift in Sources */,
+				263A01611E6F7071005DE99F /* DeckArticle.swift in Sources */,
+				268B042F1E52D4D20050A3E0 /* UIHelpersDrawTools.swift in Sources */,
+				26A8D0771E68A62200AF8DFD /* Dehumidifier.swift in Sources */,
+				26A8CFD51E6794BA00AF8DFD /* HouseRepo.swift in Sources */,
+				268201781E5978080056C303 /* UICellar.swift in Sources */,
+				26A8CFE21E679C6700AF8DFD /* Base.swift in Sources */,
+				26E2AD6B1E59590500B83F10 /* UIDrawHelper.swift in Sources */,
+				2685AB3A1E3696C3007F3BEE /* AppDelegate.swift in Sources */,
+				26A8D07E1E68A62200AF8DFD /* EntryDoor.swift in Sources */,
+				26C27F311E44D9A000E1A6C6 /* UICar.swift in Sources */,
+				26FB76491E4BC5E700DC07F9 /* UICinema.swift in Sources */,
+				268201761E596C2B0056C303 /* UIBalcony.swift in Sources */,
+				2672A2821E43C7080039BC9E /* UIFence.swift in Sources */,
+				26A8D0811E68A62200AF8DFD /* Floor.swift in Sources */,
+				26A8D06E1E68A62200AF8DFD /* AirPurifier.swift in Sources */,
+				2672A27A1E4281760039BC9E /* UIHouseWindow.swift in Sources */,
+				2672A2801E43B2E70039BC9E /* UIBackyard.swift in Sources */,
+				2682017C1E5B75650056C303 /* UIPatio.swift in Sources */,
+				26A8D02D1E689D9C00AF8DFD /* Backyard.swift in Sources */,
+				26A8D0781E68A62200AF8DFD /* DishWasher.swift in Sources */,
+				26A8D03C1E689FD000AF8DFD /* Stair.swift in Sources */,
+				26A8D07D1E68A62200AF8DFD /* Electrostatic.swift in Sources */,
+				26A8D0721E68A62200AF8DFD /* Blower.swift in Sources */,
+				26AE52B91E4975F00031FD6F /* UIWall.swift in Sources */,
+				2685AB551E36AA86007F3BEE /* UIUnicodeIcon.swift in Sources */,
+				2686D5FE1E3B958D00978658 /* UIHouseViewBase.swift in Sources */,
+				26A8D0841E68A62200AF8DFD /* Furnace.swift in Sources */,
+				26E5648E1E64DE7F000B50AD /* HouseViewControllerDelegate.swift in Sources */,
+				265A29E21E54D2F100E0D78C /* UIDressingroom.swift in Sources */,
+				2672A2781E4276060039BC9E /* UIChimney.swift in Sources */,
+				26C27F3D1E45BB4100E1A6C6 /* UIRoof.swift in Sources */,
+				26AE52BC1E4A23680031FD6F /* UIRoom.swift in Sources */,
+				2627ED2C1E5E118E0001E8C2 /* UIStorey.swift in Sources */,
+				2682017A1E5B750D0056C303 /* UIPorch.swift in Sources */,
+				268B042B1E52CB5D0050A3E0 /* UIRecreationroom.swift in Sources */,
+				26A8D0921E68A62200AF8DFD /* RangeHood.swift in Sources */,
+				26A8D0871E68A62200AF8DFD /* Gutter.swift in Sources */,
+				268B04211E5225C80050A3E0 /* UIHelpersDrawComputer.swift in Sources */,
+				265A29EE1E561DF600E0D78C /* UIElevator.swift in Sources */,
+				26A8D0761E68A62200AF8DFD /* Chimney.swift in Sources */,
+				26F7DF761E82FB5200058974 /* UIDialog.swift in Sources */,
+				26FB764F1E4CFF2100DC07F9 /* UIKitchen.swift in Sources */,
+				26F7DF7D1E83224800058974 /* ArticleSettingViewController.swift in Sources */,
+				26A8D0731E68A62200AF8DFD /* BlowerVac.swift in Sources */,
+				265A29EA1E55636800E0D78C /* UICloset.swift in Sources */,
+				26A8D02E1E689D9C00AF8DFD /* Cellar.swift in Sources */,
+				26A8CFE81E679C9C00AF8DFD /* HouseTypes.swift in Sources */,
+				26E2AD691E58F6C900B83F10 /* UIPool.swift in Sources */,
+				26A8D08F1E68A62200AF8DFD /* Oven.swift in Sources */,
+				2627ED321E5FAF840001E8C2 /* Extensions.swift in Sources */,
+				268B043B1E539AAC0050A3E0 /* UILounge.swift in Sources */,
+				2677C14D1E708AFF00BF199F /* ViewModelConverter.swift in Sources */,
+				26A8D0751E68A62200AF8DFD /* CentralVacuum.swift in Sources */,
+				26A8D0091E688E6100AF8DFD /* Equipmentroom.swift in Sources */,
+				26FB76471E4BBFE300DC07F9 /* UIAttic.swift in Sources */,
+				26E2AD671E58F4ED00B83F10 /* UIPlace.swift in Sources */,
+				26A8D0B21E69FA8B00AF8DFD /* Storey.swift in Sources */,
+				26A8D06C1E68A62200AF8DFD /* Airconditioner.swift in Sources */,
+				26C27F371E4505A300E1A6C6 /* UIShutter.swift in Sources */,
+				26A8D0111E688E6100AF8DFD /* Office.swift in Sources */,
+				26A8D0791E68A62200AF8DFD /* Doorbell.swift in Sources */,
+				26A8D0911E68A62200AF8DFD /* Pond.swift in Sources */,
+				2627ED2E1E5E16E90001E8C2 /* UIStoreyCell.swift in Sources */,
+				26A8D0961E68A62200AF8DFD /* Stove.swift in Sources */,
+				26A8D0321E689D9C00AF8DFD /* Elevator.swift in Sources */,
+				2686D6001E3B97D800978658 /* UIGutter.swift in Sources */,
+				268B04291E52BC350050A3E0 /* UIHelpersDrawNumber.swift in Sources */,
+				268B04271E5273DD0050A3E0 /* UIHelpersDrawGame.swift in Sources */,
+				26A8D0821E68A62200AF8DFD /* FloorDiffuser.swift in Sources */,
+				260166281E510E5400F527DF /* UIHall.swift in Sources */,
+				26A8D0711E68A62200AF8DFD /* BBQ.swift in Sources */,
+				26A8D0131E688E6100AF8DFD /* Recreationroom.swift in Sources */,
+				26A8D0981E68A62200AF8DFD /* Washer.swift in Sources */,
+				26A8CFE61E679C9C00AF8DFD /* Article.swift in Sources */,
+				26A8D0B81E6A021000AF8DFD /* ArticleRepo.swift in Sources */,
+				263A01631E7069B8005DE99F /* DrivewayArticle.swift in Sources */,
+				26A8D0831E68A62200AF8DFD /* Freezer.swift in Sources */,
+				26A8D0371E689D9C00AF8DFD /* Porch.swift in Sources */,
+				26A8D0891E68A62200AF8DFD /* HouseWindow.swift in Sources */,
+				265A29E81E55507300E0D78C /* UIHelpersDrawFurniture.swift in Sources */,
+				26F7DF791E831A4F00058974 /* CustomViewBase.swift in Sources */,
+				268B04231E524DDF0050A3E0 /* UIExtensions.swift in Sources */,
+				2685AB4E1E369A8F007F3BEE /* UnicodeIcon.swift in Sources */,
+				26A8D07C1E68A62200AF8DFD /* Duct.swift in Sources */,
+				26A8D0151E688E6100AF8DFD /* Sunroom.swift in Sources */,
+				26A8D0881E68A62200AF8DFD /* Heater.swift in Sources */,
+				268B04311E536F5C0050A3E0 /* UIHelpersDrawUtilities.swift in Sources */,
+				26A8D0B01E69E41400AF8DFD /* RoomRepo.swift in Sources */,
+				2672A2841E43EA140039BC9E /* UIFrontyard.swift in Sources */,
+				26A8D0101E688E6100AF8DFD /* Lounge.swift in Sources */,
+				26A8D0941E68A62200AF8DFD /* Roof.swift in Sources */,
+				268B04331E53783D0050A3E0 /* UIUtilityroom.swift in Sources */,
+				265A29E61E54E42000E0D78C /* UISunroom.swift in Sources */,
+				26A8D0B41E6A01A900AF8DFD /* StoreyRepo.swift in Sources */,
+				2620ACE41E8C389700CBE0FF /* UITabView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2685AB3D1E3696C3007F3BEE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2685AB3E1E3696C3007F3BEE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2685AB421E3696C3007F3BEE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2685AB431E3696C3007F3BEE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2685AB461E3696C3007F3BEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2685AB471E3696C3007F3BEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2685AB491E3696C3007F3BEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B4D9E55850D32D8B4518D52 /* Pods-MyHouse.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MyHouse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.homesoft.MyHouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2685AB4A1E3696C3007F3BEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2266D8943723FEBF2018F33F /* Pods-MyHouse.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MyHouse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.homesoft.MyHouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2685AB311E3696C3007F3BEE /* Build configuration list for PBXProject "MyHouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2685AB461E3696C3007F3BEE /* Debug */,
+				2685AB471E3696C3007F3BEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2685AB481E3696C3007F3BEE /* Build configuration list for PBXNativeTarget "MyHouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2685AB491E3696C3007F3BEE /* Debug */,
+				2685AB4A1E3696C3007F3BEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2685AB2E1E3696C3007F3BEE /* Project object */;
+}
