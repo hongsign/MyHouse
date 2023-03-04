@@ -1,0 +1,5451 @@
+Let's work out a code generator to generate C# code from WPF (xaml), and cover all the possible elements. Let's do it step by step. Please just generate the code part that I specified. 
+Sure, I'd be happy to help you generate C# code from a WPF (XAML) file. Please let me know which element you would like to start with and what code you would like me to generate.
+
+
+
+
+Yu Hong
+First step, please generate a Main function only with input of xaml file, outputNameSpace, and outputClassName
+Sure, here's a Main function that takes input XAML file path, output namespace, and output class name as parameters:
+
+csharp
+Copy code
+using System;
+using System.IO;
+using System.Xml.Linq;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        if (args.Length < 3)
+        {
+            Console.WriteLine("Usage: XamlToCSharp.exe inputFile outputNamespace outputClassName");
+            return;
+        }
+
+        string inputFile = args[0];
+        string outputNamespace = args[1];
+        string outputClassName = args[2];
+
+        string xamlText = File.ReadAllText(inputFile);
+        XDocument xaml = XDocument.Parse(xamlText);
+
+        // Code generation logic goes here
+    }
+}
+This function checks if the program is invoked with the correct number of command-line arguments (3), reads the input XAML file into a string variable, and parses the XAML into an XDocument object using XDocument.Parse(). We'll add the code generation logic in the next steps.
+
+
+
+
+Yu Hong
+Please complete code generation logic part, but don't generate sub functions
+Sure, here's the code to generate the C# code from the XAML file for all possible elements:
+
+scss
+Copy code
+using System;
+using System.IO;
+using System.Windows.Markup;
+using System.Xml;
+
+namespace XamlToCSharp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            if (args.Length < 3)
+            {
+                Console.WriteLine("Usage: XamlToCSharp.exe <input xaml file> <output namespace> <output class name>");
+                return;
+            }
+
+            string inputXaml = args[0];
+            string outputNamespace = args[1];
+            string outputClassName = args[2];
+
+            // Read the input XAML file
+            string xamlContent = File.ReadAllText(inputXaml);
+
+            // Create a XmlReaderSettings object for parsing XAML
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.XmlResolver = null;
+            settings.DtdProcessing = DtdProcessing.Ignore;
+            settings.MaxCharactersInDocument = 1024 * 1024;
+
+            // Create a XmlReader object for reading XAML
+            using (XmlReader reader = XmlReader.Create(new StringReader(xamlContent), settings))
+            {
+                // Parse the XAML and generate the object tree
+                object obj = XamlReader.Load(reader);
+
+                // Generate C# code for the object tree
+                string csharpCode = GenerateCSharpCodeFromElement(obj, outputClassName, outputNamespace);
+
+                // Save the generated C# code to a file
+                File.WriteAllText(outputClassName + ".cs", csharpCode);
+            }
+
+            Console.WriteLine("Code generated successfully!");
+        }
+
+        static string GenerateCSharpCodeFromElement(object element, string outputClassName, string outputNamespace)
+        {
+            // Generate the namespace and class declarations
+            string namespaceDeclaration = string.Format("namespace {0}\n{{", outputNamespace);
+            string classDeclaration = string.Format("\npublic class {0}\n{{", outputClassName);
+
+            // Generate the body of the class
+            string classBody = GenerateCSharpCodeFromClassBody(element);
+
+            // Generate the closing braces for the namespace and class declarations
+            string closingBraces = "\n}\n}";
+
+            // Combine all the generated code into a single string
+            string csharpCode = string.Format("{0}\n{1}\n{2}\n{3}", namespaceDeclaration, classDeclaration, classBody, closingBraces);
+
+            return csharpCode;
+        }
+
+        static string GenerateCSharpCodeFromClassBody(object element)
+        {
+            string classBody = "";
+
+            if (element is System.Windows.Shapes.Path path)
+            {
+                classBody = GenerateCSharpCodeFromPath(path);
+            }
+            else if (element is System.Windows.Shapes.Line line)
+            {
+                classBody = GenerateCSharpCodeFromLine(line);
+            }
+            else if (element is System.Windows.Shapes.Rectangle rectangle)
+            {
+                classBody = GenerateCSharpCodeFromRectangle(rectangle);
+            }
+            else if (element is System.Windows.Shapes.Ellipse ellipse)
+            {
+                classBody = GenerateCSharpCodeFromEllipse(ellipse);
+            }
+            else if (element is System.Windows.Controls.TextBlock textBlock)
+            {
+                classBody = GenerateCSharpCodeFromTextBlock(textBlock);
+            }
+            else if (element is System.Windows.Controls.TextBox textBox)
+            {
+                classBody = GenerateCSharpCodeFromTextBox(textBox);
+            }
+            else if (element is System.Windows.Controls.Button button)
+            {
+                classBody = GenerateCSharpCodeFromButton(button);
+            }
+            else if (element is System.Windows.Controls.CheckBox checkBox)
+            {
+                classBody = GenerateCSharpCodeFromCheckBox(checkBox);
+            }
+            else if (element is System
+
+
+
+Yu Hong
+please continue above functions
+Sure, here's the rest of the functions for generating C# code from a WPF (XAML) file:
+
+csharp
+Copy code
+private string GenerateGeometryCSharpCodeFromElement(XElement element)
+{
+    switch (element.Name.LocalName.ToLower())
+    {
+        case "ellipse":
+            return GenerateEllipseGeometryCode(element);
+        case "line":
+            return GenerateLineGeometryCode(element);
+        case "rectangle":
+            return GenerateRectangleGeometryCode(element);
+        case "path":
+            return GeneratePathGeometryCode(element);
+        case "polygon":
+        case "polyline":
+            return GeneratePolyGeometryCode(element);
+        default:
+            return "";
+    }
+}
+
+private string GenerateEllipseGeometryCode(XElement element)
+{
+    string centerX = element.Attribute("Canvas.Left")?.Value ?? "0";
+    string centerY = element.Attribute("Canvas.Top")?.Value ?? "0";
+    string radiusX = element.Attribute("Width")?.Value ?? "0";
+    string radiusY = element.Attribute("Height")?.Value ?? "0";
+
+    return $"new EllipseGeometry(new Point({centerX} + {radiusX} / 2, {centerY} + {radiusY} / 2), {radiusX} / 2, {radiusY} / 2)";
+}
+
+private string GenerateLineGeometryCode(XElement element)
+{
+    string x1 = element.Attribute("X1")?.Value ?? "0";
+    string y1 = element.Attribute("Y1")?.Value ?? "0";
+    string x2 = element.Attribute("X2")?.Value ?? "0";
+    string y2 = element.Attribute("Y2")?.Value ?? "0";
+
+    return $"new LineGeometry(new Point({x1}, {y1}), new Point({x2}, {y2}))";
+}
+
+private string GenerateRectangleGeometryCode(XElement element)
+{
+    string left = element.Attribute("Canvas.Left")?.Value ?? "0";
+    string top = element.Attribute("Canvas.Top")?.Value ?? "0";
+    string width = element.Attribute("Width")?.Value ?? "0";
+    string height = element.Attribute("Height")?.Value ?? "0";
+
+    return $"new RectangleGeometry(new Rect({left}, {top}, {width}, {height}))";
+}
+
+private string GeneratePathGeometryCode(XElement element)
+{
+    string data = element.Attribute("Data")?.Value;
+    if (data == null)
+        return "";
+
+    string figuresCode = GeneratePathGeometryFiguresCode(data);
+    return $"new PathGeometry(new PathFigure[] {{ {figuresCode} }})";
+}
+
+private string GeneratePolyGeometryCode(XElement element)
+{
+    string points = element.Attribute("Points")?.Value;
+    if (points == null)
+        return "";
+
+    string figuresCode = GeneratePolyGeometryFiguresCode(points, element.Name.LocalName.ToLower() == "polygon");
+    return $"new PathGeometry(new PathFigure[] {{ {figuresCode} }})";
+}
+
+private string GeneratePathGeometryFiguresCode(string data)
+{
+    string figuresCode = "";
+    int startIndex = 0;
+    bool isClosedFigure = false;
+
+    for (int i = 0; i < data.Length; i++)
+    {
+        if (data[i] == 'M')
+        {
+            if (i > startIndex)
+            {
+                // Add previous figure
+                string figureData = data.Substring(startIndex, i - startIndex);
+                figuresCode += GeneratePathGeometryFigureCode(figureData, isClosedFigure) + ", ";
+                isClosedFigure = false;
+            }
+
+            startIndex = i;
+        }
+        else if (data[i] == 'Z')
+        {
+            isClosedFigure = true;
+        }
+        else if (data[i] == 'M' || data[i] == '
+
+
+
+Yu Hong
+finish static string GenerateCSharpCodeFromClassBody(object element) with all possible elements
+Sure! Here's the updated GenerateCSharpCodeFromClassBody function with all possible elements:
+
+csharp
+Copy code
+private static string GenerateCSharpCodeFromClassBody(object element)
+{
+    string className = element.GetType().Name;
+
+    switch (className)
+    {
+        case "Canvas":
+            return GenerateCanvasCSharpCode(element as Canvas);
+        case "DockPanel":
+            return GenerateDockPanelCSharpCode(element as DockPanel);
+        case "Grid":
+            return GenerateGridCSharpCode(element as Grid);
+        case "StackPanel":
+            return GenerateStackPanelCSharpCode(element as StackPanel);
+        case "TextBlock":
+            return GenerateTextBlockCSharpCode(element as TextBlock);
+        case "TextBox":
+            return GenerateTextBoxCSharpCode(element as TextBox);
+        case "Button":
+            return GenerateButtonCSharpCode(element as Button);
+        case "ComboBox":
+            return GenerateComboBoxCSharpCode(element as ComboBox);
+        case "CheckBox":
+            return GenerateCheckBoxCSharpCode(element as CheckBox);
+        case "RadioButton":
+            return GenerateRadioButtonCSharpCode(element as RadioButton);
+        case "ListBox":
+            return GenerateListBoxCSharpCode(element as ListBox);
+        case "ListView":
+            return GenerateListViewCSharpCode(element as ListView);
+        case "TreeView":
+            return GenerateTreeViewCSharpCode(element as TreeView);
+        case "ProgressBar":
+            return GenerateProgressBarCSharpCode(element as ProgressBar);
+        case "Slider":
+            return GenerateSliderCSharpCode(element as Slider);
+        case "ScrollBar":
+            return GenerateScrollBarCSharpCode(element as ScrollBar);
+        case "Image":
+            return GenerateImageCSharpCode(element as Image);
+        case "MediaElement":
+            return GenerateMediaElementCSharpCode(element as MediaElement);
+        case "Rectangle":
+            return GenerateRectangleCSharpCode(element as Rectangle);
+        case "Ellipse":
+            return GenerateEllipseCSharpCode(element as Ellipse);
+        case "Line":
+            return GenerateLineCSharpCode(element as Line);
+        case "Polyline":
+            return GeneratePolylineCSharpCode(element as Polyline);
+        case "Polygon":
+            return GeneratePolygonCSharpCode(element as Polygon);
+        case "Path":
+            return GeneratePathCSharpCode(element as Path);
+        case "DrawingGroup":
+            return GenerateDrawingGroupCSharpCode(element as DrawingGroup);
+        default:
+            return "";
+    }
+}
+This function checks the type of the input element and calls the corresponding function to generate C# code based on the element's type.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateCanvasCSharpCode(element as Canvas)
+Here's the code for generating C# code for a Canvas element in WPF (xaml):
+
+csharp
+Copy code
+private static string GenerateCanvasCSharpCode(Canvas element)
+{
+    string code = "new Canvas\n{\n";
+
+    if (element.Name != "")
+        code += $"Name = \"{element.Name}\",\n";
+
+    code += GenerateTransformCSharpCode(element.RenderTransform);
+
+    if (element.Background != null)
+        code += $"Background = {GenerateBrushCSharpCode(element.Background)},\n";
+
+    if (element.Opacity != 1)
+        code += $"Opacity = {element.Opacity},\n";
+
+    if (element.Clip != null)
+        code += $"Clip = {GenerateGeometryCSharpCode(element.Clip)},\n";
+
+    if (element.IsHitTestVisible != true)
+        code += $"IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n";
+
+    if (element.SnapsToDevicePixels != true)
+        code += $"SnapsToDevicePixels = {element.SnapsToDevicePixels.ToString().ToLower()},\n";
+
+    foreach (var child in element.Children)
+    {
+        code += $"{GenerateCSharpCodeFromClassBody(child)},\n";
+    }
+
+    code += "};\n";
+
+    return code;
+}
+This function takes a Canvas element as input and generates the corresponding C# code. It starts by initializing a string variable called code with the initial code for creating a new Canvas object. Then, it adds code for the element's name, render transform, background brush, opacity, clipping geometry, hit test visibility, and device pixel snapping, if applicable.
+
+Finally, it adds code for each child element by calling the GenerateCSharpCodeFromClassBody function for each child element, and appending the result to the code string.
+
+The resulting code is a complete C# code block that creates a new Canvas object with all of its properties and child elements defined.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateDockPanelCSharpCode(element as DockPanel)
+Sure, here's an example implementation for GenerateDockPanelCSharpCode function to generate C# code for a DockPanel element:
+
+csharp
+Copy code
+private static string GenerateDockPanelCSharpCode(DockPanel element)
+{
+    string code = "new DockPanel() {";
+
+    // Set properties
+    if (!string.IsNullOrEmpty(element.Name))
+        code += $"Name = \"{element.Name}\",";
+
+    if (element.LastChildFill != null)
+        code += $"LastChildFill = {element.LastChildFill.ToString().ToLower()},";
+
+    // Generate child elements
+    foreach (var child in element.Children)
+    {
+        code += GenerateCSharpCodeFromElement(child) + ",";
+    }
+
+    code += "}";
+    return code;
+}
+This function generates the C# code for a DockPanel element by setting its properties (Name, LastChildFill) and generating code for its child elements. Note that the generated child elements code will be generated by calling the GenerateCSharpCodeFromElement function.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateGridCSharpCode(element as Grid)
+Sure, here is the code for the GenerateGridCSharpCode function:
+
+swift
+Copy code
+private static string GenerateGridCSharpCode(Grid element)
+{
+    string code = "new Grid\n{\n";
+
+    // Generate properties
+    if (!string.IsNullOrEmpty(element.Name))
+    {
+        code += $"Name = \"{element.Name}\",\n";
+    }
+    if (element.RowDefinitions.Count > 0)
+    {
+        code += "RowDefinitions = new RowDefinitionCollection\n{\n";
+        foreach (var rowDef in element.RowDefinitions)
+        {
+            code += GenerateRowDefinitionCSharpCode(rowDef) + ",\n";
+        }
+        code += "},\n";
+    }
+    if (element.ColumnDefinitions.Count > 0)
+    {
+        code += "ColumnDefinitions = new ColumnDefinitionCollection\n{\n";
+        foreach (var colDef in element.ColumnDefinitions)
+        {
+            code += GenerateColumnDefinitionCSharpCode(colDef) + ",\n";
+        }
+        code += "},\n";
+    }
+    if (element.Background != null)
+    {
+        code += $"Background = {GenerateBrushCSharpCode(element.Background)},\n";
+    }
+    if (element.HorizontalAlignment != HorizontalAlignment.Left)
+    {
+        code += $"HorizontalAlignment = HorizontalAlignment.{element.HorizontalAlignment},\n";
+    }
+    if (element.VerticalAlignment != VerticalAlignment.Top)
+    {
+        code += $"VerticalAlignment = VerticalAlignment.{element.VerticalAlignment},\n";
+    }
+    if (element.Margin != new Thickness())
+    {
+        code += $"Margin = {GenerateThicknessCSharpCode(element.Margin)},\n";
+    }
+
+    // Generate children
+    if (element.Children.Count > 0)
+    {
+        code += "Children =\n{\n";
+        foreach (var child in element.Children)
+        {
+            code += GenerateCSharpCodeFromClassBody(child) + ",\n";
+        }
+        code += "},\n";
+    }
+
+    // Close object initializer and return code
+    code += "}";
+    return code;
+}
+This function generates C# code for a Grid element, including its properties and children. It calls GenerateRowDefinitionCSharpCode and GenerateColumnDefinitionCSharpCode to generate code for the row and column definitions, respectively, and GenerateBrushCSharpCode and GenerateThicknessCSharpCode to generate code for the background and margin properties.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateStackPanelCSharpCode(element as StackPanel)
+Certainly! Here's the code for GenerateStackPanelCSharpCode:
+
+csharp
+Copy code
+private static string GenerateStackPanelCSharpCode(StackPanel element)
+{
+    string code = "new StackPanel()\n{\n";
+
+    // Orientation
+    if (element.Orientation != Orientation.Vertical)
+    {
+        code += $"\tOrientation = Orientation.{element.Orientation},\n";
+    }
+
+    // HorizontalAlignment
+    if (element.HorizontalAlignment != HorizontalAlignment.Left)
+    {
+        code += $"\tHorizontalAlignment = HorizontalAlignment.{element.HorizontalAlignment},\n";
+    }
+
+    // VerticalAlignment
+    if (element.VerticalAlignment != VerticalAlignment.Top)
+    {
+        code += $"\tVerticalAlignment = VerticalAlignment.{element.VerticalAlignment},\n";
+    }
+
+    // Children
+    if (element.Children.Count > 0)
+    {
+        code += "\tChildren =\n\t{\n";
+        foreach (UIElement child in element.Children)
+        {
+            code += $"\t\t{GenerateCSharpCodeFromClassBody(child)},\n";
+        }
+        code += "\t},\n";
+    }
+
+    code += "}";
+    return code;
+}
+This generates C# code for a StackPanel element, including the Orientation, HorizontalAlignment, VerticalAlignment, and Children properties.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateStackPanelCSharpCode(element as StackPanel)
+Here is the code for generating C# code from a StackPanel element in XAML:
+
+csharp
+Copy code
+private static string GenerateStackPanelCSharpCode(StackPanel element)
+{
+    string code = $"new StackPanel() {{ Orientation = Orientation.{element.Orientation.ToString()} }}";
+
+    // Set properties
+    if (element.Background != null)
+        code += $", Background = {GenerateCSharpCodeFromBrush(element.Background)}";
+    if (element.Width != Double.NaN)
+        code += $", Width = {element.Width}";
+    if (element.Height != Double.NaN)
+        code += $", Height = {element.Height}";
+    if (element.Margin != null)
+        code += $", Margin = {GenerateCSharpCodeFromThickness(element.Margin)}";
+    if (element.HorizontalAlignment != HorizontalAlignment.Stretch)
+        code += $", HorizontalAlignment = HorizontalAlignment.{element.HorizontalAlignment.ToString()}";
+    if (element.VerticalAlignment != VerticalAlignment.Stretch)
+        code += $", VerticalAlignment = VerticalAlignment.{element.VerticalAlignment.ToString()}";
+    if (element.IsItemsHost)
+        code += $", IsItemsHost = {element.IsItemsHost.ToString().ToLower()}";
+
+    // Add child elements
+    foreach (UIElement child in element.Children)
+    {
+        code += $",\n{GenerateCSharpCodeFromClass(child)}";
+    }
+
+    code += "\n";
+
+    return code;
+}
+This function generates code to create a StackPanel object and sets its properties based on the values in the XAML element. It then generates code for any child elements using the GenerateCSharpCodeFromClass function.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateTextBlockCSharpCode(element as TextBlock)
+Here is the code for the GenerateTextBlockCSharpCode function which generates C# code from a TextBlock element in WPF XAML:
+
+csharp
+Copy code
+private static string GenerateTextBlockCSharpCode(TextBlock element)
+{
+    string code = $"new TextBlock() {{ Text = \"{element.Text}\", ";
+
+    // Add FontFamily
+    if (element.FontFamily != null)
+        code += $"FontFamily = new FontFamily(\"{element.FontFamily.Source}\"), ";
+
+    // Add FontStyle
+    if (element.FontStyle != FontStyles.Normal)
+        code += $"FontStyle = FontStyles.{element.FontStyle}, ";
+
+    // Add FontWeight
+    if (element.FontWeight != FontWeights.Normal)
+        code += $"FontWeight = FontWeights.{element.FontWeight}, ";
+
+    // Add FontStretch
+    if (element.FontStretch != FontStretches.Normal)
+        code += $"FontStretch = FontStretches.{element.FontStretch}, ";
+
+    // Add FontSize
+    if (element.FontSize != 12)
+        code += $"FontSize = {element.FontSize}, ";
+
+    // Add TextAlignment
+    if (element.TextAlignment != TextAlignment.Left)
+        code += $"TextAlignment = TextAlignment.{element.TextAlignment}, ";
+
+    // Add TextWrapping
+    if (element.TextWrapping != TextWrapping.NoWrap)
+        code += $"TextWrapping = TextWrapping.{element.TextWrapping}, ";
+
+    // Add TextDecorations
+    if (element.TextDecorations != null && element.TextDecorations.Count > 0)
+    {
+        code += "TextDecorations = new TextDecorationCollection() { ";
+        foreach (TextDecoration textDecoration in element.TextDecorations)
+        {
+            code += $"new TextDecoration() {{ Location = TextDecorationLocation.{textDecoration.Location}, ";
+            if (textDecoration.Pen != null)
+                code += $"Pen = new Pen(new SolidColorBrush({GenerateColorCode(textDecoration.Pen.Brush)}), {textDecoration.Pen.Thickness}), ";
+            if (textDecoration.PenThicknessUnit != TextDecorationUnit.FontRecommended && textDecoration.PenThicknessUnit != TextDecorationUnit.FontRenderingEmSize)
+                code += $"PenThicknessUnit = TextDecorationUnit.{textDecoration.PenThicknessUnit}, ";
+            if (textDecoration.PenOffset != 0)
+                code += $"PenOffset = {textDecoration.PenOffset}, ";
+            if (textDecoration.PenDashStyle != null)
+                code += $"PenDashStyle = {GenerateDashStyleCode(textDecoration.PenDashStyle)}, ";
+            if (textDecoration.PenLineJoin != PenLineJoin.Miter)
+                code += $"PenLineJoin = PenLineJoin.{textDecoration.PenLineJoin}, ";
+            if (textDecoration.PenEndLineCap != PenLineCap.Flat)
+                code += $"PenEndLineCap = PenLineCap.{textDecoration.PenEndLineCap}, ";
+            if (textDecoration.PenStartLineCap != PenLineCap.Flat)
+                code += $"PenStartLineCap = PenLineCap.{textDecoration.PenStartLineCap}, ";
+            code = code.Remove(code.Length - 2) + "}, ";
+        }
+        code = code.Remove(code.Length - 2) + "}, ";
+    }
+
+    // Add Foreground
+    if (element.Foreground != null && element.Foreground != Brushes.Black)
+        code += $"Foreground = new SolidColorBrush({GenerateColorCode(element.Foreground)}), ";
+
+    // Add Background
+    if (element.Background != null && element.Background != Brushes.Transparent)
+        code += $"Background = new SolidColorBrush({GenerateColorCode(element.Background)}), ";
+
+    // Add Opacity
+    if (element.Opacity != 1)
+        code += $"Opacity
+
+
+
+Yu Hong
+finish it
+Sure, here is the complete implementation of the GenerateTextBlockCSharpCode function:
+
+csharp
+Copy code
+private static string GenerateTextBlockCSharpCode(TextBlock element)
+{
+    string text = element.Text.Replace("\"", "\\\"");
+
+    StringBuilder codeBuilder = new StringBuilder();
+
+    codeBuilder.AppendLine($"var {element.Name} = new TextBlock();");
+    codeBuilder.AppendLine($"panel.Children.Add({element.Name});");
+    codeBuilder.AppendLine($"{element.Name}.Text = \"{text}\";");
+    codeBuilder.AppendLine($"{element.Name}.FontSize = {element.FontSize};");
+    codeBuilder.AppendLine($"{element.Name}.FontWeight = FontWeights.{element.FontWeight};");
+    codeBuilder.AppendLine($"{element.Name}.Foreground = new SolidColorBrush(Color.FromRgb({element.Foreground.Color.R}, {element.Foreground.Color.G}, {element.Foreground.Color.B}));");
+
+    if (element.TextAlignment != TextAlignment.Left)
+    {
+        codeBuilder.AppendLine($"{element.Name}.TextAlignment = TextAlignment.{element.TextAlignment};");
+    }
+
+    if (element.FontFamily != null)
+    {
+        codeBuilder.AppendLine($"{element.Name}.FontFamily = new FontFamily(\"{element.FontFamily.Source}\");");
+    }
+
+    if (!double.IsNaN(element.Width))
+    {
+        codeBuilder.AppendLine($"{element.Name}.Width = {element.Width};");
+    }
+
+    if (!double.IsNaN(element.Height))
+    {
+        codeBuilder.AppendLine($"{element.Name}.Height = {element.Height};");
+    }
+
+    if (element.Margin != null && element.Margin != new Thickness(0))
+    {
+        codeBuilder.AppendLine($"{element.Name}.Margin = new Thickness({element.Margin.Left}, {element.Margin.Top}, {element.Margin.Right}, {element.Margin.Bottom});");
+    }
+
+    if (!double.IsNaN(element.MaxWidth))
+    {
+        codeBuilder.AppendLine($"{element.Name}.MaxWidth = {element.MaxWidth};");
+    }
+
+    if (!double.IsNaN(element.MaxHeight))
+    {
+        codeBuilder.AppendLine($"{element.Name}.MaxHeight = {element.MaxHeight};");
+    }
+
+    if (!double.IsNaN(element.MinWidth))
+    {
+        codeBuilder.AppendLine($"{element.Name}.MinWidth = {element.MinWidth};");
+    }
+
+    if (!double.IsNaN(element.MinHeight))
+    {
+        codeBuilder.AppendLine($"{element.Name}.MinHeight = {element.MinHeight};");
+    }
+
+    return codeBuilder.ToString();
+}
+This function generates the C# code for a TextBlock element. It creates a new instance of TextBlock, sets its properties, and adds it to the parent panel. It handles the Text, FontSize, FontWeight, Foreground, TextAlignment, FontFamily, Width, Height, Margin, MaxWidth, MaxHeight, MinWidth, and MinHeight properties of the element.
+
+
+
+
+Yu Hong
+private static string GenerateTextBlockCSharpCode(TextBlock element)
+{
+    string code = $"new TextBlock() {{ Text = \"{element.Text}\", ";
+
+    // Add FontFamily
+    if (element.FontFamily != null)
+        code += $"FontFamily = new FontFamily(\"{element.FontFamily.Source}\"), ";
+
+    // Add FontStyle
+    if (element.FontStyle != FontStyles.Normal)
+        code += $"FontStyle = FontStyles.{element.FontStyle}, ";
+
+    // Add FontWeight
+    if (element.FontWeight != FontWeights.Normal)
+        code += $"FontWeight = FontWeights.{element.FontWeight}, ";
+
+    // Add FontStretch
+    if (element.FontStretch != FontStretches.Normal)
+        code += $"FontStretch = FontStretches.{element.FontStretch}, ";
+
+    // Add FontSize
+    if (element.FontSize != 12)
+        code += $"FontSize = {element.FontSize}, ";
+
+    // Add TextAlignment
+    if (element.TextAlignment != TextAlignment.Left)
+        code += $"TextAlignment = TextAlignment.{element.TextAlignment}, ";
+
+    // Add TextWrapping
+    if (element.TextWrapping != TextWrapping.NoWrap)
+        code += $"TextWrapping = TextWrapping.{element.TextWrapping}, ";
+
+    // Add TextDecorations
+    if (element.TextDecorations != null && element.TextDecorations.Count > 0)
+    {
+        code += "TextDecorations = new TextDecorationCollection() { ";
+        foreach (TextDecoration textDecoration in element.TextDecorations)
+        {
+            code += $"new TextDecoration() {{ Location = TextDecorationLocation.{textDecoration.Location}, ";
+            if (textDecoration.Pen != null)
+                code += $"Pen = new Pen(new SolidColorBrush({GenerateColorCode(textDecoration.Pen.Brush)}), {textDecoration.Pen.Thickness}), ";
+            if (textDecoration.PenThicknessUnit != TextDecorationUnit.FontRecommended && textDecoration.PenThicknessUnit != TextDecorationUnit.FontRenderingEmSize)
+                code += $"PenThicknessUnit = TextDecorationUnit.{textDecoration.PenThicknessUnit}, ";
+            if (textDecoration.PenOffset != 0)
+                code += $"PenOffset = {textDecoration.PenOffset}, ";
+            if (textDecoration.PenDashStyle != null)
+                code += $"PenDashStyle = {GenerateDashStyleCode(textDecoration.PenDashStyle)}, ";
+            if (textDecoration.PenLineJoin != PenLineJoin.Miter)
+                code += $"PenLineJoin = PenLineJoin.{textDecoration.PenLineJoin}, ";
+            if (textDecoration.PenEndLineCap != PenLineCap.Flat)
+                code += $"PenEndLineCap = PenLineCap.{textDecoration.PenEndLineCap}, ";
+            if (textDecoration.PenStartLineCap != PenLineCap.Flat)
+                code += $"PenStartLineCap = PenLineCap.{textDecoration.PenStartLineCap}, ";
+            code = code.Remove(code.Length - 2) + "}, ";
+        }
+        code = code.Remove(code.Length - 2) + "}, ";
+    }
+
+    // Add Foreground
+    if (element.Foreground != null && element.Foreground != Brushes.Black)
+        code += $"Foreground = new SolidColorBrush({GenerateColorCode(element.Foreground)}), ";
+
+    // Add Background
+    if (element.Background != null && element.Background != Brushes.Transparent)
+        code += $"Background = new SolidColorBrush({GenerateColorCode(element.Background)}), ";
+
+    // Add Opacity
+    if (element.Opacity != 1)
+        code += $"Opacity
+Looks like the code got cut off. Here's the complete GenerateTextBlockCSharpCode function:
+
+csharp
+Copy code
+private static string GenerateTextBlockCSharpCode(TextBlock element)
+{
+    string code = $"new TextBlock() {{ Text = \"{element.Text}\", ";
+
+    // Add FontFamily
+    if (element.FontFamily != null)
+        code += $"FontFamily = new FontFamily(\"{element.FontFamily.Source}\"), ";
+
+    // Add FontStyle
+    if (element.FontStyle != FontStyles.Normal)
+        code += $"FontStyle = FontStyles.{element.FontStyle}, ";
+
+    // Add FontWeight
+    if (element.FontWeight != FontWeights.Normal)
+        code += $"FontWeight = FontWeights.{element.FontWeight}, ";
+
+    // Add FontStretch
+    if (element.FontStretch != FontStretches.Normal)
+        code += $"FontStretch = FontStretches.{element.FontStretch}, ";
+
+    // Add FontSize
+    if (element.FontSize != 12)
+        code += $"FontSize = {element.FontSize}, ";
+
+    // Add TextAlignment
+    if (element.TextAlignment != TextAlignment.Left)
+        code += $"TextAlignment = TextAlignment.{element.TextAlignment}, ";
+
+    // Add TextWrapping
+    if (element.TextWrapping != TextWrapping.NoWrap)
+        code += $"TextWrapping = TextWrapping.{element.TextWrapping}, ";
+
+    // Add TextDecorations
+    if (element.TextDecorations != null && element.TextDecorations.Count > 0)
+    {
+        code += "TextDecorations = new TextDecorationCollection() { ";
+        foreach (TextDecoration textDecoration in element.TextDecorations)
+        {
+            code += $"new TextDecoration() {{ Location = TextDecorationLocation.{textDecoration.Location}, ";
+            if (textDecoration.Pen != null)
+                code += $"Pen = new Pen(new SolidColorBrush({GenerateColorCode(textDecoration.Pen.Brush)}), {textDecoration.Pen.Thickness}), ";
+            if (textDecoration.PenThicknessUnit != TextDecorationUnit.FontRecommended && textDecoration.PenThicknessUnit != TextDecorationUnit.FontRenderingEmSize)
+                code += $"PenThicknessUnit = TextDecorationUnit.{textDecoration.PenThicknessUnit}, ";
+            if (textDecoration.PenOffset != 0)
+                code += $"PenOffset = {textDecoration.PenOffset}, ";
+            if (textDecoration.PenDashStyle != null)
+                code += $"PenDashStyle = {GenerateDashStyleCode(textDecoration.PenDashStyle)}, ";
+            if (textDecoration.PenLineJoin != PenLineJoin.Miter)
+                code += $"PenLineJoin = PenLineJoin.{textDecoration.PenLineJoin}, ";
+            if (textDecoration.PenEndLineCap != PenLineCap.Flat)
+                code += $"PenEndLineCap = PenLineCap.{textDecoration.PenEndLineCap}, ";
+            if (textDecoration.PenStartLineCap != PenLineCap.Flat)
+                code += $"PenStartLineCap = PenLineCap.{textDecoration.PenStartLineCap}, ";
+            code = code.Remove(code.Length - 2) + "}, ";
+        }
+        code = code.Remove(code.Length - 2) + "}, ";
+    }
+
+    // Add Foreground
+    if (element.Foreground != null && element.Foreground != Brushes.Black)
+        code += $"Foreground = new SolidColorBrush({GenerateColorCode(element.Foreground)}), ";
+
+    // Add Background
+    if (element.Background != null && element.Background != Brushes.Transparent)
+        code += $"Background = new SolidColorBrush({GenerateColorCode(element.Background)}), ";
+
+    // Add Opacity
+    if (element.Opacity != 1)
+        code += $"Opacity = {element.Opacity}, ";
+
+    // Add Padding
+
+
+
+Yu Hong
+private static string GenerateTextBlockCSharpCode(TextBlock element)
+{
+    string code = $"new TextBlock() {{ Text = \"{element.Text}\", ";
+
+    // Add FontFamily
+    if (element.FontFamily != null)
+        code += $"FontFamily = new FontFamily(\"{element.FontFamily.Source}\"), ";
+
+    // Add FontStyle
+    if (element.FontStyle != FontStyles.Normal)
+        code += $"FontStyle = FontStyles.{element.FontStyle}, ";
+
+    // Add FontWeight
+    if (element.FontWeight != FontWeights.Normal)
+        code += $"FontWeight = FontWeights.{element.FontWeight}, ";
+
+    // Add FontStretch
+    if (element.FontStretch != FontStretches.Normal)
+        code += $"FontStretch = FontStretches.{element.FontStretch}, ";
+
+    // Add FontSize
+    if (element.FontSize != 12)
+        code += $"FontSize = {element.FontSize}, ";
+
+    // Add TextAlignment
+    if (element.TextAlignment != TextAlignment.Left)
+        code += $"TextAlignment = TextAlignment.{element.TextAlignment}, ";
+
+    // Add TextWrapping
+    if (element.TextWrapping != TextWrapping.NoWrap)
+        code += $"TextWrapping = TextWrapping.{element.TextWrapping}, ";
+
+    // Add TextDecorations
+    if (element.TextDecorations != null && element.TextDecorations.Count > 0)
+    {
+        code += "TextDecorations = new TextDecorationCollection() { ";
+        foreach (TextDecoration textDecoration in element.TextDecorations)
+        {
+            code += $"new TextDecoration() {{ Location = TextDecorationLocation.{textDecoration.Location}, ";
+            if (textDecoration.Pen != null)
+                code += $"Pen = new Pen(new SolidColorBrush({GenerateColorCode(textDecoration.Pen.Brush)}), {textDecoration.Pen.Thickness}), ";
+            if (textDecoration.PenThicknessUnit != TextDecorationUnit.FontRecommended && textDecoration.PenThicknessUnit != TextDecorationUnit.FontRenderingEmSize)
+                code += $"PenThicknessUnit = TextDecorationUnit.{textDecoration.PenThicknessUnit}, ";
+            if (textDecoration.PenOffset != 0)
+                code += $"PenOffset = {textDecoration.PenOffset}, ";
+            if (textDecoration.PenDashStyle != null)
+                code += $"PenDashStyle = {GenerateDashStyleCode(textDecoration.PenDashStyle)}, ";
+            if (textDecoration.PenLineJoin != PenLineJoin.Miter)
+                code += $"PenLineJoin = PenLineJoin.{textDecoration.PenLineJoin}, ";
+            if (textDecoration.PenEndLineCap != PenLineCap.Flat)
+                code += $"PenEndLineCap = PenLineCap.{textDecoration.PenEndLineCap}, ";
+            if (textDecoration.PenStartLineCap != PenLineCap.Flat)
+                code += $"PenStartLineCap = PenLineCap.{textDecoration.PenStartLineCap}, ";
+            code = code.Remove(code.Length - 2) + "}, ";
+        }
+        code = code.Remove(code.Length - 2) + "}, ";
+    }
+
+    // Add Foreground
+    if (element.Foreground != null && element.Foreground != Brushes.Black)
+        code += $"Foreground = new SolidColorBrush({GenerateColorCode(element.Foreground)}), ";
+
+    // Add Background
+    if (element.Background != null && element.Background != Brushes.Transparent)
+        code += $"Background = new SolidColorBrush({GenerateColorCode(element.Background)}), ";
+
+    // Add Opacity
+    if (element.Opacity != 1)
+        code += $"Opacity = {element.Opacity}, ";
+
+    // Add Padding
+It looks like the code snippet you pasted is incomplete and cuts off at the end of the Padding if statement. Can you provide the rest of the code for me to review?
+
+
+
+
+Yu Hong
+please generate the rest of the code
+Sure! Here's the rest of the code:
+
+csharp
+Copy code
+    // Add Padding
+    if (element.Padding != new Thickness())
+        code += $"Padding = new Thickness({element.Padding.Left}, {element.Padding.Top}, {element.Padding.Right}, {element.Padding.Bottom}), ";
+
+    // Add Margin
+    if (element.Margin != new Thickness())
+        code += $"Margin = new Thickness({element.Margin.Left}, {element.Margin.Top}, {element.Margin.Right}, {element.Margin.Bottom}), ";
+
+    // Add Width
+    if (!double.IsNaN(element.Width) && !double.IsInfinity(element.Width))
+        code += $"Width = {element.Width}, ";
+
+    // Add Height
+    if (!double.IsNaN(element.Height) && !double.IsInfinity(element.Height))
+        code += $"Height = {element.Height}, ";
+
+    // Add MinWidth
+    if (!double.IsNaN(element.MinWidth))
+        code += $"MinWidth = {element.MinWidth}, ";
+
+    // Add MinHeight
+    if (!double.IsNaN(element.MinHeight))
+        code += $"MinHeight = {element.MinHeight}, ";
+
+    // Add MaxWidth
+    if (!double.IsNaN(element.MaxWidth) && !double.IsInfinity(element.MaxWidth))
+        code += $"MaxWidth = {element.MaxWidth}, ";
+
+    // Add MaxHeight
+    if (!double.IsNaN(element.MaxHeight) && !double.IsInfinity(element.MaxHeight))
+        code += $"MaxHeight = {element.MaxHeight}, ";
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code += $"Name = \"{element.Name}\", ";
+
+    // Add Tag
+    if (element.Tag != null)
+        code += $"Tag = {GenerateObjectCode(element.Tag)}, ";
+
+    // Remove the trailing comma and space if there is one
+    if (code.EndsWith(", "))
+        code = code.Substring(0, code.Length - 2);
+
+    // Add the closing bracket and semicolon
+    code += "};";
+
+    return code;
+}
+
+
+
+Yu Hong
+generate code for private static string GenerateDrawingGroupCSharpCode(element as DrawingGroup)
+Here's the code for GenerateDrawingGroupCSharpCode method that generates C# code for a DrawingGroup element:
+
+csharp
+Copy code
+private static string GenerateDrawingGroupCSharpCode(DrawingGroup element)
+{
+    string code = "new DrawingGroup() { ";
+
+    // Add Children
+    if (element.Children != null && element.Children.Count > 0)
+    {
+        code += "Children = new DrawingCollection() { ";
+        foreach (Drawing child in element.Children)
+        {
+            if (child is GeometryDrawing)
+                code += $"{GenerateGeometryDrawingCSharpCode(child as GeometryDrawing)}, ";
+            else if (child is GlyphRunDrawing)
+                code += $"{GenerateGlyphRunDrawingCSharpCode(child as GlyphRunDrawing)}, ";
+            else if (child is ImageDrawing)
+                code += $"{GenerateImageDrawingCSharpCode(child as ImageDrawing)}, ";
+            else if (child is VideoDrawing)
+                code += $"{GenerateVideoDrawingCSharpCode(child as VideoDrawing)}, ";
+        }
+        code = code.Remove(code.Length - 2) + "}, ";
+    }
+
+    // Add ClipGeometry
+    if (element.ClipGeometry != null)
+        code += $"ClipGeometry = {GenerateGeometryCSharpCode(element.ClipGeometry)}, ";
+
+    // Add Opacity
+    if (element.Opacity != 1)
+        code += $"Opacity = {element.Opacity}, ";
+
+    // Add Transform
+    if (element.Transform != null && !element.Transform.Value.IsIdentity)
+        code += $"Transform = new MatrixTransform({GenerateMatrixCode(element.Transform.Value)}), ";
+
+    code = code.Remove(code.Length - 2) + "}";
+
+    return code;
+}
+This code generates a DrawingGroup element with its Children, ClipGeometry, Opacity, and Transform properties. It also uses other methods such as GenerateGeometryDrawingCSharpCode, GenerateGlyphRunDrawingCSharpCode, GenerateImageDrawingCSharpCode, and GenerateVideoDrawingCSharpCode to generate C# code for the Drawing children of the DrawingGroup.
+
+
+
+
+Yu Hong
+generate code for GenerateGeometryDrawingCSharpCode(child as GeometryDrawing)
+Sure, here's the code for the GenerateGeometryDrawingCSharpCode method:
+
+csharp
+Copy code
+private static string GenerateGeometryDrawingCSharpCode(GeometryDrawing child)
+{
+    string code = "new GeometryDrawing() {";
+
+    // Add Geometry
+    if (child.Geometry != null)
+        code += $"Geometry = {GenerateGeometryCSharpCode(child.Geometry)}, ";
+
+    // Add Brush
+    if (child.Brush != null)
+        code += $"Brush = new SolidColorBrush({GenerateColorCode(child.Brush)}, ";
+
+    // Add Pen
+    if (child.Pen != null)
+    {
+        code += "Pen = new Pen() {";
+
+        // Add Brush
+        if (child.Pen.Brush != null)
+            code += $"Brush = new SolidColorBrush({GenerateColorCode(child.Pen.Brush)}), ";
+
+        // Add Thickness
+        if (child.Pen.Thickness != 1)
+            code += $"Thickness = {child.Pen.Thickness}, ";
+
+        // Add DashStyle
+        if (child.Pen.DashStyle != null)
+            code += $"DashStyle = {GenerateDashStyleCode(child.Pen.DashStyle)}, ";
+
+        // Add LineJoin
+        if (child.Pen.LineJoin != PenLineJoin.Miter)
+            code += $"LineJoin = PenLineJoin.{child.Pen.LineJoin}, ";
+
+        // Add StartLineCap
+        if (child.Pen.StartLineCap != PenLineCap.Flat)
+            code += $"StartLineCap = PenLineCap.{child.Pen.StartLineCap}, ";
+
+        // Add EndLineCap
+        if (child.Pen.EndLineCap != PenLineCap.Flat)
+            code += $"EndLineCap = PenLineCap.{child.Pen.EndLineCap}, ";
+
+        code = code.Remove(code.Length - 2) + "}, ";
+    }
+
+    code = code.Remove(code.Length - 2) + "}";
+    return code;
+}
+
+
+
+Yu Hong
+GenerateGlyphRunDrawingCSharpCode(child as GlyphRunDrawing)
+Here's the code to generate a C# code snippet for a GlyphRunDrawing object:
+
+csharp
+Copy code
+private static string GenerateGlyphRunDrawingCSharpCode(GlyphRunDrawing element)
+{
+    string code = $"new GlyphRunDrawing() {{ GlyphRun = new GlyphRun(";
+
+    // Add GlyphTypeface
+    code += $"new GlyphTypeface(new Uri(\"{element.GlyphTypeface.FontUri}\", UriKind.RelativeOrAbsolute)), ";
+
+    // Add font size
+    code += $"{element.FontRenderingEmSize}, ";
+
+    // Add glyph run properties
+    code += $"{element.GlyphRun.BidiLevel}, {element.GlyphRun.CaretStops}, {element.GlyphRun.ClusterMap}, " +
+            $"{element.GlyphRun.IsSideways}, {element.GlyphRun.Indices}, {element.GlyphRun.Language}, " +
+            $"{element.GlyphRun.PixelsPerDip}, {element.GlyphRun.RenderedGlyphs}, {element.GlyphRun.XOffsets}, " +
+            $"{element.GlyphRun.YOffsets}, ";
+
+    // Add origin
+    code += $"new Point({element.Origin.X}, {element.Origin.Y}), ";
+
+    // Add foreground brush
+    if (element.ForegroundBrush != Brushes.Black)
+        code += $"ForegroundBrush = new SolidColorBrush({GenerateColorCode(element.ForegroundBrush)}), ";
+
+    // Add glyph advance widths
+    if (element.AdvanceWidths != null && element.AdvanceWidths.Count > 0)
+    {
+        code += "AdvanceWidths = new double[] { ";
+        foreach (double advanceWidth in element.AdvanceWidths)
+        {
+            code += $"{advanceWidth}, ";
+        }
+        code = code.Remove(code.Length - 2) + "}, ";
+    }
+
+    // Add glyph indices
+    if (element.GlyphIndices != null && element.GlyphIndices.Count > 0)
+    {
+        code += "GlyphIndices = new ushort[] { ";
+        foreach (ushort glyphIndex in element.GlyphIndices)
+        {
+            code += $"{glyphIndex}, ";
+        }
+        code = code.Remove(code.Length - 2) + "}, ";
+    }
+
+    code = code.Remove(code.Length - 2) + ")}";
+
+    // Add transform
+    if (element.Transform != null && !element.Transform.Value.IsIdentity)
+        code += $", Transform = new MatrixTransform() {{ Matrix = new Matrix({element.Transform.Value.M11}, {element.Transform.Value.M12}, " +
+                $"{element.Transform.Value.M21}, {element.Transform.Value.M22}, {element.Transform.Value.OffsetX}, {element.Transform.Value.OffsetY}) }}";
+
+    code += "}";
+
+    return code;
+}
+
+
+
+Yu Hong
+GenerateImageDrawingCSharpCode(child as ImageDrawing)
+Here's the code to generate a C# code snippet for an ImageDrawing object:
+
+csharp
+Copy code
+private static string GenerateImageDrawingCSharpCode(ImageDrawing element)
+{
+    string code = $"new ImageDrawing(new BitmapImage(new Uri(\"{element.ImageSource}\", UriKind.RelativeOrAbsolute)), new Rect({element.Rect.X}, {element.Rect.Y}, {element.Rect.Width}, {element.Rect.Height})) {{ ";
+
+    // Add Opacity
+    if (element.Opacity != 1)
+        code += $"Opacity = {element.Opacity}, ";
+
+    // Add Stretch
+    if (element.Stretch != Stretch.Uniform)
+        code += $"Stretch = Stretch.{element.Stretch}, ";
+
+    // Add AlignmentX
+    if (element.AlignmentX != AlignmentX.Left)
+        code += $"AlignmentX = AlignmentX.{element.AlignmentX}, ";
+
+    // Add AlignmentY
+    if (element.AlignmentY != AlignmentY.Top)
+        code += $"AlignmentY = AlignmentY.{element.AlignmentY}, ";
+
+    // Add ExternalDecoder
+    if (element.ExternalDecoder != null)
+        code += $"ExternalDecoder = new {element.ExternalDecoder.GetType().Name}(), ";
+
+    code = code.Remove(code.Length - 2) + " }";
+
+    return code;
+}
+This code snippet creates a new ImageDrawing object, setting its ImageSource and Rect properties, and any other properties that have values other than their default values. The Opacity, Stretch, AlignmentX, AlignmentY, and ExternalDecoder properties are included in the generated code if they are set to values other than their default values.
+
+
+
+
+Yu Hong
+GenerateVideoDrawingCSharpCode(child as VideoDrawing)
+Here's the code for generating C# code for a VideoDrawing object:
+
+csharp
+Copy code
+private static string GenerateVideoDrawingCSharpCode(VideoDrawing element)
+{
+    string code = $"new VideoDrawing() {{ Rect = new Rect({element.Rect.X}, {element.Rect.Y}, {element.Rect.Width}, {element.Rect.Height}), ";
+
+    // Add Player
+    if (element.Player != null)
+        code += $"Player = new MediaPlayer() {{ Volume = {element.Player.Volume}, ScrubbingEnabled = {element.Player.ScrubbingEnabled}, SpeedRatio = {element.Player.SpeedRatio} }}, ";
+
+    // Add Rect
+    if (element.Rect != Rect.Empty)
+        code += $"Rect = new Rect({element.Rect.X}, {element.Rect.Y}, {element.Rect.Width}, {element.Rect.Height}), ";
+
+    // Add Stretch
+    if (element.Stretch != Stretch.Uniform)
+        code += $"Stretch = Stretch.{element.Stretch}, ";
+
+    // Add AlignmentX
+    if (element.AlignmentX != AlignmentX.Center)
+        code += $"AlignmentX = AlignmentX.{element.AlignmentX}, ";
+
+    // Add AlignmentY
+    if (element.AlignmentY != AlignmentY.Center)
+        code += $"AlignmentY = AlignmentY.{element.AlignmentY}, ";
+
+    // Add Opacity
+    if (element.Opacity != 1)
+        code += $"Opacity = {element.Opacity}, ";
+
+    code = code.Remove(code.Length - 2) + " }";
+    return code;
+}
+This code generates C# code for a VideoDrawing object, including its Rect, MediaPlayer player, Stretch, AlignmentX, AlignmentY, and Opacity properties. If the VideoDrawing object does not have any of these properties set, the generated code will not include that property.
+
+
+
+
+Yu Hong
+GenerateColorCode(element.ForegroundBrush)
+Here's an implementation for the GenerateColorCode method:
+
+csharp
+Copy code
+private static string GenerateColorCode(Brush brush)
+{
+    if (brush is SolidColorBrush solidColorBrush)
+    {
+        var color = solidColorBrush.Color;
+        return $"Color.FromRgb({color.R}, {color.G}, {color.B})";
+    }
+    else if (brush is GradientBrush gradientBrush)
+    {
+        return $"new {gradientBrush.GetType().Name}()";
+    }
+    else
+    {
+        return "Brushes.Transparent";
+    }
+}
+This method takes a Brush object and returns the corresponding C# code for the brush color. If the brush is a SolidColorBrush, it returns the color as an RGB value. If it is a GradientBrush, it returns a new instance of the same type with default values. If it is any other type of brush, it returns Brushes.Transparent.
+
+
+
+
+Yu Hong
+GenerateGeometryCSharpCode(element.ClipGeometry)
+Here's an implementation for GenerateGeometryCSharpCode method that generates C# code for a given Geometry object:
+
+csharp
+Copy code
+private static string GenerateGeometryCSharpCode(Geometry geometry)
+{
+    if (geometry == null)
+        return "null";
+
+    if (geometry is RectangleGeometry rectGeometry)
+        return $"new RectangleGeometry(new Rect({rectGeometry.Rect.X}, {rectGeometry.Rect.Y}, {rectGeometry.Rect.Width}, {rectGeometry.Rect.Height}))";
+
+    if (geometry is EllipseGeometry ellipseGeometry)
+        return $"new EllipseGeometry(new Point({ellipseGeometry.Center.X}, {ellipseGeometry.Center.Y}), {ellipseGeometry.RadiusX}, {ellipseGeometry.RadiusY})";
+
+    if (geometry is LineGeometry lineGeometry)
+        return $"new LineGeometry(new Point({lineGeometry.StartPoint.X}, {lineGeometry.StartPoint.Y}), new Point({lineGeometry.EndPoint.X}, {lineGeometry.EndPoint.Y}))";
+
+    if (geometry is PathGeometry pathGeometry)
+    {
+        var figure = pathGeometry.Figures.FirstOrDefault();
+        if (figure != null)
+        {
+            var segmentsCode = string.Join(", ", figure.Segments.Select(s => GeneratePathSegmentCSharpCode(s)));
+            return $"new PathGeometry(new[] {{ new PathFigure(new Point({figure.StartPoint.X}, {figure.StartPoint.Y}), new[] {{ {segmentsCode} }}, {figure.IsClosed}) }})";
+        }
+    }
+
+    return "null";
+}
+This method supports RectangleGeometry, EllipseGeometry, LineGeometry, and PathGeometry. For PathGeometry, it generates C# code that creates a PathGeometry object with a single PathFigure and its PathSegments. The PathFigure is created with the start point and the IsClosed flag.
+
+Note that this implementation assumes that the Geometry object is created with absolute values, so it doesn't handle relative PathSegment types. It also doesn't handle complex PathGeometry objects with multiple PathFigure objects.
+
+
+
+
+Yu Hong
+include relative PathSegment support
+Sure, here's an updated implementation of GeneratePathGeometryCSharpCode with support for LineSegment, ArcSegment, and QuadraticBezierSegment using relative coordinates:
+
+csharp
+Copy code
+private static string GeneratePathGeometryCSharpCode(PathGeometry geometry)
+{
+    string code = "new PathGeometry() { ";
+
+    // Add FillRule
+    if (geometry.FillRule != FillRule.Nonzero)
+        code += $"FillRule = FillRule.{geometry.FillRule}, ";
+
+    // Add Figures
+    if (geometry.Figures.Count > 0)
+    {
+        code += "Figures = new PathFigureCollection() { ";
+        foreach (PathFigure figure in geometry.Figures)
+        {
+            code += "new PathFigure() { ";
+            code += $"StartPoint = new Point({figure.StartPoint.X}, {figure.StartPoint.Y}), ";
+            if (figure.IsClosed)
+                code += "IsClosed = true, ";
+            if (figure.IsFilled)
+                code += "IsFilled = true, ";
+
+            // Add Segments
+            if (figure.Segments.Count > 0)
+            {
+                code += "Segments = new PathSegmentCollection() { ";
+                Point lastPoint = figure.StartPoint;
+                foreach (PathSegment segment in figure.Segments)
+                {
+                    if (segment is LineSegment lineSegment)
+                    {
+                        code += $"new LineSegment(new Point({lineSegment.Point.X - lastPoint.X}, {lineSegment.Point.Y - lastPoint.Y}), true), ";
+                        lastPoint = lineSegment.Point;
+                    }
+                    else if (segment is ArcSegment arcSegment)
+                    {
+                        code += "new ArcSegment() { ";
+                        code += $"Size = new Size({arcSegment.Size.Width}, {arcSegment.Size.Height}), ";
+                        code += $"RotationAngle = {arcSegment.RotationAngle}, ";
+                        code += $"IsLargeArc = {arcSegment.IsLargeArc.ToString().ToLower()}, ";
+                        code += $"SweepDirection = SweepDirection.{arcSegment.SweepDirection}, ";
+                        code += $"Point = new Point({arcSegment.Point.X - lastPoint.X}, {arcSegment.Point.Y - lastPoint.Y})";
+                        if (arcSegment.IsStroked)
+                        {
+                            code += ", IsStroked = true";
+                            if (arcSegment.IsSmoothJoin)
+                                code += ", IsSmoothJoin = true";
+                        }
+                        code += "}, ";
+                        lastPoint = arcSegment.Point;
+                    }
+                    else if (segment is QuadraticBezierSegment quadraticBezierSegment)
+                    {
+                        code += "new QuadraticBezierSegment() { ";
+                        code += $"Point1 = new Point({quadraticBezierSegment.Point1.X - lastPoint.X}, {quadraticBezierSegment.Point1.Y - lastPoint.Y}), ";
+                        code += $"Point2 = new Point({quadraticBezierSegment.Point2.X - lastPoint.X}, {quadraticBezierSegment.Point2.Y - lastPoint.Y})";
+                        if (quadraticBezierSegment.IsStroked)
+                            code += ", IsStroked = true";
+                        code += "}, ";
+                        lastPoint = quadraticBezierSegment.Point2;
+                    }
+                }
+                code = code.Remove(code.Length - 2) + "}, ";
+            }
+
+            code += "}, ";
+        }
+        code = code.Remove(code.Length - 2) + "}, ";
+    }
+
+    code += "}";
+
+    return code;
+}
+Note that for the LineSegment, the Point property is now calculated as a relative point by subtracting the previous point from it. For the ArcSegment and QuadraticBezierSegment, the Point, Point1, and Point2 properties are calculated as relative points by subtracting
+
+
+
+
+Yu Hong
+GenerateMatrixCode(element.Transform.Value)
+Here's the code to generate a C# code snippet for a Matrix object:
+
+csharp
+Copy code
+private static string GenerateMatrixCode(Matrix matrix)
+{
+    return $"new Matrix({matrix.M11}, {matrix.M12}, {matrix.M21}, {matrix.M22}, {matrix.OffsetX}, {matrix.OffsetY})";
+}
+You can call this method and pass in the Transform.Value property of your UIElement to generate the C# code snippet for the MatrixTransform object. For example:
+
+csharp
+Copy code
+string code = $"new MatrixTransform() {{ Matrix = {GenerateMatrixCode(element.Transform.Value)} }}";
+
+
+
+Yu Hong
+GenerateTransformCSharpCode(element.RenderTransform)
+Here's an implementation of GenerateTransformCSharpCode method to generate C# code for a given Transform object:
+
+csharp
+Copy code
+private static string GenerateTransformCSharpCode(Transform transform)
+{
+    if (transform == null)
+        return "null";
+
+    if (transform is MatrixTransform matrixTransform)
+        return GenerateMatrixCode(matrixTransform.Matrix);
+
+    if (transform is ScaleTransform scaleTransform)
+        return $"new ScaleTransform({scaleTransform.ScaleX}, {scaleTransform.ScaleY})";
+
+    if (transform is SkewTransform skewTransform)
+        return $"new SkewTransform({skewTransform.AngleX}, {skewTransform.AngleY})";
+
+    if (transform is RotateTransform rotateTransform)
+        return $"new RotateTransform({rotateTransform.Angle}, {rotateTransform.CenterX}, {rotateTransform.CenterY})";
+
+    if (transform is TranslateTransform translateTransform)
+        return $"new TranslateTransform({translateTransform.X}, {translateTransform.Y})";
+
+    if (transform is TransformGroup transformGroup)
+    {
+        var code = "new TransformGroup() { ";
+        foreach (Transform childTransform in transformGroup.Children)
+        {
+            code += GenerateTransformCSharpCode(childTransform) + ", ";
+        }
+        return code.Remove(code.Length - 2) + " }";
+    }
+
+    throw new NotSupportedException($"Transform type {transform.GetType().Name} is not supported.");
+}
+This method checks the type of the Transform object and generates the corresponding C# code accordingly. The generated code for a MatrixTransform object is obtained by calling the GenerateMatrixCode method. The generated code for a TransformGroup object includes all child transforms recursively.
+
+
+
+
+Yu Hong
+GenerateBrushCSharpCode(element.Background)
+Here's an implementation of the GenerateBrushCSharpCode method that takes a Brush argument and returns the corresponding C# code:
+
+csharp
+Copy code
+private static string GenerateBrushCSharpCode(Brush brush)
+{
+    if (brush == null)
+        return "null";
+
+    if (brush is SolidColorBrush solidColorBrush)
+        return $"new SolidColorBrush({GenerateColorCode(solidColorBrush.Color)})";
+
+    if (brush is LinearGradientBrush linearGradientBrush)
+    {
+        var code = $"new LinearGradientBrush({GeneratePointCode(linearGradientBrush.StartPoint)}, {GeneratePointCode(linearGradientBrush.EndPoint)}, ";
+
+        foreach (var gradientStop in linearGradientBrush.GradientStops)
+        {
+            code += $"new GradientStop({GenerateColorCode(gradientStop.Color)}, {gradientStop.Offset}), ";
+        }
+
+        code = code.TrimEnd(' ', ',') + ")";
+
+        return code;
+    }
+
+    if (brush is RadialGradientBrush radialGradientBrush)
+    {
+        var code = $"new RadialGradientBrush({GeneratePointCode(radialGradientBrush.Center)}, ";
+
+        if (radialGradientBrush.GradientOrigin != null)
+            code += $"{GeneratePointCode(radialGradientBrush.GradientOrigin)}, ";
+        else
+            code += $"new Point({radialGradientBrush.RadiusX}, {radialGradientBrush.RadiusY}), ";
+
+        foreach (var gradientStop in radialGradientBrush.GradientStops)
+        {
+            code += $"new GradientStop({GenerateColorCode(gradientStop.Color)}, {gradientStop.Offset}), ";
+        }
+
+        code = code.TrimEnd(' ', ',') + ")";
+
+        return code;
+    }
+
+    if (brush is ImageBrush imageBrush)
+    {
+        var code = $"new ImageBrush(new BitmapImage(new Uri(\"{imageBrush.ImageSource}\", UriKind.Relative)), ";
+
+        code += $"new Rect({GeneratePointCode(imageBrush.Viewbox.TopLeft)}, {GenerateSizeCode(imageBrush.Viewbox.Size)}), ";
+        code += $"new Rect({GeneratePointCode(imageBrush.Viewport.TopLeft)}, {GenerateSizeCode(imageBrush.Viewport.Size)}))";
+
+        return code;
+    }
+
+    return "null";
+}
+This implementation handles SolidColorBrush, LinearGradientBrush, RadialGradientBrush, and ImageBrush.
+
+
+
+
+Yu Hong
+in GenerateDocPanelCSharpCode(DockPanel element), there is a sub function GenerateCSharpCodeFromElement(child). Please generate code for the sub function
+Certainly! Here's the code for the GenerateCSharpCodeFromElement method:
+
+kotlin
+Copy code
+private static string GenerateCSharpCodeFromElement(FrameworkElement child)
+{
+    if (child is TextBlock)
+        return GenerateTextBlockCSharpCode(child as TextBlock);
+    else if (child is DrawingGroup)
+        return GenerateDrawingGroupCSharpCode(child as DrawingGroup);
+    else if (child is GeometryDrawing)
+        return GenerateGeometryDrawingCSharpCode(child as GeometryDrawing);
+    else if (child is GlyphRunDrawing)
+        return GenerateGlyphRunDrawingCSharpCode(child as GlyphRunDrawing);
+    else if (child is ImageDrawing)
+        return GenerateImageDrawingCSharpCode(child as ImageDrawing);
+    else if (child is VideoDrawing)
+        return GenerateVideoDrawingCSharpCode(child as VideoDrawing);
+    else if (child is Panel)
+        return GeneratePanelCSharpCode(child as Panel);
+    else if (child is Border)
+        return GenerateBorderCSharpCode(child as Border);
+    else if (child is Shape)
+        return GenerateShapeCSharpCode(child as Shape);
+    else if (child is Canvas)
+        return GenerateCanvasCSharpCode(child as Canvas);
+    else if (child is Viewbox)
+        return GenerateViewboxCSharpCode(child as Viewbox);
+    else if (child is ScrollViewer)
+        return GenerateScrollViewerCSharpCode(child as ScrollViewer);
+    else if (child is Grid)
+        return GenerateGridCSharpCode(child as Grid);
+    else if (child is DockPanel)
+        return GenerateDocPanelCSharpCode(child as DockPanel);
+    else
+        throw new NotSupportedException($"Element of type {child.GetType().Name} is not supported.");
+}
+This method takes a FrameworkElement as its argument and determines its type using the is keyword. It then calls the appropriate GenerateCSharpCode method for that type of element, or throws a NotSupportedException if the element is not supported.
+
+
+
+
+Yu Hong
+GenerateRowDefinitionCSharpCode(rowDef)
+Here's an implementation for GenerateRowDefinitionCSharpCode function that generates C# code for a given RowDefinition object:
+
+csharp
+Copy code
+private static string GenerateRowDefinitionCSharpCode(RowDefinition rowDef)
+{
+    string code = "new RowDefinition() { ";
+
+    // Add Height
+    if (!rowDef.Height.IsAuto)
+        code += $"Height = new GridLength({rowDef.Height.Value}, GridUnitType.{rowDef.Height.GridUnitType}), ";
+
+    // Add MinHeight
+    if (!double.IsNaN(rowDef.MinHeight))
+        code += $"MinHeight = {rowDef.MinHeight}, ";
+
+    // Add MaxHeight
+    if (!double.IsPositiveInfinity(rowDef.MaxHeight))
+        code += $"MaxHeight = {rowDef.MaxHeight}, ";
+
+    return code + "}, ";
+}
+This function first initializes a code string with the C# code for creating a new RowDefinition object. Then, it checks if the Height, MinHeight, and MaxHeight properties of the RowDefinition object are set to values other than their default values. If so, it adds the appropriate C# code to the code string.
+
+Finally, the function appends a closing brace and comma to the code string and returns it.
+
+
+
+
+Yu Hong
+GenerateColumnDefinitionCSharpCode(colDef)
+Sure, here's an implementation for GenerateColumnDefinitionCSharpCode:
+
+csharp
+Copy code
+private static string GenerateColumnDefinitionCSharpCode(ColumnDefinition colDef)
+{
+    string code = "new ColumnDefinition() { ";
+
+    // Add Width
+    if (!colDef.Width.IsAuto)
+    {
+        code += "Width = ";
+        if (colDef.Width.IsStar)
+            code += new GridLength(colDef.Width.Value, GridUnitType.Star);
+        else if (colDef.Width.IsAbsolute)
+            code += new GridLength(colDef.Width.Value, GridUnitType.Pixel);
+        else if (colDef.Width.IsAuto)
+            code += new GridLength(1, GridUnitType.Auto);
+        code += ", ";
+    }
+
+    // Add MinWidth
+    if (!double.IsNaN(colDef.MinWidth) && colDef.MinWidth != 0)
+        code += $"MinWidth = {colDef.MinWidth}, ";
+
+    // Add MaxWidth
+    if (!double.IsNaN(colDef.MaxWidth) && colDef.MaxWidth != double.PositiveInfinity)
+        code += $"MaxWidth = {colDef.MaxWidth}, ";
+
+    code = code.Remove(code.Length - 2) + "}, ";
+
+    return code;
+}
+This function takes a ColumnDefinition as input and generates the corresponding C# code as a string. It handles the following properties:
+
+Width: If the Width property is not Auto, it generates code for the appropriate GridLength using the Value and GridUnitType properties of the GridLength. If the Width is Auto, it generates code for a GridLength with a value of 1 and a GridUnitType of Auto.
+MinWidth: If the MinWidth property is not NaN and is not equal to 0, it generates code for the MinWidth property.
+MaxWidth: If the MaxWidth property is not NaN and is not equal to PositiveInfinity, it generates code for the MaxWidth property.
+
+
+
+Yu Hong
+GenerateThicknessCSharpCode(element.Margin)
+Here is an implementation for GenerateThicknessCSharpCode:
+
+csharp
+Copy code
+private static string GenerateThicknessCSharpCode(Thickness thickness)
+{
+    if (thickness == new Thickness())
+    {
+        return "new Thickness()";
+    }
+
+    return $"new Thickness({thickness.Left}, {thickness.Top}, {thickness.Right}, {thickness.Bottom})";
+}
+This method takes a Thickness parameter and returns a C# code string that represents the Thickness value. If the Thickness value is the default value (new Thickness()), then the method returns "new Thickness()". Otherwise, it returns a string that includes the four values of the Thickness object separated by commas and enclosed in parentheses, like "new Thickness(10, 20, 30, 40)".
+
+
+
+
+Yu Hong
+GenerateDashStyleCode(textDecoration.PenDashStyle)
+Here is the code to generate a DashStyle object in C# code based on a PenDashStyle object:
+
+csharp
+Copy code
+private static string GenerateDashStyleCode(PenDashStyle dashStyle)
+{
+    switch (dashStyle)
+    {
+        case PenDashStyle.Dash:
+            return "DashStyles.Dash";
+        case PenDashStyle.DashDot:
+            return "DashStyles.DashDot";
+        case PenDashStyle.DashDotDot:
+            return "DashStyles.DashDotDot";
+        case PenDashStyle.Dot:
+            return "DashStyles.Dot";
+        case PenDashStyle.Solid:
+        default:
+            return "new DashStyle()";
+    }
+}
+This code uses a switch statement to determine the appropriate string to use based on the value of the PenDashStyle parameter. If the PenDashStyle is Solid, the code generates a new DashStyle object with default values. If the PenDashStyle is any other value, the code returns the corresponding DashStyles object from the System.Windows.Media namespace.
+
+
+
+
+Yu Hong
+GenerateObjectCode(element.Tag)
+Sure, here's the implementation for the GenerateObjectCode method:
+
+csharp
+Copy code
+private static string GenerateObjectCode(object obj)
+{
+    if (obj == null)
+    {
+        return "null";
+    }
+    
+    if (obj is string str)
+    {
+        return $"\"{str}\"";
+    }
+    
+    if (obj is double d)
+    {
+        return d.ToString(CultureInfo.InvariantCulture) + "d";
+    }
+    
+    if (obj is Enum e)
+    {
+        return $"{e.GetType().Name}.{e.ToString()}";
+    }
+    
+    return obj.ToString();
+}
+This method first checks if the object is null, in which case it returns the string "null". If the object is a string, it returns the string value surrounded by double quotes. If the object is a double, it returns the value followed by the letter "d" to indicate that it's a double. If the object is an Enum, it returns the fully qualified name of the enum type, followed by a dot and the enum value as a string. Finally, if none of the above conditions are met, it returns the result of calling ToString() on the object.
+
+
+
+
+Yu Hong
+please generate code for GenerateObjectCode(element.Tag) in below code
+    // Add Tag
+    if (element.Tag != null)
+        code += $"Tag = {GenerateObjectCode(element.Tag)}, ";
+Sure! Here's the code for GenerateObjectCode(element.Tag):
+
+C#
+Copy code
+private static string GenerateObjectCode(object obj)
+{
+    if (obj == null) return "null";
+
+    if (obj is string str)
+    {
+        return $"\"{str}\"";
+    }
+    else if (obj.GetType().IsValueType)
+    {
+        return obj.ToString();
+    }
+    else
+    {
+        return $"new {obj.GetType().Name}()";
+    }
+}
+This function takes an object and returns its C# code representation. If the object is null, it returns the string "null". If the object is a string, it wraps it in double quotes. If the object is a value type, it returns its ToString() representation. Otherwise, it returns the new keyword followed by the object's type name.
+
+
+
+
+Yu Hong
+generate code for private static string GeneratePathCSharpCode(element as Path)
+Here's the code to generate C# code for a Path element:
+
+csharp
+Copy code
+private static string GeneratePathCSharpCode(Path element)
+{
+    // Generate geometry code
+    string geometryCode = GenerateGeometryCSharpCode(element.Data);
+
+    // Generate path code
+    string code = $@"new Path
+{{
+    Data = {geometryCode},
+";
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code += $"    Fill = {brushCode},\n";
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code += $"    Stroke = {brushCode},\n";
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code += $"    StrokeThickness = {element.StrokeThickness},\n";
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code += $"    StrokeDashArray = {dashArrayCode},\n";
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code += $"    StrokeDashOffset = {element.StrokeDashOffset},\n";
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code += $"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n";
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code += $"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n";
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code += $"    StrokeMiterLimit = {element.StrokeMiterLimit},\n";
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code += $"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n";
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code += $"    RenderTransform = {transformCode},\n";
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code += $"    Opacity = {element.Opacity},\n";
+
+    // Add Tag
+    if (element.Tag != null)
+        code += $"    Tag = {GenerateObjectCode(element.Tag)},\n";
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code += $"    Name = \"{element.Name}\",\n";
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code += $"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n";
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code += $"    Clip = {clipCode},\n";
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code += $"    Visibility = Visibility.{element.Visibility},\n";
+
+    // Add ToolTip
+    if (element.ToolTip != null)
+    {
+        string toolTipCode = GenerateToolTipCSharpCode(element.ToolTip);
+        code += $"    ToolTip = {toolTip
+
+
+
+Yu Hong
+private static string GeneratePathCSharpCode(Path element)
+{
+    // Generate geometry code
+    string geometryCode = GenerateGeometryCSharpCode(element.Data);
+
+    // Generate path code
+    string code = $@"new Path
+{{
+    Data = {geometryCode},
+";
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code += $"    Fill = {brushCode},\n";
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code += $"    Stroke = {brushCode},\n";
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code += $"    StrokeThickness = {element.StrokeThickness},\n";
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code += $"    StrokeDashArray = {dashArrayCode},\n";
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code += $"    StrokeDashOffset = {element.StrokeDashOffset},\n";
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code += $"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n";
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code += $"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n";
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code += $"    StrokeMiterLimit = {element.StrokeMiterLimit},\n";
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code += $"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n";
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code += $"    RenderTransform = {transformCode},\n";
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code += $"    Opacity = {element.Opacity},\n";
+
+    // Add Tag
+    if (element.Tag != null)
+        code += $"    Tag = {GenerateObjectCode(element.Tag)},\n";
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code += $"    Name = \"{element.Name}\",\n";
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code += $"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n";
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code += $"    Clip = {clipCode},\n";
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code += $"    Visibility = Visibility.{element.Visibility},\n";
+
+    // Add ToolTip
+    if (element.ToolTip != null)
+    {
+        string toolTipCode = GenerateToolTipCSharpCode(element.ToolTip);
+        code += $"    ToolTip = {toolTip
+pCode},\n";
+}
+
+python
+Copy code
+// Add MouseEnter and MouseLeave events
+if (element.ToolTip != null)
+{
+    code += $@"    MouseEnter = (sender, e) =>
+{{
+    {GenerateEventHandlerCSharpCode("MouseEnter", "e")};
+}},
+MouseLeave = (sender, e) =>
+{{
+    {GenerateEventHandlerCSharpCode("MouseLeave", "e")};
+}},";
+}
+
+// Add closing bracket and return
+code += "\n}";
+return code;
+}
+
+
+
+
+Yu Hong
+ GenerateDoubleCollectionCode(element.StrokeDashArray)
+Here's an example implementation of the GenerateDoubleCollectionCode method:
+
+scss
+Copy code
+private static string GenerateDoubleCollectionCode(DoubleCollection doubleCollection)
+{
+    StringBuilder sb = new StringBuilder();
+    sb.Append("new DoubleCollection { ");
+    for (int i = 0; i < doubleCollection.Count; i++)
+    {
+        sb.Append(doubleCollection[i]);
+        if (i != doubleCollection.Count - 1)
+        {
+            sb.Append(", ");
+        }
+    }
+    sb.Append(" }");
+    return sb.ToString();
+}
+This method takes a DoubleCollection as input and generates the corresponding C# code. It creates a StringBuilder to build the code string, and appends each value in the collection to the string. The code is formatted as a C# array initialization expression, with each value separated by a comma and space. Finally, the method returns the completed code string.
+
+
+
+
+Yu Hong
+GenerateTransformCSharpCode(element.RenderTransform)
+Here's the code for GenerateTransformCSharpCode:
+
+csharp
+Copy code
+private static string GenerateTransformCSharpCode(Transform transform)
+{
+    if (transform == null)
+        return null;
+
+    if (transform is MatrixTransform matrixTransform)
+        return GenerateMatrixCode(matrixTransform.Matrix);
+
+    if (transform is RotateTransform rotateTransform)
+        return $@"new RotateTransform
+        {{
+            Angle = {rotateTransform.Angle},
+            CenterX = {rotateTransform.CenterX},
+            CenterY = {rotateTransform.CenterY},
+        }}";
+
+    if (transform is ScaleTransform scaleTransform)
+        return $@"new ScaleTransform
+        {{
+            ScaleX = {scaleTransform.ScaleX},
+            ScaleY = {scaleTransform.ScaleY},
+            CenterX = {scaleTransform.CenterX},
+            CenterY = {scaleTransform.CenterY},
+        }}";
+
+    if (transform is SkewTransform skewTransform)
+        return $@"new SkewTransform
+        {{
+            AngleX = {skewTransform.AngleX},
+            AngleY = {skewTransform.AngleY},
+            CenterX = {skewTransform.CenterX},
+            CenterY = {skewTransform.CenterY},
+        }}";
+
+    if (transform is TransformGroup transformGroup)
+    {
+        var transforms = transformGroup.Children
+            .Select(child => GenerateTransformCSharpCode(child))
+            .Where(code => code != null)
+            .ToList();
+
+        if (transforms.Count == 0)
+            return null;
+
+        var code = new StringBuilder();
+        code.AppendLine("new TransformGroup");
+        code.AppendLine("{");
+        code.AppendLine("    Children =");
+        code.AppendLine("    {");
+        foreach (var transformCode in transforms)
+            code.AppendLine($"        {transformCode},");
+        code.AppendLine("    }");
+        code.AppendLine("}");
+        return code.ToString();
+    }
+
+    throw new ArgumentException($"Unsupported transform type: {transform.GetType().Name}");
+}
+This method generates C# code for a given Transform object. It checks the type of the transform and generates the corresponding C# code accordingly. If the transform is a MatrixTransform, it calls the GenerateMatrixCode method to generate C# code for the matrix. If the transform is a RotateTransform, ScaleTransform, or SkewTransform, it generates C# code for those transforms directly. If the transform is a TransformGroup, it generates C# code for each child transform and combines them into a single TransformGroup object. If the transform type is not supported, it throws an ArgumentException.
+
+
+
+
+Yu Hong
+GenerateToolTipCSharpCode(element.ToolTip)
+Sure! Here's an implementation for GenerateToolTipCSharpCode:
+
+csharp
+Copy code
+private static string GenerateToolTipCSharpCode(object toolTip)
+{
+    string toolTipType = toolTip.GetType().Name;
+    string toolTipCode;
+
+    switch (toolTipType)
+    {
+        case "string":
+            toolTipCode = $"\"{toolTip.ToString()}\"";
+            break;
+        case "ToolTip":
+            toolTipCode = GenerateToolTipCSharpCode(toolTip);
+            break;
+        default:
+            toolTipCode = GenerateObjectCode(toolTip);
+            break;
+    }
+
+    return toolTipCode;
+}
+This function determines the type of the tooltip object and generates code accordingly. If the tooltip is a string, it simply returns the string in quotes. If the tooltip is another ToolTip object, it recursively generates the C# code for the nested tooltip. Otherwise, it generates the code for the object using the GenerateObjectCode function.
+
+
+
+
+Yu Hong
+GenerateEventHandlerCSharpCode("MouseEnter", "e")
+Here is the code for GenerateEventHandlerCSharpCode method:
+
+csharp
+Copy code
+private static string GenerateEventHandlerCSharpCode(string eventName, string eventArgName)
+{
+    return $@"(sender, e) =>
+    {{
+        // TODO: Add {eventName} event handler code here
+    }}";
+}
+You can replace the TODO comment with the actual code that should be executed when the event is triggered.
+
+
+
+
+Yu Hong
+generate code for private static string GeneratePathCSharpCode(element as Path)
+Sure! Here's an implementation of the GeneratePathCSharpCode method for generating C# code from a Path object:
+
+csharp
+Copy code
+private static string GeneratePathCSharpCode(Path element)
+{
+    // Generate geometry code
+    string geometryCode = GenerateGeometryCSharpCode(element.Data);
+
+    // Generate path code
+    string code = $@"new Path
+{{
+    Data = {geometryCode},
+";
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code += $"    Fill = {brushCode},\n";
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code += $"    Stroke = {brushCode},\n";
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code += $"    StrokeThickness = {element.StrokeThickness},\n";
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code += $"    StrokeDashArray = {dashArrayCode},\n";
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code += $"    StrokeDashOffset = {element.StrokeDashOffset},\n";
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code += $"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n";
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code += $"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n";
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code += $"    StrokeMiterLimit = {element.StrokeMiterLimit},\n";
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code += $"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n";
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code += $"    RenderTransform = {transformCode},\n";
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code += $"    Opacity = {element.Opacity},\n";
+
+    // Add Tag
+    if (element.Tag != null)
+        code += $"    Tag = {GenerateObjectCode(element.Tag)},\n";
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code += $"    Name = \"{element.Name}\",\n";
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code += $"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n";
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code += $"    Clip = {clipCode},\n";
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code += $"    Visibility = Visibility.{element.Visibility},\n";
+
+    // Add ToolTip
+    if (element.ToolTip != null)
+    {
+        string toolTipCode = GenerateToolTipCSharpCode(element.ToolTip
+
+
+
+Yu Hong
+private static string GeneratePathCSharpCode(Path element)
+{
+    // Generate geometry code
+    string geometryCode = GenerateGeometryCSharpCode(element.Data);
+
+    // Generate path code
+    string code = $@"new Path
+{{
+    Data = {geometryCode},
+";
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code += $"    Fill = {brushCode},\n";
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code += $"    Stroke = {brushCode},\n";
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code += $"    StrokeThickness = {element.StrokeThickness},\n";
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code += $"    StrokeDashArray = {dashArrayCode},\n";
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code += $"    StrokeDashOffset = {element.StrokeDashOffset},\n";
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code += $"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n";
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code += $"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n";
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code += $"    StrokeMiterLimit = {element.StrokeMiterLimit},\n";
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code += $"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n";
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code += $"    RenderTransform = {transformCode},\n";
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code += $"    Opacity = {element.Opacity},\n";
+
+    // Add Tag
+    if (element.Tag != null)
+        code += $"    Tag = {GenerateObjectCode(element.Tag)},\n";
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code += $"    Name = \"{element.Name}\",\n";
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code += $"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n";
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code += $"    Clip = {clipCode},\n";
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code += $"    Visibility = Visibility.{element.Visibility},\n";
+
+    // Add ToolTip
+    if (element.ToolTip != null)
+    {
+        string toolTipCode = GenerateToolTipCSharpCode(element.ToolTip
+Missing closing curly brace in the code. Here's the corrected code:
+
+private static string GeneratePathCSharpCode(Path element)
+{
+// Generate geometry code
+string geometryCode = GenerateGeometryCSharpCode(element.Data);
+
+java
+Copy code
+// Generate path code
+string code = $@"new Path
+{{
+Data = {geometryCode},
+";
+
+csharp
+Copy code
+// Add Fill
+if (element.Fill != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Fill);
+    code += $"    Fill = {brushCode},\n";
+}
+
+// Add Stroke
+if (element.Stroke != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Stroke);
+    code += $"    Stroke = {brushCode},\n";
+}
+
+// Add StrokeThickness
+if (!element.StrokeThickness.Equals(1))
+    code += $"    StrokeThickness = {element.StrokeThickness},\n";
+
+// Add StrokeDashArray
+if (element.StrokeDashArray.Count > 0)
+{
+    string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+    code += $"    StrokeDashArray = {dashArrayCode},\n";
+}
+
+// Add StrokeDashOffset
+if (!element.StrokeDashOffset.Equals(0))
+    code += $"    StrokeDashOffset = {element.StrokeDashOffset},\n";
+
+// Add StrokeEndLineCap
+if (element.StrokeEndLineCap != PenLineCap.Flat)
+    code += $"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n";
+
+// Add StrokeLineJoin
+if (element.StrokeLineJoin != PenLineJoin.Miter)
+    code += $"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n";
+
+// Add StrokeMiterLimit
+if (!element.StrokeMiterLimit.Equals(10))
+    code += $"    StrokeMiterLimit = {element.StrokeMiterLimit},\n";
+
+// Add StrokeStartLineCap
+if (element.StrokeStartLineCap != PenLineCap.Flat)
+    code += $"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n";
+
+// Add RenderTransform
+if (element.RenderTransform != null)
+{
+    string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+    code += $"    RenderTransform = {transformCode},\n";
+}
+
+// Add Opacity
+if (!element.Opacity.Equals(1))
+    code += $"    Opacity = {element.Opacity},\n";
+
+// Add Tag
+if (element.Tag != null)
+    code += $"    Tag = {GenerateObjectCode(element.Tag)},\n";
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code += $"    Name = \"{element.Name}\",\n";
+
+// Add IsHitTestVisible
+if (!element.IsHitTestVisible)
+    code += $"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n";
+
+// Add Clip
+if (element.Clip != null)
+{
+    string clipCode = GenerateGeometryCSharpCode(element.Clip);
+    code += $"    Clip = {clipCode},\n";
+}
+
+// Add Visibility
+if (element.Visibility != Visibility.Visible)
+    code += $"    Visibility = Visibility.{element.Visibility},\n";
+
+// Add ToolTip
+if (element.ToolTip != null)
+{
+    string toolTipCode = GenerateToolTipCSharpCode(element.ToolTip);
+    code += $"    ToolTip = {toolTipCode},\n
+
+
+
+Yu Hong
+// Add Fill
+if (element.Fill != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Fill);
+    code += $"    Fill = {brushCode},\n";
+}
+
+// Add Stroke
+if (element.Stroke != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Stroke);
+    code += $"    Stroke = {brushCode},\n";
+}
+
+// Add StrokeThickness
+if (!element.StrokeThickness.Equals(1))
+    code += $"    StrokeThickness = {element.StrokeThickness},\n";
+
+// Add StrokeDashArray
+if (element.StrokeDashArray.Count > 0)
+{
+    string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+    code += $"    StrokeDashArray = {dashArrayCode},\n";
+}
+
+// Add StrokeDashOffset
+if (!element.StrokeDashOffset.Equals(0))
+    code += $"    StrokeDashOffset = {element.StrokeDashOffset},\n";
+
+// Add StrokeEndLineCap
+if (element.StrokeEndLineCap != PenLineCap.Flat)
+    code += $"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n";
+
+// Add StrokeLineJoin
+if (element.StrokeLineJoin != PenLineJoin.Miter)
+    code += $"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n";
+
+// Add StrokeMiterLimit
+if (!element.StrokeMiterLimit.Equals(10))
+    code += $"    StrokeMiterLimit = {element.StrokeMiterLimit},\n";
+
+// Add StrokeStartLineCap
+if (element.StrokeStartLineCap != PenLineCap.Flat)
+    code += $"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n";
+
+// Add RenderTransform
+if (element.RenderTransform != null)
+{
+    string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+    code += $"    RenderTransform = {transformCode},\n";
+}
+
+// Add Opacity
+if (!element.Opacity.Equals(1))
+    code += $"    Opacity = {element.Opacity},\n";
+
+// Add Tag
+if (element.Tag != null)
+    code += $"    Tag = {GenerateObjectCode(element.Tag)},\n";
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code += $"    Name = \"{element.Name}\",\n";
+
+// Add IsHitTestVisible
+if (!element.IsHitTestVisible)
+    code += $"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n";
+
+// Add Clip
+if (element.Clip != null)
+{
+    string clipCode = GenerateGeometryCSharpCode(element.Clip);
+    code += $"    Clip = {clipCode},\n";
+}
+
+// Add Visibility
+if (element.Visibility != Visibility.Visible)
+    code += $"    Visibility = Visibility.{element.Visibility},\n";
+
+// Add ToolTip
+if (element.ToolTip != null)
+{
+    string toolTipCode = GenerateToolTipCSharpCode(element.ToolTip);
+    code += $"    ToolTip = {toolTipCode},\n
+// Add HorizontalAlignment
+if (element.HorizontalAlignment != HorizontalAlignment.Stretch)
+code += $" HorizontalAlignment = HorizontalAlignment.{element.HorizontalAlignment},\n";
+
+// Add VerticalAlignment
+if (element.VerticalAlignment != VerticalAlignment.Stretch)
+code += $" VerticalAlignment = VerticalAlignment.{element.VerticalAlignment},\n";
+
+// Add Width
+if (!double.IsNaN(element.Width))
+code += $" Width = {element.Width},\n";
+
+// Add Height
+if (!double.IsNaN(element.Height))
+code += $" Height = {element.Height},\n";
+
+// Add MinWidth
+if (!double.IsNaN(element.MinWidth))
+code += $" MinWidth = {element.MinWidth},\n";
+
+// Add MinHeight
+if (!double.IsNaN(element.MinHeight))
+code += $" MinHeight = {element.MinHeight},\n";
+
+// Add MaxWidth
+if (!double.IsInfinity(element.MaxWidth))
+code += $" MaxWidth = {element.MaxWidth},\n";
+
+// Add MaxHeight
+if (!double.IsInfinity(element.MaxHeight))
+code += $" MaxHeight = {element.MaxHeight},\n";
+
+// Add Margin
+if (element.Margin != new Thickness())
+code += $" Margin = new Thickness({element.Margin.Left}, {element.Margin.Top}, {element.Margin.Right}, {element.Margin.Bottom}),\n";
+
+// Remove the last comma and new line characters
+code = code.TrimEnd(',', '\n');
+
+// Add closing bracket and new line character
+code += "\n}";
+
+return code;
+
+
+
+
+Yu Hong
+generate code for private static string GeneratePolygonCSharpCode(element as Polygon)
+Here's an example implementation for generating C# code for a Polygon element:
+
+scss
+Copy code
+private static string GeneratePolygonCSharpCode(Polygon element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Polygon\n{{\n");
+
+    // Add Points
+    if (element.Points.Count > 0)
+    {
+        string pointsCode = GeneratePointCollectionCode(element.Points);
+        code.Append($"    Points = {pointsCode},\n");
+    }
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code.Append($"    Clip = {clipCode},\n");
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code.Append($"    Visibility = Visibility.{element.Visibility},
+
+
+
+Yu Hong
+private static string GeneratePolygonCSharpCode(Polygon element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Polygon\n{{\n");
+
+    // Add Points
+    if (element.Points.Count > 0)
+    {
+        string pointsCode = GeneratePointCollectionCode(element.Points);
+        code.Append($"    Points = {pointsCode},\n");
+    }
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code.Append($"    Clip = {clipCode},\n");
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code.Append($"    Visibility = Visibility.{element.Visibility},
+\n");
+
+kotlin
+Copy code
+// Close the code block with a closing bracket
+code.Append("}");
+
+// Return the generated code as a string
+return code.ToString();
+}
+
+
+
+
+Yu Hong
+generate code for private static string GeneratePolylineCSharpCode(element as Polyline)
+Here's the C# code for generating the code for a Polyline object:
+
+csharp
+Copy code
+private static string GeneratePolylineCSharpCode(Polyline element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Polyline\n{{\n");
+
+    // Add Points
+    if (element.Points.Count > 0)
+    {
+        string pointsCode = GeneratePointCollectionCode(element.Points);
+        code.Append($"    Points = {pointsCode},\n");
+    }
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code.Append($"    Clip = {clipCode},\n");
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code.Append($"
+
+
+
+Yu Hong
+private static string GeneratePolylineCSharpCode(Polyline element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Polyline\n{{\n");
+
+    // Add Points
+    if (element.Points.Count > 0)
+    {
+        string pointsCode = GeneratePointCollectionCode(element.Points);
+        code.Append($"    Points = {pointsCode},\n");
+    }
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code.Append($"    Clip = {clipCode},\n");
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code.Append($"
+scss
+Copy code
+Visibility = Visibility.{element.Visibility.ToString()},\n");
+
+// Add closing bracket and return the code as a string
+code.Append($"}}");
+
+return code.ToString();
+}
+
+
+
+
+Yu Hong
+generate code for private static string GenerateLineCSharpCode(element as Line)
+Here's the code for generating C# code for a Line object:
+
+csharp
+Copy code
+private static string GenerateLineCSharpCode(Line element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Line\n{{\n");
+
+    // Add StartPoint
+    code.Append($"    X1 = {element.X1},\n");
+    code.Append($"    Y1 = {element.Y1},\n");
+
+    // Add EndPoint
+    code.Append($"    X2 = {element.X2},\n");
+    code.Append($"    Y2 = {element.Y2},\n");
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code.Append($"    Clip = {clipCode},\n");
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code.Append($"    Visibility = Visibility.{element.Visibility},\n");
+
+    // Close the code block with a closing bracket
+   
+
+
+
+Yu Hong
+private static string GenerateLineCSharpCode(Line element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Line\n{{\n");
+
+    // Add StartPoint
+    code.Append($"    X1 = {element.X1},\n");
+    code.Append($"    Y1 = {element.Y1},\n");
+
+    // Add EndPoint
+    code.Append($"    X2 = {element.X2},\n");
+    code.Append($"    Y2 = {element.Y2},\n");
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode(element.Clip);
+        code.Append($"    Clip = {clipCode},\n");
+    }
+
+    // Add Visibility
+    if (element.Visibility != Visibility.Visible)
+        code.Append($"    Visibility = Visibility.{element.Visibility},\n");
+
+    // Close the code block with a closing bracket
+   
+complete the rest of the code
+// Close the code block with a closing bracket
+code.Append("};\n");
+
+kotlin
+Copy code
+// Return the generated code as a string
+return code.ToString();
+}
+
+
+
+
+Yu Hong
+generate code for private static string GeneratePolylineCSharpCode(element as Polyline)
+Here is the code for private static string GeneratePolylineCSharpCode(Polyline element):
+
+csharp
+Copy code
+private static string GeneratePolylineCSharpCode(Polyline element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Polyline\n{{\n");
+
+    // Add Points
+    if (element.Points.Count > 0)
+    {
+        string pointsCode = GeneratePointCollectionCode(element.Points);
+        code.Append($"    Points = {pointsCode},\n");
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add FillRule
+    if (element.FillRule != FillRule.EvenOdd)
+        code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode
+
+
+
+Yu Hong
+private static string GeneratePolylineCSharpCode(Polyline element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Polyline\n{{\n");
+
+    // Add Points
+    if (element.Points.Count > 0)
+    {
+        string pointsCode = GeneratePointCollectionCode(element.Points);
+        code.Append($"    Points = {pointsCode},\n");
+    }
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add FillRule
+    if (element.FillRule != FillRule.EvenOdd)
+        code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clipCode = GenerateGeometryCSharpCode
+complete the rest of the coe
+(element.Clip);
+code.Append($" Clip = {clipCode},\n");
+}
+
+kotlin
+Copy code
+// End the code block with a closing bracket and semicolon
+code.Append("};\n");
+
+// Return the generated code as a string
+return code.ToString();
+}
+
+// Helper method to generate code for a PointCollection
+private static string GeneratePointCollectionCode(PointCollection points)
+{
+StringBuilder code = new StringBuilder();
+code.Append("new PointCollection { ");
+for (int i = 0; i < points.Count; i++)
+{
+code.Append($"new Point({points[i].X}, {points[i].Y})");
+if (i < points.Count - 1)
+code.Append(", ");
+}
+code.Append(" }");
+return code.ToString();
+}
+
+// Helper method to generate code for a DoubleCollection
+private static string GenerateDoubleCollectionCode(DoubleCollection collection)
+{
+StringBuilder code = new StringBuilder();
+code.Append("new DoubleCollection { ");
+for (int i = 0; i < collection.Count; i++)
+{
+code.Append($"{collection[i]}");
+if (i < collection.Count - 1)
+code.Append(", ");
+}
+code.Append(" }");
+return code.ToString();
+}
+
+// Helper method to generate code for a Brush
+private static string GenerateBrushCSharpCode(Brush brush)
+{
+if (brush is SolidColorBrush solidColorBrush)
+return GenerateSolidColorBrushCSharpCode(solidColorBrush);
+else if (brush is LinearGradientBrush linearGradientBrush)
+return GenerateLinearGradientBrushCSharpCode(linearGradientBrush);
+else if (brush is RadialGradientBrush radialGradientBrush)
+return GenerateRadialGradientBrushCSharpCode(radialGradientBrush);
+else
+return "null";
+}
+
+// Helper method to generate code for a SolidColorBrush
+private static string GenerateSolidColorBrushCSharpCode(SolidColorBrush brush)
+{
+return $"new SolidColorBrush({GenerateColorCode(brush.Color)})";
+}
+
+// Helper method to generate code for a LinearGradientBrush
+private static string GenerateLinearGradientBrushCSharpCode(LinearGradientBrush brush)
+{
+StringBuilder code = new StringBuilder();
+code.Append($"new LinearGradientBrush({GeneratePointCode(brush.StartPoint)}, {GeneratePointCode(brush.EndPoint)}, ");
+code.Append("GradientStops = new GradientStopCollection { ");
+for (int i = 0; i < brush.GradientStops.Count; i++)
+{
+code.Append($"new GradientStop({GenerateColorCode(brush.GradientStops[i].Color)}, {brush.GradientStops[i].Offset})");
+if (i < brush.GradientStops.Count - 1)
+code.Append(", ");
+}
+code.Append(" }");
+code.Append(")");
+return code.ToString();
+}
+
+// Helper method to generate code for a RadialGradientBrush
+private static string GenerateRadialGradientBrushCSharpCode(RadialGradientBrush brush)
+{
+StringBuilder code = new StringBuilder();
+code.Append($"new RadialGradientBrush({GeneratePointCode(brush.Center)}, {GeneratePointCode(brush.GradientOrigin)}, ");
+code.Append($"new Size({brush.RadiusX}, {brush.RadiusY}), ");
+code.Append("GradientStops = new GradientStopCollection { ");
+for (int i = 0; i < brush.GradientStops.Count; i++)
+{
+code.Append($"new GradientStop({GenerateColorCode(brush.GradientStops[i].Color)}, {brush.GradientStops[i].Offset})");
+if (i < brush.GradientStops.Count - 1)
+code.Append(", ");
+}
+code.Append(" }");
+code.Append(")");
+return code.ToString();
+}
+
+// Helper method to generate code for a
+
+
+
+
+Yu Hong
+GeneratePointCollectionCode(element.Points)
+Here's the code for the GeneratePointCollectionCode method:
+
+csharp
+Copy code
+private static string GeneratePointCollectionCode(PointCollection points)
+{
+    StringBuilder code = new StringBuilder();
+    code.Append("new PointCollection\n{\n");
+
+    foreach (Point point in points)
+    {
+        code.Append($"    new Point({point.X}, {point.Y}),\n");
+    }
+
+    code.Append("}");
+    return code.ToString();
+}
+This method generates C# code for a PointCollection object. It iterates through each Point in the collection and generates a new Point() code snippet for each one. The resulting code is a string that can be used to initialize a PointCollection object in C#.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateEllipseCSharpCode(element as Ellipse)
+Here is the code for generating C# code for an Ellipse object:
+
+csharp
+Copy code
+private static string GenerateEllipseCSharpCode(Ellipse element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Ellipse\n{{\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add FillRule
+    if (element.FillRule != FillRule.EvenOdd)
+        code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clip
+
+
+
+Yu Hong
+private static string GenerateEllipseCSharpCode(Ellipse element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Ellipse\n{{\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add FillRule
+    if (element.FillRule != FillRule.EvenOdd)
+        code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string clip
+complete this function please
+= GenerateGeometryCSharpCode(element.Clip);
+code.Append($" Clip = {clip},\n");
+}
+
+less
+Copy code
+// Add Visibility
+if (element.Visibility != Visibility.Visible)
+    code.Append($"    Visibility = Visibility.{element.Visibility},\n");
+
+// Remove the last comma and add the closing bracket
+code.Remove(code.Length - 2, 1).Append("}");
+
+// Return the generated code as a string
+return code.ToString();
+}
+
+
+
+
+Yu Hong
+generate code for private static string GenerateEllipseCSharpCode(element as Ellipse)
+Here's the complete code for the GenerateEllipseCSharpCode function in C#:
+
+csharp
+Copy code
+private static string GenerateEllipseCSharpCode(Ellipse element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Ellipse\n{{\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add FillRule
+    if (element.FillRule != FillRule.EvenOdd)
+        code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string
+
+
+
+Yu Hong
+private static string GenerateEllipseCSharpCode(Ellipse element)
+{
+    // Create a new StringBuilder to store the code
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Ellipse\n{{\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add FillRule
+    if (element.FillRule != FillRule.EvenOdd)
+        code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+    // Add Clip
+    if (element.Clip != null)
+    {
+        string
+please complete the function
+// Add Center
+code.Append($" Center = new Point({element.Center.X}, {element.Center.Y}),\n");
+
+less
+Copy code
+// Add RadiusX
+if (!element.RadiusX.Equals(double.NaN))
+    code.Append($"    RadiusX = {element.RadiusX},\n");
+
+// Add RadiusY
+if (!element.RadiusY.Equals(double.NaN))
+    code.Append($"    RadiusY = {element.RadiusY},\n");
+
+// Remove the trailing comma from the last property
+if (code[code.Length - 2] == ',')
+    code.Remove(code.Length - 2, 1);
+
+// Close the code block with a closing bracket and semicolon
+code.Append("};\n");
+
+// Return the generated code as a string
+return code.ToString();
+}
+
+
+
+
+Yu Hong
+generate code for private static string GenerateRectangleCSharpCode(element as Rectangle)
+private static string GenerateRectangleCSharpCode(Rectangle element)
+{
+// Create a new StringBuilder to store the code
+StringBuilder code = new StringBuilder();
+
+csharp
+Copy code
+// Start the code block with the element type and opening bracket
+code.Append($"new Rectangle\n{{\n");
+
+// Add Width
+if (!element.Width.Equals(double.NaN))
+    code.Append($"    Width = {element.Width},\n");
+
+// Add Height
+if (!element.Height.Equals(double.NaN))
+    code.Append($"    Height = {element.Height},\n");
+
+// Add Stroke
+if (element.Stroke != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Stroke);
+    code.Append($"    Stroke = {brushCode},\n");
+}
+
+// Add StrokeThickness
+if (!element.StrokeThickness.Equals(1))
+    code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+// Add StrokeDashArray
+if (element.StrokeDashArray.Count > 0)
+{
+    string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+    code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+}
+
+// Add StrokeDashOffset
+if (!element.StrokeDashOffset.Equals(0))
+    code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+// Add StrokeEndLineCap
+if (element.StrokeEndLineCap != PenLineCap.Flat)
+    code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+// Add StrokeLineJoin
+if (element.StrokeLineJoin != PenLineJoin.Miter)
+    code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+// Add StrokeMiterLimit
+if (!element.StrokeMiterLimit.Equals(10))
+    code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+// Add StrokeStartLineCap
+if (element.StrokeStartLineCap != PenLineCap.Flat)
+    code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+// Add Fill
+if (element.Fill != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Fill);
+    code.Append($"    Fill = {brushCode},\n");
+}
+
+// Add FillRule
+if (element.FillRule != FillRule.EvenOdd)
+    code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+// Add RenderTransform
+if (element.RenderTransform != null)
+{
+    string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+    code.Append($"    RenderTransform = {transformCode},\n");
+}
+
+// Add Opacity
+if (!element.Opacity.Equals(1))
+    code.Append($"    Opacity = {element.Opacity},\n");
+
+// Add Tag
+if (element.Tag != null)
+    code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code.Append($"    Name = \"{element.Name}\",\n");
+
+// Add IsHitTestVisible
+if (!element.IsHitTestVisible)
+    code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+// Add RadiusX
+if (!element.RadiusX.Equals(0))
+    code.Append($"    RadiusX = {element.RadiusX},\n");
+
+// Add RadiusY
+
+
+
+Yu Hong
+// Start the code block with the element type and opening bracket
+code.Append($"new Rectangle\n{{\n");
+
+// Add Width
+if (!element.Width.Equals(double.NaN))
+    code.Append($"    Width = {element.Width},\n");
+
+// Add Height
+if (!element.Height.Equals(double.NaN))
+    code.Append($"    Height = {element.Height},\n");
+
+// Add Stroke
+if (element.Stroke != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Stroke);
+    code.Append($"    Stroke = {brushCode},\n");
+}
+
+// Add StrokeThickness
+if (!element.StrokeThickness.Equals(1))
+    code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+// Add StrokeDashArray
+if (element.StrokeDashArray.Count > 0)
+{
+    string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+    code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+}
+
+// Add StrokeDashOffset
+if (!element.StrokeDashOffset.Equals(0))
+    code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+// Add StrokeEndLineCap
+if (element.StrokeEndLineCap != PenLineCap.Flat)
+    code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+// Add StrokeLineJoin
+if (element.StrokeLineJoin != PenLineJoin.Miter)
+    code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+// Add StrokeMiterLimit
+if (!element.StrokeMiterLimit.Equals(10))
+    code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+// Add StrokeStartLineCap
+if (element.StrokeStartLineCap != PenLineCap.Flat)
+    code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+// Add Fill
+if (element.Fill != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Fill);
+    code.Append($"    Fill = {brushCode},\n");
+}
+
+// Add FillRule
+if (element.FillRule != FillRule.EvenOdd)
+    code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+// Add RenderTransform
+if (element.RenderTransform != null)
+{
+    string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+    code.Append($"    RenderTransform = {transformCode},\n");
+}
+
+// Add Opacity
+if (!element.Opacity.Equals(1))
+    code.Append($"    Opacity = {element.Opacity},\n");
+
+// Add Tag
+if (element.Tag != null)
+    code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code.Append($"    Name = \"{element.Name}\",\n");
+
+// Add IsHitTestVisible
+if (!element.IsHitTestVisible)
+    code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+// Add RadiusX
+if (!element.RadiusX.Equals(0))
+    code.Append($"    RadiusX = {element.RadiusX},\n");
+
+// Add RadiusY
+
+
+
+Yu Hong
+// Start the code block with the element type and opening bracket
+code.Append($"new Rectangle\n{{\n");
+
+// Add Width
+if (!element.Width.Equals(double.NaN))
+    code.Append($"    Width = {element.Width},\n");
+
+// Add Height
+if (!element.Height.Equals(double.NaN))
+    code.Append($"    Height = {element.Height},\n");
+
+// Add Stroke
+if (element.Stroke != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Stroke);
+    code.Append($"    Stroke = {brushCode},\n");
+}
+
+// Add StrokeThickness
+if (!element.StrokeThickness.Equals(1))
+    code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+// Add StrokeDashArray
+if (element.StrokeDashArray.Count > 0)
+{
+    string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+    code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+}
+
+// Add StrokeDashOffset
+if (!element.StrokeDashOffset.Equals(0))
+    code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+// Add StrokeEndLineCap
+if (element.StrokeEndLineCap != PenLineCap.Flat)
+    code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+// Add StrokeLineJoin
+if (element.StrokeLineJoin != PenLineJoin.Miter)
+    code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+// Add StrokeMiterLimit
+if (!element.StrokeMiterLimit.Equals(10))
+    code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+// Add StrokeStartLineCap
+if (element.StrokeStartLineCap != PenLineCap.Flat)
+    code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+// Add Fill
+if (element.Fill != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Fill);
+    code.Append($"    Fill = {brushCode},\n");
+}
+
+// Add FillRule
+if (element.FillRule != FillRule.EvenOdd)
+    code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+// Add RenderTransform
+if (element.RenderTransform != null)
+{
+    string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+    code.Append($"    RenderTransform = {transformCode},\n");
+}
+
+// Add Opacity
+if (!element.Opacity.Equals(1))
+    code.Append($"    Opacity = {element.Opacity},\n");
+
+// Add Tag
+if (element.Tag != null)
+    code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code.Append($"    Name = \"{element.Name}\",\n");
+
+// Add IsHitTestVisible
+if (!element.IsHitTestVisible)
+    code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+// Add RadiusX
+if (!element.RadiusX.Equals(0))
+    code.Append($"    RadiusX = {element.RadiusX},\n");
+
+// Add RadiusY
+if (!element.RadiusY.Equals(0))
+code.Append($" RadiusY = {element.RadiusY},\n");
+
+// Close the rectangle element
+code.Append($"}}");
+
+
+
+
+Yu Hong
+// Start the code block with the element type and opening bracket
+code.Append($"new Rectangle\n{{\n");
+
+// Add Width
+if (!element.Width.Equals(double.NaN))
+    code.Append($"    Width = {element.Width},\n");
+
+// Add Height
+if (!element.Height.Equals(double.NaN))
+    code.Append($"    Height = {element.Height},\n");
+
+// Add Stroke
+if (element.Stroke != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Stroke);
+    code.Append($"    Stroke = {brushCode},\n");
+}
+
+// Add StrokeThickness
+if (!element.StrokeThickness.Equals(1))
+    code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+// Add StrokeDashArray
+if (element.StrokeDashArray.Count > 0)
+{
+    string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+    code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+}
+
+// Add StrokeDashOffset
+if (!element.StrokeDashOffset.Equals(0))
+    code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+// Add StrokeEndLineCap
+if (element.StrokeEndLineCap != PenLineCap.Flat)
+    code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+// Add StrokeLineJoin
+if (element.StrokeLineJoin != PenLineJoin.Miter)
+    code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+// Add StrokeMiterLimit
+if (!element.StrokeMiterLimit.Equals(10))
+    code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+// Add StrokeStartLineCap
+if (element.StrokeStartLineCap != PenLineCap.Flat)
+    code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+// Add Fill
+if (element.Fill != null)
+{
+    string brushCode = GenerateBrushCSharpCode(element.Fill);
+    code.Append($"    Fill = {brushCode},\n");
+}
+
+// Add FillRule
+if (element.FillRule != FillRule.EvenOdd)
+    code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+// Add RenderTransform
+if (element.RenderTransform != null)
+{
+    string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+    code.Append($"    RenderTransform = {transformCode},\n");
+}
+
+// Add Opacity
+if (!element.Opacity.Equals(1))
+    code.Append($"    Opacity = {element.Opacity},\n");
+
+// Add Tag
+if (element.Tag != null)
+    code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code.Append($"    Name = \"{element.Name}\",\n");
+
+// Add IsHitTestVisible
+if (!element.IsHitTestVisible)
+    code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().ToLower()},\n");
+
+// Add RadiusX
+if (!element.RadiusX.Equals(0))
+    code.Append($"    RadiusX = {element.RadiusX},\n");
+
+// Add RadiusY
+please completet the methond
+// Add RadiusY
+if (!element.RadiusY.Equals(0))
+code.Append($" RadiusY = {element.RadiusY},\n");
+
+// Add HorizontalAlignment
+if (element.HorizontalAlignment != HorizontalAlignment.Stretch)
+code.Append($" HorizontalAlignment = HorizontalAlignment.{element.HorizontalAlignment},\n");
+
+// Add VerticalAlignment
+if (element.VerticalAlignment != VerticalAlignment.Stretch)
+code.Append($" VerticalAlignment = VerticalAlignment.{element.VerticalAlignment},\n");
+
+// Add Margin
+if (element.Margin != null && element.Margin != new Thickness())
+{
+string marginCode = GenerateThicknessCSharpCode(element.Margin);
+code.Append($" Margin = {marginCode},\n");
+}
+
+// Add Clip
+if (element.Clip != null)
+{
+string geometryCode = GenerateGeometryCSharpCode(element.Clip);
+code.Append($" Clip = {geometryCode},\n");
+}
+
+// Close the rectangle initialization
+code.Append($"}}");
+
+
+
+
+Yu Hong
+please complete the methond
+Sure, here's the complete method:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a Rectangle element.
+/// </summary>
+/// <param name="element">The Rectangle element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+public string GenerateRectangleCSharpCode(Rectangle element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Rectangle\n{{\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add FillRule
+    if (element.FillRule != FillRule.EvenOdd)
+        code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().
+
+
+
+Yu Hong
+/// <summary>
+/// Generates C# code for a Rectangle element.
+/// </summary>
+/// <param name="element">The Rectangle element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+public string GenerateRectangleCSharpCode(Rectangle element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Rectangle\n{{\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stroke
+    if (element.Stroke != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Stroke);
+        code.Append($"    Stroke = {brushCode},\n");
+    }
+
+    // Add StrokeThickness
+    if (!element.StrokeThickness.Equals(1))
+        code.Append($"    StrokeThickness = {element.StrokeThickness},\n");
+
+    // Add StrokeDashArray
+    if (element.StrokeDashArray.Count > 0)
+    {
+        string dashArrayCode = GenerateDoubleCollectionCode(element.StrokeDashArray);
+        code.Append($"    StrokeDashArray = {dashArrayCode},\n");
+    }
+
+    // Add StrokeDashOffset
+    if (!element.StrokeDashOffset.Equals(0))
+        code.Append($"    StrokeDashOffset = {element.StrokeDashOffset},\n");
+
+    // Add StrokeEndLineCap
+    if (element.StrokeEndLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeEndLineCap = PenLineCap.{element.StrokeEndLineCap},\n");
+
+    // Add StrokeLineJoin
+    if (element.StrokeLineJoin != PenLineJoin.Miter)
+        code.Append($"    StrokeLineJoin = PenLineJoin.{element.StrokeLineJoin},\n");
+
+    // Add StrokeMiterLimit
+    if (!element.StrokeMiterLimit.Equals(10))
+        code.Append($"    StrokeMiterLimit = {element.StrokeMiterLimit},\n");
+
+    // Add StrokeStartLineCap
+    if (element.StrokeStartLineCap != PenLineCap.Flat)
+        code.Append($"    StrokeStartLineCap = PenLineCap.{element.StrokeStartLineCap},\n");
+
+    // Add Fill
+    if (element.Fill != null)
+    {
+        string brushCode = GenerateBrushCSharpCode(element.Fill);
+        code.Append($"    Fill = {brushCode},\n");
+    }
+
+    // Add FillRule
+    if (element.FillRule != FillRule.EvenOdd)
+        code.Append($"    FillRule = FillRule.{element.FillRule},\n");
+
+    // Add RenderTransform
+    if (element.RenderTransform != null)
+    {
+        string transformCode = GenerateTransformCSharpCode(element.RenderTransform);
+        code.Append($"    RenderTransform = {transformCode},\n");
+    }
+
+    // Add Opacity
+    if (!element.Opacity.Equals(1))
+        code.Append($"    Opacity = {element.Opacity},\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add IsHitTestVisible
+    if (!element.IsHitTestVisible)
+        code.Append($"    IsHitTestVisible = {element.IsHitTestVisible.ToString().
+please completet the function code
+// Add HorizontalAlignment
+if (element.HorizontalAlignment != HorizontalAlignment.Stretch)
+code.Append($" HorizontalAlignment = HorizontalAlignment.{element.HorizontalAlignment},\n");
+
+// Add VerticalAlignment
+if (element.VerticalAlignment != VerticalAlignment.Stretch)
+code.Append($" VerticalAlignment = VerticalAlignment.{element.VerticalAlignment},\n");
+
+// Add Margin
+if (element.Margin != new Thickness(0))
+{
+string thicknessCode = GenerateThicknessCSharpCode(element.Margin);
+code.Append($" Margin = {thicknessCode},\n");
+}
+
+// Close the code block with a closing bracket
+code.Append($"}}");
+
+// Return the generated code
+return code.ToString();
+
+
+
+
+Yu Hong
+generate code for private static string GenerateMediaElementCSharpCode(element as MediaElement
+Here's an example implementation of GenerateMediaElementCSharpCode method that generates C# code for a MediaElement object:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a MediaElement element.
+/// </summary>
+/// <param name="element">The MediaElement element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateMediaElementCSharpCode(MediaElement element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new MediaElement\n{{\n");
+
+    // Add Source
+    if (!string.IsNullOrEmpty(element.Source?.ToString()))
+        code.Append($"    Source = new Uri(\"{element.Source.ToString()}\", UriKind.RelativeOrAbsolute),\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stretch
+    if (element.Stretch != Stretch.Uniform)
+        code.Append($"    Stretch = Stretch.{element.Stretch},\n");
+
+    // Add Position
+    if (element.Position != TimeSpan.Zero)
+        code.Append($"    Position = TimeSpan.FromMilliseconds({element.Position.TotalMilliseconds}),\n");
+
+    // Add Volume
+    if (!element.Volume.Equals(0.5))
+        code.Append($"    Volume = {element.Volume},\n");
+
+    // Add IsMuted
+    if (element.IsMuted)
+        code.Append($"    IsMuted = {element.IsMuted.ToString().ToLower()},\n");
+
+    // Add IsLooping
+    if (element.IsLooping)
+        code.Append($"    IsLooping = {element.IsLooping.ToString().ToLower()},\n");
+
+    // Add AutoPlay
+    if (!element.AutoPlay)
+        code.Append($"    AutoPlay = {element.AutoPlay.ToString().ToLower()},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+
+
+
+Yu Hong
+/// <summary>
+/// Generates C# code for a MediaElement element.
+/// </summary>
+/// <param name="element">The MediaElement element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateMediaElementCSharpCode(MediaElement element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new MediaElement\n{{\n");
+
+    // Add Source
+    if (!string.IsNullOrEmpty(element.Source?.ToString()))
+        code.Append($"    Source = new Uri(\"{element.Source.ToString()}\", UriKind.RelativeOrAbsolute),\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stretch
+    if (element.Stretch != Stretch.Uniform)
+        code.Append($"    Stretch = Stretch.{element.Stretch},\n");
+
+    // Add Position
+    if (element.Position != TimeSpan.Zero)
+        code.Append($"    Position = TimeSpan.FromMilliseconds({element.Position.TotalMilliseconds}),\n");
+
+    // Add Volume
+    if (!element.Volume.Equals(0.5))
+        code.Append($"    Volume = {element.Volume},\n");
+
+    // Add IsMuted
+    if (element.IsMuted)
+        code.Append($"    IsMuted = {element.IsMuted.ToString().ToLower()},\n");
+
+    // Add IsLooping
+    if (element.IsLooping)
+        code.Append($"    IsLooping = {element.IsLooping.ToString().ToLower()},\n");
+
+    // Add AutoPlay
+    if (!element.AutoPlay)
+        code.Append($"    AutoPlay = {element.AutoPlay.ToString().ToLower()},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+This code generates C# code for a MediaElement element, including its source, dimensions, stretch, position, volume, muting, looping, auto-play, name, and tag properties. It returns a string containing the generated code. Here's the code:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a MediaElement element.
+/// </summary>
+/// <param name="element">The MediaElement element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateMediaElementCSharpCode(MediaElement element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new MediaElement\n{{\n");
+
+    // Add Source
+    if (!string.IsNullOrEmpty(element.Source?.ToString()))
+        code.Append($"    Source = new Uri(\"{element.Source.ToString()}\", UriKind.RelativeOrAbsolute),\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stretch
+    if (element.Stretch != Stretch.Uniform)
+        code.Append($"    Stretch = Stretch.{element.Stretch},\n");
+
+    // Add Position
+    if (element.Position != TimeSpan.Zero)
+        code.Append($"    Position = TimeSpan.FromMilliseconds({element.Position.TotalMilliseconds}),\n");
+
+    // Add Volume
+    if (!element.Volume.Equals(0.5))
+        code.Append($"    Volume = {element.Volume},\n");
+
+    // Add IsMuted
+    if (element.IsMuted)
+        code.Append($"    IsMuted = {element.IsMuted.ToString().ToLower()},\n");
+
+    // Add IsLooping
+    if (element.IsLooping)
+        code.Append($"    IsLooping = {element.IsLooping.ToString().ToLower()},\n");
+
+    // Add AutoPlay
+    if (!element.AutoPlay)
+        code.Append($"    AutoPlay = {element.AutoPlay.ToString().ToLower()},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+
+
+
+Yu Hong
+generate code for private static string GenerateImageCSharpCode(element as Image)
+Sure, here's the code for generating C# code for an Image element:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for an Image element.
+/// </summary>
+/// <param name="element">The Image element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateImageCSharpCode(Image element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Image\n{{\n");
+
+    // Add Source
+    if (!string.IsNullOrEmpty(element.Source?.ToString()))
+        code.Append($"    Source = new BitmapImage(new Uri(\"{element.Source.ToString()}\", UriKind.RelativeOrAbsolute)),\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Stretch
+    if (element.Stretch != Stretch.Uniform)
+        code.Append($"    Stretch = Stretch.{element.Stretch},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+
+
+
+Yu Hong
+generate code for private static string GenerateScrollBarCSharpCode(element as ScrollBar)
+Here's the code for generating C# code for a ScrollBar element:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a ScrollBar element.
+/// </summary>
+/// <param name="element">The ScrollBar element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateScrollBarCSharpCode(ScrollBar element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new ScrollBar\n{{\n");
+
+    // Add Orientation
+    if (element.Orientation != Orientation.Horizontal)
+        code.Append($"    Orientation = Orientation.{element.Orientation},\n");
+
+    // Add Minimum
+    if (!element.Minimum.Equals(double.NaN))
+        code.Append($"    Minimum = {element.Minimum},\n");
+
+    // Add Maximum
+    if (!element.Maximum.Equals(double.NaN))
+        code.Append($"    Maximum = {element.Maximum},\n");
+
+    // Add Value
+    if (!element.Value.Equals(double.NaN))
+        code.Append($"    Value = {element.Value},\n");
+
+    // Add SmallChange
+    if (!element.SmallChange.Equals(double.NaN))
+        code.Append($"    SmallChange = {element.SmallChange},\n");
+
+    // Add LargeChange
+    if (!element.LargeChange.Equals(double.NaN))
+        code.Append($"    LargeChange = {element.LargeChange},\n");
+
+    // Add IsDirectionReversed
+    if (element.IsDirectionReversed)
+        code.Append($"    IsDirectionReversed = {element.IsDirectionReversed.ToString().ToLower()},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+
+
+
+Yu Hong
+generate code for private static string GenerateSliderCSharpCode(element as Slider)
+Sure, here's the code for generating C# code for a Slider element:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a Slider element.
+/// </summary>
+/// <param name="element">The Slider element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateSliderCSharpCode(Slider element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Slider\n{{\n");
+
+    // Add Minimum
+    if (!element.Minimum.Equals(0.0))
+        code.Append($"    Minimum = {element.Minimum},\n");
+
+    // Add Maximum
+    if (!element.Maximum.Equals(1.0))
+        code.Append($"    Maximum = {element.Maximum},\n");
+
+    // Add Value
+    if (!element.Value.Equals(0.0))
+        code.Append($"    Value = {element.Value},\n");
+
+    // Add IsDirectionReversed
+    if (element.IsDirectionReversed)
+        code.Append($"    IsDirectionReversed = {element.IsDirectionReversed.ToString().ToLower()},\n");
+
+    // Add Orientation
+    if (element.Orientation != Orientation.Horizontal)
+        code.Append($"    Orientation = Orientation.{element.Orientation},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+
+
+
+Yu Hong
+generate code for private static string GenerateProgressBarCSharpCode(element as ProgressBar)
+Here is the code for the GenerateProgressBarCSharpCode method:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a ProgressBar element.
+/// </summary>
+/// <param name="element">The ProgressBar element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateProgressBarCSharpCode(ProgressBar element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new ProgressBar\n{{\n");
+
+    // Add Value
+    if (!element.Value.Equals(0))
+        code.Append($"    Value = {element.Value},\n");
+
+    // Add Minimum
+    if (!element.Minimum.Equals(0))
+        code.Append($"    Minimum = {element.Minimum},\n");
+
+    // Add Maximum
+    if (!element.Maximum.Equals(100))
+        code.Append($"    Maximum = {element.Maximum},\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+This method generates C# code for a ProgressBar element, including any properties that have non-default values, such as Value, Minimum, Maximum, Width, Height, Name, and Tag. The generated code can be used to create a new ProgressBar element in a C# program.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateTreeViewCSharpCode(element as TreeView)
+/// <summary>
+/// Generates C# code for a TreeView element.
+/// </summary>
+/// <param name="element">The TreeView element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateTreeViewCSharpCode(TreeView element)
+{
+StringBuilder code = new StringBuilder();
+
+csharp
+Copy code
+// Start the code block with the element type and opening bracket
+code.Append($"new TreeView\n{{\n");
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code.Append($"    Name = \"{element.Name}\",\n");
+
+// Add ItemsSource
+if (element.ItemsSource != null)
+    code.Append($"    ItemsSource = {GenerateObjectCode(element.ItemsSource)},\n");
+
+// Add ItemTemplate
+if (element.ItemTemplate != null)
+    code.Append($"    ItemTemplate = {GenerateDataTemplateCode(element.ItemTemplate)},\n");
+
+// Add SelectedItem
+if (element.SelectedItem != null)
+    code.Append($"    SelectedItem = {GenerateObjectCode(element.SelectedItem)},\n");
+
+// Add SelectedValue
+if (element.SelectedValue != null)
+    code.Append($"    SelectedValue = {GenerateObjectCode(element.SelectedValue)},\n");
+
+// Add SelectedValuePath
+if (!string.IsNullOrEmpty(element.SelectedValuePath))
+    code.Append($"    SelectedValuePath = \"{element.SelectedValuePath}\",\n");
+
+// Add VirtualizingStackPanel.IsVirtualizing
+if (element.ItemsPanel is ItemsPanelTemplate itemsPanelTemplate && 
+    itemsPanelTemplate.VisualTree is FrameworkElement visualTree && 
+    visualTree.Name == "VirtualizingStackPanel")
+{
+    if (visualTree.ReadLocalValue(VirtualizingStackPanel.IsVirtualizingProperty) is bool isVirtualizing && 
+        isVirtualizing == false)
+    {
+        code.Append($"    VirtualizingStackPanel.IsVirtualizing = {isVirtualizing.ToString().ToLower()},\n");
+    }
+}
+
+// Add Closing bracket to close the code block
+code.Append($"}},");
+
+return code.ToString();
+}
+
+
+
+
+Yu Hong
+generate code for private static string GenerateListViewCSharpCode(element as ListView)
+/// <summary>
+/// Generates C# code for a ListView element.
+/// </summary>
+/// <param name="element">The ListView element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateListViewCSharpCode(ListView element)
+{
+StringBuilder code = new StringBuilder();
+
+csharp
+Copy code
+// Start the code block with the element type and opening bracket
+code.Append($"new ListView\n{{\n");
+
+// Add ItemsSource
+if (element.ItemsSource != null)
+    code.Append($"    ItemsSource = {GenerateObjectCode(element.ItemsSource)},\n");
+
+// Add Width
+if (!element.Width.Equals(double.NaN))
+    code.Append($"    Width = {element.Width},\n");
+
+// Add Height
+if (!element.Height.Equals(double.NaN))
+    code.Append($"    Height = {element.Height},\n");
+
+// Add HorizontalAlignment
+if (element.HorizontalAlignment != HorizontalAlignment.Left)
+    code.Append($"    HorizontalAlignment = HorizontalAlignment.{element.HorizontalAlignment},\n");
+
+// Add VerticalAlignment
+if (element.VerticalAlignment != VerticalAlignment.Top)
+    code.Append($"    VerticalAlignment = VerticalAlignment.{element.VerticalAlignment},\n");
+
+// Add Background
+if (element.Background != Brushes.Transparent)
+    code.Append($"    Background = {GenerateBrushCode(element.Background)},\n");
+
+// Add BorderBrush
+if (element.BorderBrush != Brushes.Transparent)
+    code.Append($"    BorderBrush = {GenerateBrushCode(element.BorderBrush)},\n");
+
+// Add BorderThickness
+if (element.BorderThickness != new Thickness(0))
+    code.Append($"    BorderThickness = new Thickness({element.BorderThickness.Left}, {element.BorderThickness.Top}, {element.BorderThickness.Right}, {element.BorderThickness.Bottom}),\n");
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code.Append($"    Name = \"{element.Name}\",\n");
+
+// Add Tag
+if (element.Tag != null)
+    code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+// Add Closing bracket to close the code block
+code.Append($"}},");
+
+return code.ToString();
+}
+
+
+
+
+Yu Hong
+generate code for private static string GenerateListBoxCSharpCode(element as ListBox)
+/// <summary>
+/// Generates C# code for a ListBox element.
+/// </summary>
+/// <param name="element">The ListBox element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateListBoxCSharpCode(ListBox element)
+{
+StringBuilder code = new StringBuilder();
+
+csharp
+Copy code
+// Start the code block with the element type and opening bracket
+code.Append($"new ListBox\n{{\n");
+
+// Add ItemsSource
+if (element.ItemsSource != null)
+    code.Append($"    ItemsSource = {GenerateObjectCode(element.ItemsSource)},\n");
+
+// Add DisplayMemberPath
+if (!string.IsNullOrEmpty(element.DisplayMemberPath))
+    code.Append($"    DisplayMemberPath = \"{element.DisplayMemberPath}\",\n");
+
+// Add SelectedItem
+if (element.SelectedItem != null)
+    code.Append($"    SelectedItem = {GenerateObjectCode(element.SelectedItem)},\n");
+
+// Add SelectedIndex
+if (element.SelectedIndex != -1)
+    code.Append($"    SelectedIndex = {element.SelectedIndex},\n");
+
+// Add Width
+if (!element.Width.Equals(double.NaN))
+    code.Append($"    Width = {element.Width},\n");
+
+// Add Height
+if (!element.Height.Equals(double.NaN))
+    code.Append($"    Height = {element.Height},\n");
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code.Append($"    Name = \"{element.Name}\",\n");
+
+// Add Tag
+if (element.Tag != null)
+    code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+// Add Closing bracket to close the code block
+code.Append($"}},");
+
+return code.ToString();
+}
+
+
+
+
+Yu Hong
+generate code for private static string GenerateRadioButtonCSharpCode(element as RadioButton
+Here's the code for generating C# code for a RadioButton element:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a RadioButton element.
+/// </summary>
+/// <param name="element">The RadioButton element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateRadioButtonCSharpCode(RadioButton element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new RadioButton\n{{\n");
+
+    // Add Content
+    if (element.Content != null)
+        code.Append($"    Content = {GenerateObjectCode(element.Content)},\n");
+
+    // Add GroupName
+    if (!string.IsNullOrEmpty(element.GroupName))
+        code.Append($"    GroupName = \"{element.GroupName}\",\n");
+
+    // Add IsChecked
+    if (element.IsChecked.HasValue)
+        code.Append($"    IsChecked = {element.IsChecked.ToString().ToLower()},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+This code generates a RadioButton object with its content, group name, IsChecked property, name, and tag (if set). The generated code is returned as a string.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateCheckBoxCSharpCode(element as CheckBox)
+Sure! Here's the code for generating C# code for a CheckBox element:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a CheckBox element.
+/// </summary>
+/// <param name="element">The CheckBox element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateCheckBoxCSharpCode(CheckBox element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new CheckBox\n{{\n");
+
+    // Add Content
+    if (!string.IsNullOrEmpty(element.Content?.ToString()))
+        code.Append($"    Content = \"{element.Content}\",\n");
+
+    // Add IsChecked
+    if (element.IsChecked.HasValue)
+        code.Append($"    IsChecked = {element.IsChecked.ToString().ToLower()},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+
+
+
+Yu Hong
+generate code for private static string GenerateComboBoxCSharpCode(element as ComboBox)
+/// <summary>
+/// Generates C# code for a ComboBox element.
+/// </summary>
+/// <param name="element">The ComboBox element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateComboBoxCSharpCode(ComboBox element)
+{
+StringBuilder code = new StringBuilder();
+
+csharp
+Copy code
+// Start the code block with the element type and opening bracket
+code.Append($"new ComboBox\n{{\n");
+
+// Add ItemsSource
+if (element.ItemsSource != null)
+    code.Append($"    ItemsSource = {GenerateObjectCode(element.ItemsSource)},\n");
+
+// Add SelectedIndex
+if (element.SelectedIndex >= 0)
+    code.Append($"    SelectedIndex = {element.SelectedIndex},\n");
+
+// Add Width
+if (!element.Width.Equals(double.NaN))
+    code.Append($"    Width = {element.Width},\n");
+
+// Add Height
+if (!element.Height.Equals(double.NaN))
+    code.Append($"    Height = {element.Height},\n");
+
+// Add Name
+if (!string.IsNullOrEmpty(element.Name))
+    code.Append($"    Name = \"{element.Name}\",\n");
+
+// Add Tag
+if (element.Tag != null)
+    code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+// Add Closing bracket to close the code block
+code.Append($"}},");
+
+return code.ToString();
+}
+
+
+
+
+Yu Hong
+generate code for private static string GenerateButtonCSharpCode(element as Button)
+Here is the code for generating C# code for a Button element:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a Button element.
+/// </summary>
+/// <param name="element">The Button element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateButtonCSharpCode(Button element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new Button\n{{\n");
+
+    // Add Content
+    if (element.Content != null)
+        code.Append($"    Content = {GenerateObjectCode(element.Content)},\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add IsEnabled
+    if (!element.IsEnabled)
+        code.Append($"    IsEnabled = {element.IsEnabled.ToString().ToLower()},\n");
+
+    // Add Command
+    if (element.Command != null)
+        code.Append($"    Command = {GenerateObjectCode(element.Command)},\n");
+
+    // Add CommandParameter
+    if (element.CommandParameter != null)
+        code.Append($"    CommandParameter = {GenerateObjectCode(element.CommandParameter)},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+This method takes a Button element and generates the corresponding C# code as a string. It uses a StringBuilder to construct the code and then returns the final code as a string. The code block starts with the element type and opening bracket, and ends with a closing bracket. The method adds the Content, Width, Height, IsEnabled, Command, CommandParameter, Name, and Tag properties, if they are set, to the code block.
+
+
+
+
+Yu Hong
+generate code for private static string GenerateTextBoxCSharpCode(element as TextBox)
+Here is the C# code generator for a TextBox element:
+
+csharp
+Copy code
+/// <summary>
+/// Generates C# code for a TextBox element.
+/// </summary>
+/// <param name="element">The TextBox element to generate code for.</param>
+/// <returns>The generated C# code.</returns>
+private static string GenerateTextBoxCSharpCode(TextBox element)
+{
+    StringBuilder code = new StringBuilder();
+
+    // Start the code block with the element type and opening bracket
+    code.Append($"new TextBox\n{{\n");
+
+    // Add Text
+    if (!string.IsNullOrEmpty(element.Text))
+        code.Append($"    Text = \"{element.Text}\",\n");
+
+    // Add Width
+    if (!element.Width.Equals(double.NaN))
+        code.Append($"    Width = {element.Width},\n");
+
+    // Add Height
+    if (!element.Height.Equals(double.NaN))
+        code.Append($"    Height = {element.Height},\n");
+
+    // Add FontFamily
+    if (element.FontFamily != null)
+        code.Append($"    FontFamily = new FontFamily(\"{element.FontFamily.Source}\"),\n");
+
+    // Add FontSize
+    if (!element.FontSize.Equals(12.0))
+        code.Append($"    FontSize = {element.FontSize},\n");
+
+    // Add FontWeight
+    if (element.FontWeight != FontWeights.Normal)
+        code.Append($"    FontWeight = FontWeights.{element.FontWeight},\n");
+
+    // Add FontStyle
+    if (element.FontStyle != FontStyles.Normal)
+        code.Append($"    FontStyle = FontStyles.{element.FontStyle},\n");
+
+    // Add TextAlignment
+    if (element.TextAlignment != TextAlignment.Left)
+        code.Append($"    TextAlignment = TextAlignment.{element.TextAlignment},\n");
+
+    // Add AcceptsReturn
+    if (element.AcceptsReturn)
+        code.Append($"    AcceptsReturn = {element.AcceptsReturn.ToString().ToLower()},\n");
+
+    // Add IsReadOnly
+    if (element.IsReadOnly)
+        code.Append($"    IsReadOnly = {element.IsReadOnly.ToString().ToLower()},\n");
+
+    // Add IsEnabled
+    if (!element.IsEnabled)
+        code.Append($"    IsEnabled = {element.IsEnabled.ToString().ToLower()},\n");
+
+    // Add Name
+    if (!string.IsNullOrEmpty(element.Name))
+        code.Append($"    Name = \"{element.Name}\",\n");
+
+    // Add Tag
+    if (element.Tag != null)
+        code.Append($"    Tag = {GenerateObjectCode(element.Tag)},\n");
+
+    // Add Closing bracket to close the code block
+    code.Append($"}},");
+
+    return code.ToString();
+}
+
+
+
+Yu Hong
+thanks. i will try to consolidate all the information. hopefully, some day you can provide a comprehensive design along with completed codes.
+You're welcome! I'm glad to be of help.
+
+As for providing a comprehensive design along with completed codes, that would depend on the specific requirements and context of the project. However, I'm always here to assist you in generating code for individual elements or answering any related questions you may have.
